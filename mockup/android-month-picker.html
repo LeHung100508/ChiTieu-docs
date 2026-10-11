@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Android – Chọn tháng</title>
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1B6B4A}a:hover{color:#0F4F35}
+button{font-family:inherit}
+.m{height:48px;border:0;border-radius:24px;background:transparent;font-size:15px;font-weight:500;color:#171D1A}
+.off{color:rgba(23,29,26,0.38)}
+.chip{height:32px;padding:0 12px;border-radius:8px;border:1px solid #707973;background:transparent;font-size:14px;font-weight:500;color:#171D1A}
+</style>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F5FBF5; color: #171D1A; font-family: 'Roboto Flex', sans-serif">
+<div aria-hidden="true">
+<div style="height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px"><span style="font-size: 22px; font-weight: 500">Thống kê</span><span style="height: 40px; padding: 0 14px; border: 1px solid #707973; border-radius: 20px; display: flex; align-items: center; font-size: 14px">Tuần · Tháng · Năm</span></div>
+<div style="height: 48px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600">Tháng 10/2026</div>
+<div style="margin: 12px 16px; height: 68px; border-radius: 20px; background: #EFF5EF"></div>
+<div style="margin: 0 16px; height: 164px; border-radius: 24px; background: #EFF5EF"></div>
+</div>
+<div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.32)"></div>
+<section aria-label="Chọn tháng" style="position: absolute; left: 0; right: 0; bottom: 0; background: #EFF5EF; border-radius: 28px 28px 0 0; padding: 0 24px 32px; display: flex; flex-direction: column; gap: 16px">
+<div aria-hidden="true" style="width: 32px; height: 4px; border-radius: 2px; background: #707973; margin: 22px auto 0"></div>
+<h2 style="margin: 0; font-size: 22px; font-weight: 500">Chọn tháng</h2>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<button aria-label="Năm trước" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: none; color: #404943; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+<button style="height: 40px; padding: 0 8px 0 14px; border: 0; border-radius: 20px; background: none; display: flex; align-items: center; gap: 2px; font-size: 16px; font-weight: 600; color: #171D1A">2026<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button aria-label="Năm sau" disabled style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: none; color: rgba(23, 29, 26, 0.38); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 1</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 2</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 3</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 4</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 5</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 6</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 7</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 8</a>
+<a href="android-stats.html" class="m" style="display: flex; align-items: center; justify-content: center; text-decoration: none">Th 9</a>
+<a href="android-stats.html" class="m" aria-current="true" style="display: flex; align-items: center; justify-content: center; text-decoration: none; background: #1B6B4A; color: #FFFFFF; font-weight: 600">Th 10</a>
+<button class="m off" disabled>Th 11</button>
+<button class="m off" disabled>Th 12</button>
+</div>
+<div style="display: flex; gap: 8px">
+<a href="android-stats.html" class="chip" style="display: flex; align-items: center; text-decoration: none">Tháng này</a>
+<a href="android-stats.html" class="chip" style="display: flex; align-items: center; text-decoration: none">Tháng trước</a>
+</div>
+</section>
+</div>
+</body>
+</html>

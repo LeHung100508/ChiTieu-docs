@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kế hoạch phát triển Android – ChiNhanh</title>
+<style>
+:root{color-scheme:light dark;--line:#d6d3d1;--soft:#f5f5f4;--muted:#57534e;--found:#78716c;--mvp:#1b6b4a;--rel:#b86e00;--v11:#2f5fa7}
+body{margin:0;background:#fafaf9;color:#1c1917;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:32px 20px 64px}
+nav.top{font-size:14px;margin-bottom:16px}
+a{color:#0b6b4a}
+h1{font-size:30px;line-height:1.25;margin-bottom:8px}
+h2{margin-top:44px;font-size:22px;border-bottom:1px solid #e7e5e4;padding-bottom:6px}
+h3{font-size:18px;margin:28px 0 8px}
+table{border-collapse:collapse;margin:16px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+td.num,th.num{text-align:right;white-space:nowrap}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--soft);padding:1px 4px;border-radius:4px}
+.lead{font-size:18px}
+.meta{color:var(--muted);font-size:14px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:10px;color:#fff;vertical-align:2px}
+.t-found{background:var(--found)}.t-mvp{background:var(--mvp)}.t-rel{background:var(--rel)}.t-v11{background:var(--v11)}
+.sprint{border:1px solid var(--line);border-radius:12px;padding:4px 20px 12px;margin:20px 0}
+.sprint h3{margin-top:16px}
+.done{background:var(--soft);border-radius:8px;padding:8px 12px;font-size:15px}
+/* Timeline */
+.tl{overflow-x:auto;margin:16px 0}
+.grid{display:grid;grid-template-columns:200px repeat(19,minmax(26px,1fr));gap:4px 2px;min-width:760px;font-size:13px;align-items:center}
+.wk{text-align:center;color:var(--muted);font-size:12px}
+.lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:8px}
+.bar{height:22px;border-radius:6px;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;padding:0 6px;white-space:nowrap;overflow:hidden}
+.b-found{background:var(--found)}.b-mvp{background:var(--mvp)}.b-rel{background:var(--rel)}.b-v11{background:var(--v11)}
+.b-wait{background:repeating-linear-gradient(45deg,var(--rel),var(--rel) 6px,#d99a3c 6px,#d99a3c 12px)}
+.gate{font-size:12px;font-weight:600;color:var(--rel);white-space:nowrap}
+@media (prefers-color-scheme:dark){
+  :root{--line:#44403c;--soft:#292524;--muted:#a8a29e}
+  body{background:#1c1917;color:#f5f5f4} a{color:#6ee7b7}
+  .gate{color:#f0b35a}
+}
+</style>
+</head>
+<body>
+<main>
+<nav class="top"><a href="index.html">← Mục lục</a></nav>
+
+<h1>Kế hoạch phát triển ChiNhanh trên Android</h1>
+<p class="meta">Lập ngày 10/10/2026 · Căn cứ: <a href="dac-ta-android.html">đặc tả Android</a>, <a href="wireframe.html">wireframe</a>, <a href="mockup/index.html">mockup</a> · Chi tiết từng task: <a href="task-android.html">chia task theo sprint</a></p>
+
+<p class="lead">Kế hoạch gồm <b>9 sprint, mỗi sprint 2 tuần</b>, cộng 1 tuần chờ duyệt. MVP (21 yêu cầu Must) dự kiến lên Google Play Production vào cuối <b>tuần 13</b>, bản v1.1 (13 yêu cầu Should) xong ở <b>tuần 19</b>. Các mốc này được phép lùi nếu cần để giữ chất lượng.</p>
+
+<h2>1. Giả định và cách làm việc</h2>
+<ul>
+<li><b>Năng lực:</b> một người, làm ngoài giờ khoảng 10–12 giờ mỗi tuần, tức khoảng 22 giờ mỗi sprint. Số giờ ước tính trong từng sprint đã gồm thời gian học công nghệ mới và viết test.</li>
+<li><b>Nhịp sprint cho người làm một mình:</b>
+  <ul>
+  <li>Đầu sprint: 30 phút chọn việc từ bảng bên dưới và ghi mục tiêu sprint.</li>
+  <li>Mỗi buổi làm: ghi một dòng tiến độ vào <code>CHANGELOG.md</code> hoặc issue.</li>
+  <li>Cuối sprint: quay video ngắn demo trên máy thật, rồi dành 15 phút tự hỏi lại: việc gì tốt, việc gì chậm, sprint sau đổi gì.</li>
+  </ul>
+</li>
+<li><b>Quy trình Git:</b> nhánh <code>main</code> luôn build được. Mỗi tính năng một nhánh, mở pull request cho chính mình để CI chạy trước khi merge.</li>
+<li><b>Nếu trễ:</b> không nhồi thêm việc vào sprint. Dời việc chưa xong sang sprint sau và lùi lịch các sprint phía sau; ngày phát hành được phép lùi (đã thống nhất ngày 10/10/2026). Chất lượng bản đưa cho tester quan trọng hơn ngày phát hành.</li>
+</ul>
+
+<h3>Định nghĩa "Hoàn thành" cho mọi việc</h3>
+<ul>
+<li>Có unit test cho logic. Màn hình mới có screenshot test (Roborazzi).</li>
+<li>CI xanh: build, lint, Detekt, Spotless, unit test.</li>
+<li>Không có chuỗi hard-code. Có đủ tiếng Việt và tiếng Anh.</li>
+<li>Đã chạy trên máy thật, ở cả chế độ sáng và tối.</li>
+<li>Đạt tiêu chí chấp nhận của FR tương ứng trong đặc tả.</li>
+</ul>
+
+<h2>2. Lộ trình</h2>
+<div class="tl" role="img" aria-label="Lộ trình 19 tuần: sprint 0 tuần 1–2, MVP tuần 3–10, phát hành tuần 11–13, v1.1 tuần 14–19">
+<div class="grid">
+  <div></div>
+  <div class="wk">1</div><div class="wk">2</div><div class="wk">3</div><div class="wk">4</div><div class="wk">5</div><div class="wk">6</div><div class="wk">7</div><div class="wk">8</div><div class="wk">9</div><div class="wk">10</div><div class="wk">11</div><div class="wk">12</div><div class="wk">13</div><div class="wk">14</div><div class="wk">15</div><div class="wk">16</div><div class="wk">17</div><div class="wk">18</div><div class="wk">19</div>
+
+  <div class="lbl">S0 · Nền tảng</div><div class="bar b-found" style="grid-column:2 / 4">S0</div>
+  <div class="gate" style="grid-column:4 / 9">◆ Cổng 1: parser ≥ 95%</div><div style="grid-column:9 / 21"></div>
+
+  <div class="lbl">S1 · Dữ liệu, ví, danh mục</div><div style="grid-column:2 / 4"></div><div class="bar b-mvp" style="grid-column:4 / 6">S1</div><div style="grid-column:6 / 21"></div>
+  <div class="lbl">S2 · Nhập bằng câu</div><div style="grid-column:2 / 6"></div><div class="bar b-mvp" style="grid-column:6 / 8">S2</div><div style="grid-column:8 / 21"></div>
+  <div class="lbl">S3 · Giao dịch, ngân sách</div><div style="grid-column:2 / 8"></div><div class="bar b-mvp" style="grid-column:8 / 10">S3</div><div style="grid-column:10 / 21"></div>
+  <div class="lbl">S4 · Thống kê, hoàn thiện</div><div style="grid-column:2 / 10"></div><div class="bar b-mvp" style="grid-column:10 / 12">S4</div><div style="grid-column:12 / 21"></div>
+  <div class="lbl"></div><div style="grid-column:2 / 10"></div><div class="gate" style="grid-column:10 / 16">◆ Cổng 2: đủ 21 Must, NFR đạt</div><div style="grid-column:16 / 21"></div>
+
+  <div class="lbl">S5 · Closed testing</div><div style="grid-column:2 / 12"></div><div class="bar b-rel" style="grid-column:12 / 14">S5 · 14 ngày</div><div style="grid-column:14 / 21"></div>
+  <div class="lbl">Chờ duyệt Production</div><div style="grid-column:2 / 14"></div><div class="bar b-wait" style="grid-column:14 / 15"></div><div class="gate" style="grid-column:15 / 21">◆ Cổng 3: lên Production</div>
+
+  <div class="lbl">S6 · AI trên máy</div><div style="grid-column:2 / 15"></div><div class="bar b-v11" style="grid-column:15 / 17">S6</div><div style="grid-column:17 / 21"></div>
+  <div class="lbl">S7 · Ảnh và lối tắt</div><div style="grid-column:2 / 17"></div><div class="bar b-v11" style="grid-column:17 / 19">S7</div><div style="grid-column:19 / 21"></div>
+  <div class="lbl">S8 · Tự động hóa, sao lưu</div><div style="grid-column:2 / 19"></div><div class="bar b-v11" style="grid-column:19 / 21">S8</div>
+</div>
+</div>
+<p class="meta"><span class="tag t-found">Nền tảng</span> <span class="tag t-mvp">MVP</span> <span class="tag t-rel">Phát hành</span> <span class="tag t-v11">v1.1</span> · Các cổng khớp với mục 9 của đặc tả.</p>
+
+<h2>3. Tổng quan các sprint</h2>
+<table>
+<thead><tr><th>Sprint</th><th>Tuần</th><th>Mục tiêu</th><th>Yêu cầu</th><th>Công nghệ học chính</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>S0</td><td>1–2</td><td>Khung dự án và bộ phân tích câu</td><td>FR-02, FR-03, FR-04, FR-07 (lõi), NFR-02</td><td>Gradle Kotlin DSL, Version Catalog, convention plugins, KSP, CI</td><td class="num">22</td></tr>
+<tr><td>S1</td><td>3–4</td><td>Dữ liệu, ví, danh mục, onboarding</td><td>FR-23, FR-24, FR-34, FR-35</td><td>Room + Flow, Hilt, DataStore, ViewModel + StateFlow</td><td class="num">22</td></tr>
+<tr><td>S2</td><td>5–6</td><td>Nhập bằng câu từ đầu đến cuối</td><td>FR-01, FR-05 đến FR-08, FR-13</td><td>Navigation 3, Compose state, adaptive navigation, edge-to-edge</td><td class="num">22</td></tr>
+<tr><td>S3</td><td>7–8</td><td>Giao dịch, ngân sách, widget</td><td>FR-14, FR-18, FR-19, FR-20, FR-25</td><td>Paging 3, Room FTS, Glance, list-detail</td><td class="num">22</td></tr>
+<tr><td>S4</td><td>9–10</td><td>Thống kê và hoàn thiện MVP</td><td>FR-27, FR-30, FR-32, NFR-01, NFR-03, NFR-10 đến NFR-12</td><td>Vico, Canvas, BiometricPrompt, Baseline Profile, Macrobenchmark</td><td class="num">22</td></tr>
+<tr><td>S5</td><td>11–12 (+13)</td><td>Phát hành lên Google Play</td><td>NFR-05, NFR-08, quy trình Play</td><td>Play Console, R8, Crashlytics, Gradle Play Publisher</td><td class="num">22</td></tr>
+<tr><td>S6</td><td>14–15</td><td>AI trên máy và học từ người dùng</td><td>FR-09, FR-10, FR-12, FR-29</td><td>ML Kit GenAI (Gemini Nano), structured output</td><td class="num">20</td></tr>
+<tr><td>S7</td><td>16–17</td><td>Nhập từ ảnh và lối tắt</td><td>FR-15, FR-16, FR-17, FR-28</td><td>ML Kit Text Recognition, Document Scanner, TileService</td><td class="num">20</td></tr>
+<tr><td>S8</td><td>18–19</td><td>Tự động hóa và sao lưu, phát hành v1.1</td><td>FR-21, FR-26, FR-31, FR-33, FR-36, NFR-07, NFR-16</td><td>WorkManager, notifications, Drive API, <code>javax.crypto</code></td><td class="num">19</td></tr>
+</tbody>
+</table>
+<p class="meta">S1–S4 phủ đủ 21 yêu cầu Must. S6–S8 phủ đủ 13 yêu cầu Should. Hai yêu cầu Could (FR-11, FR-22) nằm trong backlog ở mục 6.</p>
+
+<h2>4. Chi tiết từng sprint</h2>
+
+<div class="sprint">
+<h3><span class="tag t-found">S0</span> Tuần 1–2 · Khung dự án và bộ phân tích câu</h3>
+<p><b>Mục tiêu:</b> có dự án chạy được với CI và một bộ phân tích câu đủ tin cậy để xây mọi thứ khác lên trên.</p>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Tạo project</td><td>Android Studio, Kotlin DSL, AGP 9 (nếu Hilt, Room, KSP hoặc Roborazzi chưa tương thích thì dùng AGP 8.x), KSP, <code>libs.versions.toml</code>. <code>minSdk</code> 26, <code>targetSdk</code> 36</td><td class="num">2</td></tr>
+<tr><td>Convention plugins</td><td><code>build-logic</code>: android-application, android-library, compose, hilt, jvm-library</td><td class="num">3</td></tr>
+<tr><td>Khung module</td><td><code>app</code>, <code>core:{model, parser, database, datastore, data, designsystem, ui, testing}</code>, <code>feature:{quickadd, transactions, budget, stats, settings}</code></td><td class="num">2</td></tr>
+<tr><td>CI</td><td>GitHub Actions: build, lint, Detekt, Spotless, unit test, báo cáo Kover</td><td class="num">2</td></tr>
+<tr><td>Design system</td><td>Theme M3 Expressive theo mockup (màu gốc <code>#1B6B4A</code>, Roboto Flex), có Dynamic Color; các component chip, thẻ số tiền, ô nhập</td><td class="num">3</td></tr>
+<tr><td>Bộ phân tích câu (TDD)</td><td><code>core:parser</code> viết bằng Kotlin thuần. Bộ 200 câu mẫu ở dạng JSON (dùng chung cho bản iOS). Làm theo thứ tự: số tiền (FR-02), thời gian (FR-03), danh mục theo từ khóa (FR-04), tách nhiều khoản (FR-07)</td><td class="num">8</td></tr>
+<tr><td>Đo hiệu năng parser</td><td>Microbenchmark, mục tiêu ≤ 50 ms mỗi câu (NFR-02)</td><td class="num">2</td></tr>
+</tbody>
+</table>
+<p><b>Học trước:</b> thư mục <code>build-logic</code> của Now in Android; KSP thay cho kapt; viết test trước rồi mới code (TDD) cho phần logic thuần.</p>
+<p><b>Song song:</b> đăng ký tài khoản Google Play Console và xác minh danh tính ngay từ tuần 1, vì bước này có thể mất vài ngày.</p>
+<p class="done"><b>Xong khi (Cổng 1):</b> CI xanh. Parser nhận đúng số tiền ở ≥ 95% trong 200 câu mẫu. Theme hiện đúng trong Compose Preview ở cả chế độ sáng và tối.</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S1</span> Tuần 3–4 · Dữ liệu, ví, danh mục, onboarding</h3>
+<p><b>Mục tiêu:</b> lưu được dữ liệu thật. Người dùng mới qua onboarding và tạo được ví, danh mục.</p>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Room</td><td>Entity <code>Wallet</code>, <code>Category</code>, <code>Transaction</code>, <code>KeywordRule</code> và bảng FTS4. DAO trả về <code>Flow</code>. Số tiền lưu kiểu <code>Long</code> (NFR-06). Có sẵn khung test migration</td><td class="num">5</td></tr>
+<tr><td>Danh mục mặc định</td><td>Khoảng 15 danh mục chi, 5 danh mục thu, có icon và màu (FR-24)</td><td class="num">1</td></tr>
+<tr><td>Repository và Hilt</td><td>Domain model, repository offline-first, các module Hilt, fake repository trong <code>core:testing</code></td><td class="num">3</td></tr>
+<tr><td>DataStore</td><td>Ví mặc định, ngày bắt đầu tháng, giao diện, đã qua onboarding chưa</td><td class="num">2</td></tr>
+<tr><td>Onboarding</td><td>3 bước theo wireframe 1, ghi được giao dịch đầu tiên trong vòng 60 giây (FR-34)</td><td class="num">4</td></tr>
+<tr><td>Ví và danh mục</td><td>Thêm, sửa, lưu trữ ví và bí danh; quản lý danh mục và danh mục con (FR-23, FR-24)</td><td class="num">4</td></tr>
+<tr><td>Cài đặt cơ bản</td><td>Ngôn ngữ riêng cho app, giao diện sáng/tối, ngày bắt đầu tháng, ví mặc định (FR-35)</td><td class="num">3</td></tr>
+</tbody>
+</table>
+<p><b>Học trước (đổi từ công nghệ cũ):</b> Dagger 2 sang Hilt (<code>@HiltAndroidApp</code>, <code>@HiltViewModel</code>, <code>@InstallIn</code>); LiveData sang <code>StateFlow</code> và <code>collectAsStateWithLifecycle</code>; SharedPreferences sang DataStore; luồng dữ liệu một chiều (UDF).</p>
+<p class="done"><b>Xong khi:</b> cài app mới, qua onboarding, tạo được ví và danh mục. Dữ liệu còn nguyên sau khi tắt mở lại app. Có test cho DAO và cho ViewModel (dùng Turbine).</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S2</span> Tuần 5–6 · Nhập bằng câu từ đầu đến cuối</h3>
+<p><b>Mục tiêu:</b> tính năng cốt lõi chạy trọn vẹn: gõ hoặc nói một câu, xem nháp, sửa chip, lưu.</p>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Khung app</td><td>Navigation 3, <code>NavigationSuiteScaffold</code> với 4 tab, edge-to-edge, predictive back</td><td class="num">4</td></tr>
+<tr><td>Trang chủ</td><td>Thẻ tổng chi tháng, thẻ cảnh báo ngân sách (tạm để trống), danh sách gần đây, theo mockup Android · Trang chủ</td><td class="num">3</td></tr>
+<tr><td>Ô nhập và nháp</td><td>Gõ đến đâu phân tích đến đó (debounce, parser chạy trên <code>Dispatchers.Default</code>), nháp hiện trong 300 ms, chip sửa được (FR-01, FR-08)</td><td class="num">6</td></tr>
+<tr><td>Hoàn thiện parser</td><td>Thu, chi, chuyển; ví theo bí danh; nhiều khoản trong một câu (FR-05, FR-06, FR-07)</td><td class="num">3</td></tr>
+<tr><td>Bộ chọn cho chip</td><td>Bottom sheet chọn danh mục, ví, ngày</td><td class="num">2</td></tr>
+<tr><td>Giọng nói</td><td>Nhận dạng vi-VN, văn bản đi qua cùng luồng phân tích (FR-13)</td><td class="num">2</td></tr>
+<tr><td>Kiểm thử giao diện</td><td>Compose UI test cho luồng nhập; screenshot test cho Trang chủ và thẻ nháp</td><td class="num">2</td></tr>
+</tbody>
+</table>
+<p><b>Học trước:</b> Navigation 3 (<code>NavKey</code>, <code>NavDisplay</code>, back stack là state); state hoisting và side effect trong Compose; <code>debounce</code>, <code>flatMapLatest</code> của Flow; xử lý <code>WindowInsets</code>.</p>
+<p class="done"><b>Xong khi:</b> gõ <code>sáng phở 45k, trưa cơm 35k và cafe 29k</code> ra 3 nháp và lưu một lần. Nói một câu cũng ra đúng nháp. Demo được trên máy thật.</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S3</span> Tuần 7–8 · Giao dịch, ngân sách, widget</h3>
+<p><b>Mục tiêu:</b> xem, tìm, sửa, xóa giao dịch; đặt ngân sách; ghi nhanh từ màn hình chính.</p>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Danh sách giao dịch</td><td>Nhóm theo ngày, có tổng mỗi ngày, Paging 3 với Room (FR-18)</td><td class="num">4</td></tr>
+<tr><td>Tìm kiếm và lọc</td><td>FTS4 và filter chip theo tháng, danh mục, ví, loại (FR-20)</td><td class="num">3</td></tr>
+<tr><td>Sửa và xóa</td><td>Màn hình sửa toàn trang theo mockup; vuốt để xóa có Snackbar Hoàn tác; nhấn giữ mở menu (FR-19)</td><td class="num">4</td></tr>
+<tr><td>Ngân sách</td><td>Ngân sách tháng theo danh mục và tổng, thanh đổi màu ở 80% và 100% (FR-25)</td><td class="num">4</td></tr>
+<tr><td>Widget</td><td>Glance kích thước 2×2 và 4×1; nút (+) mở hộp thoại Nhập nhanh dạng activity dialog (FR-14)</td><td class="num">5</td></tr>
+<tr><td>Tablet</td><td><code>ListDetailPaneScaffold</code> cho danh sách và chi tiết giao dịch</td><td class="num">2</td></tr>
+</tbody>
+</table>
+<p><b>Học trước:</b> Paging 3 với Room; <code>SwipeToDismissBox</code>; Jetpack Glance; Material 3 adaptive.</p>
+<p><b>Song song:</b> bắt đầu mời tester (cần ít nhất 12 người cho S5): bạn bè, đồng nghiệp, nhóm Android.</p>
+<p class="done"><b>Xong khi:</b> với 10.000 giao dịch mẫu, danh sách cuộn mượt và tìm "phở" ra đúng kết quả. Widget cập nhật ngay sau khi lưu giao dịch.</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S4</span> Tuần 9–10 · Thống kê và hoàn thiện MVP</h3>
+<p><b>Mục tiêu:</b> đủ 21 yêu cầu Must và đạt các yêu cầu phi chức năng, sẵn sàng cho tester.</p>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Thống kê</td><td>Xem theo tuần, tháng, năm; biểu đồ cột bằng Vico, biểu đồ tròn tự vẽ bằng <code>Canvas</code>; bộ chọn tháng dạng bottom sheet; ở chế độ Năm, chạm vào cột mở tháng đó (FR-27)</td><td class="num">6</td></tr>
+<tr><td>Xuất CSV</td><td>Qua Storage Access Framework, UTF-8 có BOM (FR-30)</td><td class="num">2</td></tr>
+<tr><td>Khóa app</td><td>BiometricPrompt, khóa lại sau thời gian người dùng chọn (FR-32)</td><td class="num">3</td></tr>
+<tr><td>Khả năng truy cập</td><td>TalkBack, cỡ chữ 200%, vùng chạm 48 dp, độ tương phản (NFR-11)</td><td class="num">3</td></tr>
+<tr><td>Đa ngôn ngữ</td><td>Rà toàn bộ chuỗi vi/en, định dạng tiền theo locale (NFR-12)</td><td class="num">2</td></tr>
+<tr><td>Hiệu năng</td><td>Baseline Profile, Macrobenchmark cho khởi động và cuộn (NFR-01, NFR-03)</td><td class="num">3</td></tr>
+<tr><td>Kiểm tra tổng</td><td>Chạy mọi tính năng Must ở chế độ máy bay (NFR-10), sửa lỗi tồn đọng</td><td class="num">3</td></tr>
+</tbody>
+</table>
+<p><b>Học trước:</b> thư viện biểu đồ Vico và cách vẽ bằng <code>Canvas</code> trong Compose; <code>androidx.biometric</code>; Baseline Profile Gradle plugin.</p>
+<p class="done"><b>Xong khi (Cổng 2):</b> 21 yêu cầu Must đạt tiêu chí chấp nhận; khởi động lạnh ≤ 1 giây trên máy tầm trung; không có lỗi nghiêm trọng còn mở.</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-rel">S5</span> Tuần 11–12, chờ duyệt tuần 13 · Phát hành lên Google Play</h3>
+<p><b>Mục tiêu:</b> đi hết quy trình bắt buộc của Google Play và lên Production.</p>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Chuẩn bị bản build</td><td>Play App Signing, R8 full mode, kiểm tra kích thước tải về ≤ 20 MB (NFR-04)</td><td class="num">3</td></tr>
+<tr><td>Hồ sơ trên Play</td><td>Chính sách quyền riêng tư (đăng bằng GitHub Pages), form Data safety, phân loại nội dung, trang giới thiệu vi/en, ảnh chụp lấy từ screenshot test</td><td class="num">5</td></tr>
+<tr><td>Giám sát</td><td>Crashlytics tắt được trong Cài đặt, không ghi nội dung giao dịch (NFR-05, NFR-08)</td><td class="num">2</td></tr>
+<tr><td>Tự động phát hành</td><td>Gradle Play Publisher trong CI, đẩy bản build lên kênh internal testing</td><td class="num">2</td></tr>
+<tr><td>Closed testing</td><td>Ít nhất 12 tester chạy liên tục 14 ngày; mở kênh nhận phản hồi (Google Form hoặc nhóm chat)</td><td class="num">2</td></tr>
+<tr><td>Sửa lỗi từ tester</td><td>Ưu tiên crash, sai số tiền, sai danh mục; câu bị phân tích sai được thêm vào bộ 200 câu mẫu</td><td class="num">8</td></tr>
+</tbody>
+</table>
+<p><b>Tuần 13:</b> nộp đơn xin quyền phát hành Production và chờ Google duyệt. Khi được duyệt, phát hành theo từng phần (staged rollout).</p>
+<p class="done"><b>Xong khi (Cổng 3):</b> app có mặt trên Google Play Production.</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-v11">S6</span> Tuần 14–15 · AI trên máy và học từ người dùng</h3>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Học từ chỉnh sửa</td><td>Sửa danh mục của cùng một từ khóa 2 lần thì lưu vào <code>KeywordRule</code>; xem và xóa được trong tab Từ điển (FR-09)</td><td class="num">3</td></tr>
+<tr><td>Gợi ý tự hoàn thành</td><td>Gợi ý các câu đã ghi từ 3 lần trở lên (FR-12)</td><td class="num">3</td></tr>
+<tr><td>Gemini Nano</td><td>ML Kit GenAI Prompt API: kiểm tra máy có hỗ trợ, prompt trả về JSON đúng schema, quá 3 giây thì dùng kết quả theo luật (FR-10)</td><td class="num">8</td></tr>
+<tr><td>Hỏi đáp chi tiêu</td><td>Nhận diện câu hỏi theo luật, dùng Gemini Nano khi máy có; truy vấn Room trả về con số (FR-29)</td><td class="num">6</td></tr>
+</tbody>
+</table>
+<p class="done"><b>Xong khi:</b> trên máy có Gemini Nano, các câu mà parser theo luật không chắc chắn được phân tích đúng hơn; trên máy không có, app vẫn chạy như MVP.</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-v11">S7</span> Tuần 16–17 · Nhập từ ảnh và lối tắt</h3>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Lối tắt</td><td>Ô Cài đặt nhanh (<code>TileService</code>) và App shortcuts mở thẳng Nhập nhanh (FR-15)</td><td class="num">3</td></tr>
+<tr><td>Ảnh chuyển khoản</td><td>Share target nhận văn bản và ảnh; ML Kit Text Recognition; luật đọc màn hình chuyển khoản của các app ngân hàng phổ biến (FR-16)</td><td class="num">8</td></tr>
+<tr><td>Hóa đơn</td><td>ML Kit Document Scanner, lấy dòng tổng tiền, đính kèm ảnh vào giao dịch (FR-17)</td><td class="num">6</td></tr>
+<tr><td>So sánh tháng trước</td><td>Mức tăng giảm theo % và theo số tiền cho từng danh mục (FR-28)</td><td class="num">3</td></tr>
+</tbody>
+</table>
+<p class="done"><b>Xong khi:</b> chia sẻ ảnh màn hình "Chuyển khoản thành công" vào app thì ra nháp có số tiền, nội dung và thời gian.</p>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-v11">S8</span> Tuần 18–19 · Tự động hóa, sao lưu, phát hành v1.1</h3>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Giao dịch định kỳ</td><td>WorkManager tự tạo giao dịch đúng ngày, kể cả khi app không mở (FR-21)</td><td class="num">4</td></tr>
+<tr><td>Thông báo</td><td>Báo khi đạt 80% và 100% ngân sách (FR-26); nhắc ghi chép hằng ngày, chỉ khi hôm đó chưa ghi (FR-36); xin quyền <code>POST_NOTIFICATIONS</code></td><td class="num">4</td></tr>
+<tr><td>Sao lưu</td><td>Google Drive <code>appDataFolder</code>, mã hóa AES-256-GCM với khóa sinh từ mật khẩu (PBKDF2), khôi phục; định dạng file dùng chung với bản iOS (FR-31, NFR-07, NFR-16)</td><td class="num">8</td></tr>
+<tr><td>Ẩn nội dung</td><td>Ẩn nội dung app trong màn hình đa nhiệm khi bật khóa (FR-33)</td><td class="num">1</td></tr>
+<tr><td>Phát hành v1.1</td><td>Cập nhật trang giới thiệu, phát hành từng phần</td><td class="num">2</td></tr>
+</tbody>
+</table>
+<p class="done"><b>Xong khi:</b> đủ 13 yêu cầu Should; sao lưu trên một máy và khôi phục trên máy khác ra đúng số giao dịch và số dư.</p>
+</div>
+
+<h2>5. Rủi ro và cách xử lý</h2>
+<table>
+<thead><tr><th>Rủi ro</th><th>Ảnh hưởng</th><th>Cách xử lý</th></tr></thead>
+<tbody>
+<tr><td>Parser hiểu sai cách viết tiếng Việt đa dạng</td><td>Tính năng cốt lõi kém tin cậy</td><td>Làm TDD từ S0; mỗi câu tester báo sai được thêm vào bộ câu mẫu; luôn có bước xem trước trước khi lưu (FR-08)</td></tr>
+<tr><td>Không đủ 12 tester trong 14 ngày</td><td>Trễ lên Production</td><td>Mời tester từ S3; mời dư khoảng 15–20 người</td></tr>
+<tr><td>Xác minh tài khoản Play mất thời gian</td><td>Kẹt ở S5</td><td>Đăng ký và xác minh ngay từ S0</td></tr>
+<tr><td>Học công nghệ mới chậm hơn dự kiến</td><td>Sprint trễ</td><td>Học đúng phần "Học trước" của sprint; tham khảo Now in Android; nếu trễ thì dời yêu cầu Should, không dời Must</td></tr>
+<tr><td>Plugin chưa tương thích với AGP 9</td><td>Kẹt ngay ở S0</td><td>Kiểm tra ở task S0-03; nếu lỗi thì dùng AGP 8.x bản mới nhất cho MVP, nâng lên AGP 9 sau</td></tr>
+<tr><td>Gemini Nano chỉ có trên ít máy</td><td>Ít người dùng được AI</td><td>Đã để ở v1.1; parser theo luật luôn là lõi</td></tr>
+<tr><td>Màn hình chuyển khoản mỗi ngân hàng một kiểu</td><td>FR-16 đọc sai</td><td>Thu ảnh mẫu từ tester; làm luật cho 3–5 ngân hàng phổ biến trước</td></tr>
+</tbody>
+</table>
+
+<h2>6. Backlog sau v1.1</h2>
+<ul>
+<li>FR-11: AI trên cloud qua Firebase AI Logic, tắt mặc định.</li>
+<li>FR-22: thẻ (tag) cho giao dịch, lọc và thống kê theo thẻ.</li>
+<li>Bắt đầu bản iOS theo <a href="dac-ta-ios.html">đặc tả iOS</a>, dùng lại bộ câu mẫu và định dạng file sao lưu.</li>
+</ul>
+</main>
+</body>
+</html>

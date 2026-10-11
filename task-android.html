@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chia task theo sprint – ChiNhanh Android</title>
+<style>
+:root{color-scheme:light dark;--line:#d6d3d1;--soft:#f5f5f4;--muted:#57534e;--found:#78716c;--mvp:#1b6b4a;--rel:#b86e00;--v11:#2f5fa7;--warn:#9a3412}
+body{margin:0;background:#fafaf9;color:#1c1917;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:32px 20px 64px}
+nav.top{font-size:14px;margin-bottom:16px}
+a{color:#0b6b4a}
+h1{font-size:30px;line-height:1.25;margin-bottom:8px}
+h2{margin-top:44px;font-size:22px;border-bottom:1px solid #e7e5e4;padding-bottom:6px}
+h3{font-size:18px;margin:28px 0 8px}
+table{border-collapse:collapse;margin:12px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);white-space:nowrap}
+td.id{white-space:nowrap;font-family:ui-monospace,Consolas,monospace;font-size:13px}
+td.num,th.num{text-align:right;white-space:nowrap}
+td.mod{white-space:nowrap;font-size:13px}
+tr.total td{font-weight:600;background:var(--soft)}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--soft);padding:1px 4px;border-radius:4px}
+.lead{font-size:18px}
+.meta{color:var(--muted);font-size:14px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:10px;color:#fff;vertical-align:2px}
+.t-found{background:var(--found)}.t-mvp{background:var(--mvp)}.t-rel{background:var(--rel)}.t-v11{background:var(--v11)}
+.sprint{border:1px solid var(--line);border-radius:12px;padding:4px 20px 12px;margin:24px 0}
+.note{background:var(--soft);border-radius:8px;padding:8px 12px;font-size:15px}
+.flag{color:var(--warn);font-weight:600}
+ol.path{padding-left:22px}
+@media (prefers-color-scheme:dark){
+  :root{--line:#44403c;--soft:#292524;--muted:#a8a29e;--warn:#fdba74}
+  body{background:#1c1917;color:#f5f5f4} a{color:#6ee7b7}
+}
+</style>
+</head>
+<body>
+<main>
+<nav class="top"><a href="index.html">← Mục lục</a> · <a href="ke-hoach-android.html">Kế hoạch phát triển</a></nav>
+
+<h1>Chia task theo sprint – ChiNhanh Android</h1>
+<p class="meta">Lập ngày 10/10/2026 · Căn cứ: <a href="ke-hoach-android.html">kế hoạch phát triển</a>, <a href="dac-ta-android.html">đặc tả Android</a>, <a href="wireframe.html">wireframe</a>, <a href="mockup/index.html">mockup</a></p>
+
+<p class="lead">9 sprint được chia thành <b>107 task</b>, mỗi task từ 0,5 đến 3,5 giờ, tổng khoảng <b>188 giờ</b>. Khi chia nhỏ, tổng giờ từng sprint vẫn nằm trong khoảng 22 giờ của kế hoạch. Tuy vậy, quá trình này phát hiện 9 điểm cần chốt hoặc điều chỉnh, ghi ở mục 1.3. Đề xuất sửa NFR-07 đã được duyệt và cập nhật vào đặc tả Android và iOS.</p>
+
+<h2>1. Phân tích kế hoạch</h2>
+
+<h3>1.1 Đường găng và các luồng song song</h3>
+<p>Đường găng là chuỗi việc mà chỉ cần một việc trễ là ngày phát hành trễ theo:</p>
+<ol class="path">
+<li><b>S0-11 Parser số tiền</b>: mọi tính năng nhập đều dựa vào nó.</li>
+<li><b>S2-05 Máy trạng thái Nhập nhanh</b>: logic nháp, sửa chip, lưu nhiều khoản.</li>
+<li><b>S3-09 Activity Nhập nhanh</b>: được dùng lại cho widget (S3), ô Cài đặt nhanh và chia sẻ ảnh (S7).</li>
+<li><b>S4-11 Rà tổng thể (Cổng 2)</b>, rồi tới <b>S5-09 Closed testing 14 ngày</b>. 14 ngày này không thể rút ngắn.</li>
+</ol>
+<p>Các luồng chạy song song, không chặn đường găng nhưng phải bắt đầu đúng lúc:</p>
+<table>
+<thead><tr><th>Luồng</th><th>Bắt đầu</th><th>Phải xong trước</th><th>Ghi chú</th></tr></thead>
+<tbody>
+<tr><td>Tài khoản và xác minh Google Play</td><td>S0-15</td><td>S5-07</td><td>Xác minh danh tính có thể mất vài ngày</td></tr>
+<tr><td>Tuyển tester (mục tiêu 15–20 người)</td><td>S3-12</td><td>S5-09</td><td>Cần ít nhất 12 người tham gia liên tục 14 ngày</td></tr>
+<tr><td>Bộ câu mẫu</td><td>S0-09</td><td>Liên tục</td><td>Mỗi câu bị phân tích sai đều được thêm vào bộ mẫu</td></tr>
+<tr><td>Hồ sơ phát hành (chính sách quyền riêng tư, ảnh chụp)</td><td>S4</td><td>S5-06</td><td>Có thể soạn dần từ S4, khi giao diện đã ổn định</td></tr>
+</tbody>
+</table>
+
+<h3>1.2 Quyết định kỹ thuật cần chốt trước khi code</h3>
+<table>
+<thead><tr><th>Mục</th><th>Quyết định</th><th>Lý do</th></tr></thead>
+<tbody>
+<tr><td><code>applicationId</code></td><td>Chốt ngay ở S0-01, dạng <code>io.github.&lt;tài-khoản&gt;.chinhanh</code> hoặc theo tên miền bạn sở hữu</td><td>Không đổi được sau khi đã lên Google Play</td></tr>
+<tr><td>Khóa chính</td><td><code>Long</code> tự tăng</td><td>Sao lưu là bản chụp toàn bộ dữ liệu, không cần gộp dữ liệu giữa các máy</td></tr>
+<tr><td>Số tiền</td><td>Value class <code>Money(Long)</code>, đơn vị đồng</td><td>NFR-06; tránh sai số của <code>Double</code></td></tr>
+<tr><td>Thời gian</td><td>Lưu epoch millis (UTC), hiển thị theo múi giờ máy; dùng <code>java.time</code> (có sẵn từ API 26)</td><td>Không cần desugaring; tính "hôm qua", "tuần trước" chính xác</td></tr>
+<tr><td>Danh mục mặc định</td><td>Lưu khóa <code>seedKey</code>, tên hiển thị lấy từ string resource; danh mục người dùng tạo thì lưu tên trực tiếp</td><td>Khi đổi ngôn ngữ (FR-35), tên danh mục mặc định đổi theo</td></tr>
+<tr><td>Kiến trúc parser</td><td>Pipeline Kotlin thuần: chuẩn hóa → tách khoản → số tiền → thời gian → loại → ví → danh mục. Mỗi trường có độ tin cậy từ 0 đến 1</td><td>Độ tin cậy dùng để tô nổi chip chưa chắc (FR-08) và quyết định khi nào gọi Gemini (FR-10)</td></tr>
+<tr><td>Xóa giao dịch</td><td>Xóa mềm, sau 5 giây mới xóa thật</td><td>Để Hoàn tác được (FR-19) mà không cần lưu lại bản sao</td></tr>
+<tr><td>Schema MVP</td><td>Tạo đủ bảng <code>Wallet</code>, <code>Category</code>, <code>Transaction</code>, <code>KeywordRule</code>, <code>Budget</code> và bảng FTS ngay ở S1</td><td>Không phải viết migration trước khi phát hành MVP</td></tr>
+<tr><td>Bộ câu mẫu</td><td>File JSON độc lập với ngôn ngữ lập trình</td><td>Dùng chung với bản iOS để hai bộ phân tích cho cùng kết quả</td></tr>
+</tbody>
+</table>
+
+<h3>1.3 Các điểm phát hiện khi chia nhỏ</h3>
+<table>
+<thead><tr><th>#</th><th>Phát hiện</th><th>Xử lý trong danh sách task</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><span class="flag">Đã chốt: sửa NFR-07.</span> Đặc tả ghi mã hóa file sao lưu bằng Tink. Nhưng định dạng file của Tink có thêm phần đầu riêng (chứa key ID), CryptoKit trên iOS không đọc được. Như vậy sẽ hỏng NFR-16 (sao lưu dùng chung giữa hai nền tảng)</td><td>S8-06, S8-07 dùng AES-256-GCM với khóa sinh bằng PBKDF2-HMAC-SHA256 qua <code>javax.crypto</code>. Định dạng file được ghi thành tài liệu chung với iOS. Đã sửa NFR-07 trong đặc tả Android và iOS (10/10/2026)</td></tr>
+<tr><td>2</td><td>Vico chuyên về biểu đồ có trục (cột, đường), không phù hợp để vẽ biểu đồ tròn như trong mockup Thống kê</td><td>S4-03: biểu đồ cột dùng Vico, biểu đồ tròn tự vẽ bằng <code>Canvas</code> của Compose. Đã chốt, đặc tả và kế hoạch đã cập nhật</td></tr>
+<tr><td>3</td><td>NFR-02 (≤ 50 ms mỗi câu) phải đo trên điện thoại thật. Phép đo trên JVM ở S0 chỉ để phát hiện sớm</td><td>Đo hai lần: S0-14 trên JVM, S4-10 trên máy thật</td></tr>
+<tr><td>4</td><td>Các plugin Hilt, Room, KSP, Roborazzi có thể chưa tương thích hết với AGP 9</td><td>S0-03 kiểm tra trước tiên; nếu lỗi, dùng AGP 8.x bản mới nhất cho MVP. Đã chốt, đặc tả và kế hoạch đã cập nhật</td></tr>
+<tr><td>5</td><td>Activity Nhập nhanh được dùng ở 3 nơi (widget, ô Cài đặt nhanh, chia sẻ ảnh) nhưng kế hoạch chưa tách nó thành việc riêng</td><td>Tách thành S3-09, đặt trước widget</td></tr>
+<tr><td>6</td><td>Kế hoạch chưa có module cho onboarding và benchmark</td><td>S0-04 thêm <code>feature:onboarding</code> và <code>:benchmarks</code> (gồm Baseline Profile và Macrobenchmark)</td></tr>
+<tr><td>7</td><td>Bảng <code>Attachment</code> và <code>RecurringRule</code> chỉ cần từ v1.1</td><td>Gom vào một migration duy nhất ở S6-01, có test migration</td></tr>
+<tr><td>8</td><td>App tài chính nếu chọn đối tượng gồm trẻ em sẽ phải theo chính sách Gia đình của Google Play</td><td>S5-05 chọn đối tượng mục tiêu là người lớn</td></tr>
+<tr><td>9</td><td>S2 nặng về học (Navigation 3, state trong Compose) nên dễ trễ nhất</td><td>Nếu trễ, dời S2-10 (giọng nói) sang đầu S3, vì nó không nằm trên đường găng</td></tr>
+</tbody>
+</table>
+
+<h2>2. Quy ước</h2>
+<ul>
+<li><b>Mã task:</b> <code>S&lt;sprint&gt;-&lt;số thứ tự&gt;</code>, ví dụ S2-05. Thứ tự trong bảng chính là thứ tự nên làm.</li>
+<li><b>Kích thước:</b> mỗi task tối đa 3,5 giờ, tức khoảng 1–2 buổi làm. Task lớn hơn được tách ra.</li>
+<li><b>Phụ thuộc:</b> chỉ ghi những task phải xong trước. Các task thuộc sprint trước được coi là đã xong.</li>
+<li><b>Xong khi:</b> đạt nội dung ở cột "Chi tiết và tiêu chí xong", cộng với <a href="ke-hoach-android.html">định nghĩa Hoàn thành chung</a> trong kế hoạch.</li>
+</ul>
+
+<h2>3. Task từng sprint</h2>
+
+<div class="sprint">
+<h3><span class="tag t-found">S0</span> Tuần 1–2 · Khung dự án và bộ phân tích câu</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S0-01</td><td>Tạo project</td><td>Kotlin DSL, AGP 9 (hoặc AGP 8.x nếu S0-03 gặp lỗi), Kotlin 2.x, JDK 17; <code>minSdk</code> 26, <code>targetSdk</code>/<code>compileSdk</code> 36. Chốt <code>applicationId</code>. App trống chạy được</td><td class="mod">app</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S0-02</td><td>Version Catalog</td><td><code>libs.versions.toml</code> có đủ thư viện dự kiến: Compose BOM, Hilt, Room, Navigation 3, DataStore, Paging, Glance, Vico, ML Kit, test</td><td class="mod">gradle</td><td>S0-01</td><td class="num">1</td></tr>
+<tr><td class="id">S0-03</td><td>Convention plugins</td><td><code>build-logic</code>: android.application, android.library, android.library.compose, android.hilt, android.room, jvm.library. Kiểm tra từng plugin chạy được với AGP 9</td><td class="mod">build-logic</td><td>S0-02</td><td class="num">3</td></tr>
+<tr><td class="id">S0-04</td><td>Khung module</td><td><code>core:{model, parser, database, datastore, data, designsystem, ui, testing}</code>, <code>feature:{onboarding, quickadd, transactions, budget, stats, settings}</code>, <code>:benchmarks</code>. Feature không phụ thuộc lẫn nhau</td><td class="mod">tất cả</td><td>S0-03</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-05</td><td>Chất lượng mã</td><td>Detekt có bộ luật cho Compose, Spotless với ktlint; <code>./gradlew check</code> chạy sạch</td><td class="mod">build-logic</td><td>S0-04</td><td class="num">1</td></tr>
+<tr><td class="id">S0-06</td><td>CI</td><td>GitHub Actions: build, lint, Detekt, Spotless, unit test, báo cáo Kover, cache Gradle. Mỗi pull request đều phải qua</td><td class="mod">.github</td><td>S0-05</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-07</td><td>Design system: màu và chữ</td><td>ColorScheme sáng/tối sinh từ màu gốc <code>#1B6B4A</code> (Material Theme Builder), Roboto Flex, Typography, Shapes; công tắc Dynamic Color</td><td class="mod">core:designsystem</td><td>S0-04</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-08</td><td>Design system: component</td><td><code>AmountText</code> (định dạng VND), chip, thẻ tổng, icon danh mục; mỗi component có Preview sáng và tối</td><td class="mod">core:designsystem</td><td>S0-07</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-09</td><td>Bộ câu mẫu</td><td>200 câu JSON gồm câu đầu vào và kết quả mong đợi (loại, số tiền, danh mục, ngày tương đối, ví). Phủ mọi cách viết trong FR-02, FR-03</td><td class="mod">core:parser</td><td>S0-04</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-10</td><td>Parser: chuẩn hóa và tách từ</td><td>Chữ thường, bản bỏ dấu để so khớp (giữ bản gốc làm ghi chú), tách cụm số và đơn vị (<code>k</code>, <code>tr</code>, <code>củ</code>, <code>lít</code>, <code>nghìn</code>, <code>ngàn</code>)</td><td class="mod">core:parser</td><td>S0-09</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-11</td><td>Parser: số tiền (FR-02)</td><td>Hiểu <code>45k</code>, <code>45.000</code>, <code>1tr2</code>, <code>1,5tr</code>, <code>2 củ</code>, <code>5 lít</code>, <code>năm chục</code>. Đúng ≥ 95% số tiền trên bộ mẫu (Cổng 1)</td><td class="mod">core:parser</td><td>S0-10</td><td class="num">2</td></tr>
+<tr><td class="id">S0-12</td><td>Parser: thời gian (FR-03)</td><td><code>hôm qua</code>, <code>hôm kia</code>, <code>sáng nay</code>, <code>tối qua</code>, <code>thứ 2 tuần trước</code>, <code>ngày 5</code>, <code>5/10</code>. Truyền <code>Clock</code> vào để test được</td><td class="mod">core:parser</td><td>S0-10</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-13</td><td>Parser: danh mục và tách khoản (FR-04, FR-07)</td><td>Từ điển từ khóa mặc định dạng JSON; tách khoản theo dấu phẩy, "và", xuống dòng; mỗi trường có độ tin cậy</td><td class="mod">core:parser</td><td>S0-11, S0-12</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-14</td><td>Đo parser trên JVM (NFR-02)</td><td>Test chạy cả bộ mẫu, p95 dưới 50 ms mỗi câu trên JVM. Đây là phép đo sớm, phép đo chính thức ở S4-10</td><td class="mod">core:parser</td><td>S0-13</td><td class="num">1</td></tr>
+<tr><td class="id">S0-15</td><td>Tài khoản Google Play</td><td>Tạo tài khoản Play Console, trả phí, gửi xác minh danh tính và nhà phát triển. Làm song song từ ngày đầu</td><td class="mod">–</td><td>–</td><td class="num">1</td></tr>
+<tr class="total"><td colspan="5">Tổng S0 · 15 task</td><td class="num">22</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S1</span> Tuần 3–4 · Dữ liệu, ví, danh mục, onboarding</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S1-01</td><td>Domain model</td><td><code>Transaction</code>, <code>Wallet</code>, <code>Category</code>, <code>Budget</code>, <code>KeywordRule</code>, <code>Money</code>, <code>TransactionType</code></td><td class="mod">core:model</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S1-02</td><td>Room: entity và schema</td><td>5 bảng của MVP cùng bảng FTS4 (<code>note</code>, <code>rawInput</code>, tokenizer unicode61); <code>exportSchema = true</code>; index theo ngày và ví</td><td class="mod">core:database</td><td>S1-01</td><td class="num">2</td></tr>
+<tr><td class="id">S1-03</td><td>DAO trả về Flow</td><td>Ví kèm số dư tính từ giao dịch; cây danh mục; giao dịch theo khoảng ngày; tổng theo danh mục và tháng</td><td class="mod">core:database</td><td>S1-02</td><td class="num">2</td></tr>
+<tr><td class="id">S1-04</td><td>Test DAO và khung migration</td><td>Test DAO với database trong bộ nhớ; cài sẵn <code>MigrationTestHelper</code> và thư mục lưu schema</td><td class="mod">core:database</td><td>S1-03</td><td class="num">1,5</td></tr>
+<tr><td class="id">S1-05</td><td>Danh mục mặc định</td><td>Khoảng 15 danh mục chi và 5 danh mục thu, có <code>seedKey</code>, icon, màu; tên tiếng Việt và tiếng Anh nằm trong resource</td><td class="mod">core:database</td><td>S1-02</td><td class="num">1,5</td></tr>
+<tr><td class="id">S1-06</td><td>Repository và Hilt</td><td>Repository cho ví, danh mục, giao dịch; module Hilt cho database và dispatcher; fake repository trong <code>core:testing</code></td><td class="mod">core:data</td><td>S1-03</td><td class="num">2</td></tr>
+<tr><td class="id">S1-07</td><td>DataStore</td><td>Ví mặc định, ngày bắt đầu tháng, chế độ giao diện, Dynamic Color, đã qua onboarding chưa; có test</td><td class="mod">core:datastore</td><td>S1-01</td><td class="num">1,5</td></tr>
+<tr><td class="id">S1-08</td><td>Onboarding (FR-34)</td><td>3 bước theo wireframe 1: giới thiệu, tạo ví và nhập số dư, thử một câu mẫu (hiện nháp chỉ để xem). Ghi được giao dịch đầu tiên trong vòng 60 giây</td><td class="mod">feature:onboarding</td><td>S1-06, S1-07</td><td class="num">3</td></tr>
+<tr><td class="id">S1-09</td><td>Màn Ví (FR-23)</td><td>Danh sách ví kèm số dư; thêm, sửa ví; bí danh; lưu trữ ví; đặt ví mặc định</td><td class="mod">feature:settings</td><td>S1-06</td><td class="num">2</td></tr>
+<tr><td class="id">S1-10</td><td>Màn Danh mục (FR-24)</td><td>Nhóm theo Chi/Thu; thêm, sửa icon và màu; danh mục con 1 cấp; chỉ ẩn hoặc xóa được khi danh mục không còn giao dịch</td><td class="mod">feature:settings</td><td>S1-06</td><td class="num">2</td></tr>
+<tr><td class="id">S1-11</td><td>Cài đặt cơ bản (FR-35)</td><td>Chế độ giao diện, Dynamic Color, ngày bắt đầu tháng, ví mặc định; ngôn ngữ riêng cho app qua <code>locales_config</code> và <code>AppCompatDelegate.setApplicationLocales</code></td><td class="mod">feature:settings</td><td>S1-07</td><td class="num">2</td></tr>
+<tr><td class="id">S1-12</td><td>Test ViewModel</td><td>Test bằng Turbine cho ViewModel của onboarding, ví, danh mục, dùng fake repository</td><td class="mod">feature:*</td><td>S1-08 đến S1-11</td><td class="num">1</td></tr>
+<tr class="total"><td colspan="5">Tổng S1 · 12 task</td><td class="num">21,5</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S2</span> Tuần 5–6 · Nhập bằng câu từ đầu đến cuối</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S2-01</td><td>Khung app với Navigation 3</td><td><code>NavKey</code> dùng <code>@Serializable</code>, <code>NavDisplay</code>, back stack được lưu lại khi xoay màn hình; <code>NavigationSuiteScaffold</code> có 4 tab (Ngân sách và Thống kê tạm để trống)</td><td class="mod">app</td><td>–</td><td class="num">2,5</td></tr>
+<tr><td class="id">S2-02</td><td>Edge-to-edge và predictive back</td><td><code>enableEdgeToEdge</code>, xử lý <code>WindowInsets</code>, bật <code>enableOnBackInvokedCallback</code></td><td class="mod">app</td><td>S2-01</td><td class="num">1</td></tr>
+<tr><td class="id">S2-03</td><td>Cài Roborazzi</td><td>Robolectric và Roborazzi; task ghi và so sánh ảnh chạy trong CI; ảnh chuẩn lưu trong repo</td><td class="mod">build-logic</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S2-04</td><td>Trang chủ: tổng và gần đây</td><td><code>HomeViewModel</code> gộp các Flow: tổng chi tháng (theo ngày bắt đầu tháng), chi hôm nay, 5 giao dịch gần nhất. Thẻ ngân sách tạm ẩn đến S3</td><td class="mod">feature:quickadd</td><td>S2-01</td><td class="num">2,5</td></tr>
+<tr><td class="id">S2-05</td><td>Máy trạng thái Nhập nhanh</td><td><code>QuickAddViewModel</code>: chữ nhập vào → debounce 150 ms → parser chạy trên <code>Dispatchers.Default</code> → danh sách nháp. Sửa chip ghi đè giá trị phân tích; lưu mọi nháp trong một transaction của Room</td><td class="mod">feature:quickadd</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S2-06</td><td>Ô nhập và thẻ nháp (FR-01, FR-08)</td><td>Theo mockup Android · Trang chủ: ô nhập nằm trên thanh điều hướng (<code>imePadding</code>), thẻ nháp có chip, chip chưa chắc được tô nổi, nút "Lưu n". Nháp hiện trong 300 ms</td><td class="mod">feature:quickadd</td><td>S2-04, S2-05</td><td class="num">3</td></tr>
+<tr><td class="id">S2-07</td><td>Bộ chọn cho chip</td><td>Bottom sheet lưới danh mục, danh sách ví; DatePicker; sửa số tiền</td><td class="mod">feature:quickadd</td><td>S2-06</td><td class="num">2</td></tr>
+<tr><td class="id">S2-08</td><td>Parser: loại và ví (FR-05, FR-06)</td><td>Từ khóa thu, chi, chuyển; "từ X sang Y"; khớp bí danh ví lấy từ database. Thêm câu mẫu tương ứng</td><td class="mod">core:parser</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S2-09</td><td>Nhiều khoản, lưu một lần (FR-07)</td><td>Test tích hợp: câu có 3 khoản cho ra 3 nháp, lưu một lần được 3 giao dịch</td><td class="mod">feature:quickadd</td><td>S2-06, S2-08</td><td class="num">1</td></tr>
+<tr><td class="id">S2-10</td><td>Giọng nói (FR-13)</td><td>Nhận dạng vi-VN; xin quyền micro khi bấm nút; máy không có dịch vụ nhận dạng thì ẩn nút; văn bản đổ vào ô nhập</td><td class="mod">feature:quickadd</td><td>S2-06</td><td class="num">2</td></tr>
+<tr><td class="id">S2-11</td><td>Test luồng nhập</td><td>Compose UI test: gõ câu, ra nháp, lưu, thấy trong danh sách gần đây. Screenshot test cho Trang chủ và thẻ nháp, sáng/tối, vi/en</td><td class="mod">feature:quickadd</td><td>S2-03, S2-09</td><td class="num">2</td></tr>
+<tr><td class="id">S2-12</td><td>Demo và sửa lỗi</td><td>Quay video demo trên máy thật, sửa lỗi tìm thấy</td><td class="mod">–</td><td>S2-11</td><td class="num">1</td></tr>
+<tr class="total"><td colspan="5">Tổng S2 · 12 task</td><td class="num">22</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S3</span> Tuần 7–8 · Giao dịch, ngân sách, widget</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S3-01</td><td>Danh sách giao dịch (FR-18)</td><td>Paging 3 lấy dữ liệu từ Room; <code>insertSeparators</code> tạo tiêu đề ngày kèm tổng ngày; <code>LazyColumn</code> có key ổn định</td><td class="mod">feature:transactions</td><td>–</td><td class="num">2,5</td></tr>
+<tr><td class="id">S3-02</td><td>Dữ liệu mẫu 10.000 giao dịch</td><td>Công cụ chỉ có trong bản debug, sinh dữ liệu để đo hiệu năng</td><td class="mod">app (debug)</td><td>–</td><td class="num">0,5</td></tr>
+<tr><td class="id">S3-03</td><td>Tìm kiếm FTS (FR-20)</td><td>Truy vấn <code>MATCH</code> có tiền tố. Kiểm tra gõ "pho" ra "phở" và chữ "đ" được xử lý đúng</td><td class="mod">core:database</td><td>S3-01</td><td class="num">1,5</td></tr>
+<tr><td class="id">S3-04</td><td>Bộ lọc</td><td>Filter chip theo tháng, danh mục, ví, loại; kết hợp được với tìm kiếm</td><td class="mod">feature:transactions</td><td>S3-03</td><td class="num">1,5</td></tr>
+<tr><td class="id">S3-05</td><td>Màn hình sửa (FR-19)</td><td>Theo mockup Android · Sửa giao dịch: chọn Chi/Thu/Chuyển, các ô nhập có nhãn, kiểm tra dữ liệu, lưu</td><td class="mod">feature:transactions</td><td>S3-01</td><td class="num">2,5</td></tr>
+<tr><td class="id">S3-06</td><td>Xóa và hoàn tác</td><td><code>SwipeToDismissBox</code>; Snackbar Hoàn tác trong 5 giây (xóa mềm); nhấn giữ mở menu Sửa, Xóa</td><td class="mod">feature:transactions</td><td>S3-05</td><td class="num">1,5</td></tr>
+<tr><td class="id">S3-07</td><td>Ngân sách: dữ liệu</td><td>Thêm, sửa ngân sách theo tháng cho từng danh mục và cho tổng; truy vấn tiến độ</td><td class="mod">core:data</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S3-08</td><td>Ngân sách: giao diện (FR-25)</td><td>Theo mockup Android · Ngân sách: thẻ tổng, tiến độ từng danh mục (cam khi ≥ 80%, đỏ khi ≥ 100%), sheet sửa; bật thẻ ngân sách trên Trang chủ</td><td class="mod">feature:budget</td><td>S3-07</td><td class="num">2,5</td></tr>
+<tr><td class="id">S3-09</td><td>Activity Nhập nhanh</td><td>Activity hiển thị dạng dialog, dùng lại composable Nhập nhanh; có deep link. Sẽ được dùng lại cho widget, ô Cài đặt nhanh và chia sẻ</td><td class="mod">feature:quickadd</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S3-10</td><td>Widget Glance (FR-14)</td><td>Kích thước 2×2 và 4×1; lấy dữ liệu qua Hilt EntryPoint; cập nhật sau mỗi lần lưu (<code>updateAll</code>); nút (+) mở Activity Nhập nhanh</td><td class="mod">feature:quickadd</td><td>S3-09</td><td class="num">3</td></tr>
+<tr><td class="id">S3-11</td><td>Danh sách và chi tiết trên tablet</td><td>Dùng scene strategy list-detail của Material 3 adaptive cho Navigation 3; thử trên emulator tablet và máy gập</td><td class="mod">app</td><td>S3-05</td><td class="num">1,5</td></tr>
+<tr><td class="id">S3-12</td><td>Tuyển tester</td><td>Tạo Google Group cho tester, gửi lời mời, mục tiêu 15–20 người</td><td class="mod">–</td><td>–</td><td class="num">0,5</td></tr>
+<tr><td class="id">S3-13</td><td>Test và kiểm tra cuộn</td><td>UI test cho vuốt xóa và hoàn tác; cuộn thử 10.000 giao dịch (đo chính thức ở S4-10)</td><td class="mod">feature:transactions</td><td>S3-02, S3-06</td><td class="num">1</td></tr>
+<tr class="total"><td colspan="5">Tổng S3 · 13 task</td><td class="num">21,5</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-mvp">S4</span> Tuần 9–10 · Thống kê và hoàn thiện MVP</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S4-01</td><td>Truy vấn thống kê</td><td>Tổng theo danh mục và theo ngày, tuần, tháng; tôn trọng ngày bắt đầu tháng; dữ liệu kỳ trước (dùng cho FR-28 sau này)</td><td class="mod">core:database</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S4-02</td><td>State của kỳ thống kê</td><td>Loại kỳ (tuần, tháng, năm) và ngày mốc; chuyển kỳ trước, kỳ sau</td><td class="mod">feature:stats</td><td>S4-01</td><td class="num">1</td></tr>
+<tr><td class="id">S4-03</td><td>Biểu đồ</td><td>Cột theo ngày hoặc theo tháng bằng Vico; biểu đồ tròn tự vẽ bằng <code>Canvas</code>; có mô tả cho TalkBack</td><td class="mod">feature:stats</td><td>S4-02</td><td class="num">2,5</td></tr>
+<tr><td class="id">S4-04</td><td>Màn Thống kê (FR-27)</td><td>Theo mockup Android · Thống kê: chọn Tuần/Tháng/Năm, nút tên tháng, thẻ tổng, chú giải kèm % thay đổi. Ô hỏi đáp để ẩn đến v1.1</td><td class="mod">feature:stats</td><td>S4-03</td><td class="num">2</td></tr>
+<tr><td class="id">S4-05</td><td>Bộ chọn tháng</td><td>Bottom sheet theo mockup Android · Chọn tháng; tháng chưa tới bị mờ; ở chế độ Năm chạm cột mở tháng đó. Tới tháng bất kỳ trong 2 năm chỉ cần tối đa 3 lần chạm</td><td class="mod">feature:stats</td><td>S4-04</td><td class="num">1,5</td></tr>
+<tr><td class="id">S4-06</td><td>Xuất CSV (FR-30)</td><td>Chọn nơi lưu qua SAF; UTF-8 có BOM; cột: ngày ISO, loại, số tiền, danh mục, ví, ghi chú (cùng định dạng với iOS); chọn khoảng ngày</td><td class="mod">feature:settings</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S4-07</td><td>Khóa app (FR-32)</td><td>BiometricPrompt cho phép sinh trắc học hoặc khóa màn hình máy; màn hình khóa theo wireframe 11; khóa lại sau thời gian người dùng chọn (dùng <code>ProcessLifecycleOwner</code>)</td><td class="mod">app, feature:settings</td><td>–</td><td class="num">2,5</td></tr>
+<tr><td class="id">S4-08</td><td>Khả năng truy cập (NFR-11)</td><td>Mô tả nội dung, gộp semantics cho từng hàng danh sách, kiểm tra cỡ chữ 200%, vùng chạm 48 dp, độ tương phản; quét bằng Accessibility Scanner</td><td class="mod">tất cả</td><td>S4-04</td><td class="num">2</td></tr>
+<tr><td class="id">S4-09</td><td>Đa ngôn ngữ (NFR-12)</td><td>Rà toàn bộ chuỗi vi/en, số nhiều, định dạng tiền theo locale; lint <code>HardcodedText</code> sạch</td><td class="mod">tất cả</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S4-10</td><td>Hiệu năng (NFR-01 đến NFR-03)</td><td>Baseline Profile cho luồng khởi động và cuộn; Macrobenchmark đo khởi động lạnh ≤ 1 giây, khung hình giật dưới 1%; đo parser trên máy thật</td><td class="mod">:benchmarks</td><td>S3-02</td><td class="num">2,5</td></tr>
+<tr><td class="id">S4-11</td><td>Rà tổng thể (Cổng 2)</td><td>Chạy toàn bộ tính năng Must ở chế độ máy bay; đối chiếu 21 yêu cầu Must với tiêu chí chấp nhận; sửa lỗi tồn đọng</td><td class="mod">tất cả</td><td>S4-01 đến S4-10</td><td class="num">2</td></tr>
+<tr class="total"><td colspan="5">Tổng S4 · 11 task</td><td class="num">21,5</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-rel">S5</span> Tuần 11–12, chờ duyệt tuần 13 · Phát hành lên Google Play</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S5-01</td><td>Ký app</td><td>Play App Signing, cất upload key ở nơi an toàn, quy ước đánh <code>versionCode</code></td><td class="mod">app</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S5-02</td><td>R8 và kích thước (NFR-04)</td><td>Bật R8 full mode, kiểm tra keep rule cho serialization; chạy thử bản release; dung lượng tải về ≤ 20 MB</td><td class="mod">app</td><td>S5-01</td><td class="num">2</td></tr>
+<tr><td class="id">S5-03</td><td>Crashlytics (NFR-05, NFR-08)</td><td>Tạo dự án Firebase; tắt được trong Cài đặt; không ghi nội dung giao dịch; upload mapping file của R8</td><td class="mod">app</td><td>S5-02</td><td class="num">1,5</td></tr>
+<tr><td class="id">S5-04</td><td>Chính sách quyền riêng tư</td><td>Bản tiếng Việt và tiếng Anh, đăng bằng GitHub Pages, có link trong Cài đặt</td><td class="mod">–</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S5-05</td><td>Data safety và phân loại nội dung</td><td>Khai đúng thực tế (chỉ có log crash nếu bật Crashlytics); trả lời bảng hỏi IARC; đối tượng mục tiêu là người lớn</td><td class="mod">–</td><td>S5-03, S5-04</td><td class="num">1</td></tr>
+<tr><td class="id">S5-06</td><td>Trang giới thiệu trên Play</td><td>Tên, mô tả ngắn và đầy đủ vi/en; icon 512 px, ảnh nổi bật 1024×500; ảnh chụp điện thoại và tablet</td><td class="mod">–</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S5-07</td><td>Phát hành tự động</td><td>Gradle Play Publisher với service account; workflow phát hành khi gắn tag; đẩy lên kênh internal</td><td class="mod">.github</td><td>S5-01</td><td class="num">2</td></tr>
+<tr><td class="id">S5-08</td><td>Internal testing</td><td>Cài từ Play trên máy của bạn, kiểm tra nhanh</td><td class="mod">–</td><td>S5-07</td><td class="num">0,5</td></tr>
+<tr><td class="id">S5-09</td><td>Closed testing</td><td>Tạo kênh closed, thêm Google Group tester, gửi link tham gia và form phản hồi. Bắt đầu đếm 14 ngày ngay ngày đầu sprint</td><td class="mod">–</td><td>S5-05, S5-06, S5-08</td><td class="num">1,5</td></tr>
+<tr><td class="id">S5-10</td><td>Sửa lỗi từ tester</td><td>Phân loại lỗi; ưu tiên crash, sai số tiền, sai danh mục; đẩy bản cập nhật lên kênh closed; thêm câu bị sai vào bộ mẫu</td><td class="mod">tất cả</td><td>S5-09</td><td class="num">7</td></tr>
+<tr><td class="id">S5-11</td><td>Xin quyền Production (tuần 13)</td><td>Trả lời bảng hỏi về đợt thử nghiệm; khi được duyệt thì phát hành từng phần, từ 20% lên 100%</td><td class="mod">–</td><td>S5-10</td><td class="num">1</td></tr>
+<tr><td class="id">S5-12</td><td>Theo dõi sau phát hành</td><td>Android vitals, Crashlytics, đánh giá trên Play trong tuần đầu</td><td class="mod">–</td><td>S5-11</td><td class="num">1</td></tr>
+<tr class="total"><td colspan="5">Tổng S5 · 12 task</td><td class="num">22</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-v11">S6</span> Tuần 14–15 · AI trên máy và học từ người dùng</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S6-01</td><td>Migration v1.1</td><td>Thêm bảng <code>Attachment</code> và <code>RecurringRule</code> trong một migration duy nhất, có test bằng <code>MigrationTestHelper</code></td><td class="mod">core:database</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S6-02</td><td>Học từ chỉnh sửa (FR-09)</td><td>Khi lưu, so sánh danh mục phân tích được với danh mục người dùng chọn; cùng từ khóa bị sửa 2 lần thì tạo <code>KeywordRule</code>; parser ưu tiên luật của người dùng</td><td class="mod">core:data, core:parser</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S6-03</td><td>Tab Từ điển</td><td>Xem và xóa luật đã học trong màn Ví và danh mục</td><td class="mod">feature:settings</td><td>S6-02</td><td class="num">1</td></tr>
+<tr><td class="id">S6-04</td><td>Gợi ý tự hoàn thành (FR-12)</td><td>Đếm số lần dùng của câu đã chuẩn hóa; gợi ý theo tiền tố khi câu đã dùng từ 3 lần; hiện chip gợi ý trên ô nhập</td><td class="mod">feature:quickadd</td><td>–</td><td class="num">3</td></tr>
+<tr><td class="id">S6-05</td><td>Kiểm tra Gemini Nano</td><td>ML Kit GenAI Prompt API: trạng thái có sẵn, cần tải, hoặc không hỗ trợ; luồng tải mô hình; công tắc trong Cài đặt</td><td class="mod">core:data</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S6-06</td><td>Prompt và schema (FR-10)</td><td>Prompt có ví dụ lấy từ bộ mẫu; kết quả JSON được kiểm tra bằng kotlinx.serialization; chỉ gọi khi độ tin cậy thấp; quá 3 giây thì dùng kết quả theo luật</td><td class="mod">core:parser, core:data</td><td>S6-05</td><td class="num">2,5</td></tr>
+<tr><td class="id">S6-07</td><td>Đánh giá AI</td><td>Chạy cả bộ mẫu qua Gemini trên máy thật, so độ chính xác với parser theo luật, chọn ngưỡng độ tin cậy</td><td class="mod">core:parser</td><td>S6-06</td><td class="num">1</td></tr>
+<tr><td class="id">S6-08</td><td>Hỏi đáp theo luật (FR-29)</td><td>Nhận diện các dạng câu hỏi: tổng theo danh mục và kỳ, danh mục chi nhiều nhất, so với kỳ trước; ánh xạ sang truy vấn Room</td><td class="mod">feature:stats</td><td>–</td><td class="num">3</td></tr>
+<tr><td class="id">S6-09</td><td>Hỏi đáp với Gemini</td><td>Máy có Gemini Nano thì dùng nó để đổi câu hỏi thành dạng câu hỏi chuẩn (JSON); hiện thẻ trả lời trên màn Thống kê</td><td class="mod">feature:stats</td><td>S6-05, S6-08</td><td class="num">2</td></tr>
+<tr><td class="id">S6-10</td><td>Test và phát hành nội bộ</td><td>Test trên máy có và không có Gemini Nano; đẩy lên kênh internal</td><td class="mod">–</td><td>S6-01 đến S6-09</td><td class="num">2</td></tr>
+<tr class="total"><td colspan="5">Tổng S6 · 10 task</td><td class="num">19</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-v11">S7</span> Tuần 16–17 · Nhập từ ảnh và lối tắt</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S7-01</td><td>Ô Cài đặt nhanh (FR-15)</td><td><code>TileService</code> mở Activity Nhập nhanh, đóng bảng Cài đặt nhanh khi mở</td><td class="mod">feature:quickadd</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S7-02</td><td>App shortcuts (FR-15)</td><td>Lối tắt tĩnh "Ghi chi tiêu" và lối tắt động "Xem tháng này"</td><td class="mod">app</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S7-03</td><td>Share target (FR-16)</td><td>Intent filter cho <code>text/plain</code> và <code>image/*</code>, chuyển tới Activity Nhập nhanh với nội dung điền sẵn</td><td class="mod">feature:quickadd</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S7-04</td><td>OCR ảnh</td><td>ML Kit Text Recognition (chữ Latin, có tiếng Việt), chạy ngoài luồng UI, trả về các khối chữ kèm vị trí</td><td class="mod">core:data</td><td>S7-03</td><td class="num">2</td></tr>
+<tr><td class="id">S7-05</td><td>Đọc màn hình chuyển khoản</td><td>Luật lấy số tiền, nội dung, thời gian cho 3–5 app ngân hàng phổ biến; test bằng văn bản OCR mẫu lấy từ ảnh tester gửi</td><td class="mod">core:parser</td><td>S7-04</td><td class="num">3</td></tr>
+<tr><td class="id">S7-06</td><td>Quét hóa đơn (FR-17)</td><td>ML Kit Document Scanner, nhận ảnh đã cắt và làm phẳng</td><td class="mod">feature:transactions</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S7-07</td><td>Lấy dòng tổng tiền</td><td>Tìm theo nhãn "Tổng cộng", "Thành tiền", "Total" và số tiền lớn nhất gần cuối hóa đơn; có test</td><td class="mod">core:parser</td><td>S7-04, S7-06</td><td class="num">2</td></tr>
+<tr><td class="id">S7-08</td><td>Đính kèm ảnh</td><td>Lưu ảnh vào bộ nhớ riêng của app; hiện ảnh thu nhỏ trong màn sửa; xóa ảnh khi xóa giao dịch</td><td class="mod">feature:transactions</td><td>S7-06</td><td class="num">2</td></tr>
+<tr><td class="id">S7-09</td><td>So sánh kỳ trước (FR-28)</td><td>Mức tăng giảm theo % và theo số tiền cho từng danh mục, trong chú giải và màn chi tiết</td><td class="mod">feature:stats</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">S7-10</td><td>Test và phát hành nội bộ</td><td>Thử với ảnh thật của các ngân hàng; đẩy lên kênh internal</td><td class="mod">–</td><td>S7-01 đến S7-09</td><td class="num">2</td></tr>
+<tr class="total"><td colspan="5">Tổng S7 · 10 task</td><td class="num">19</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sprint">
+<h3><span class="tag t-v11">S8</span> Tuần 18–19 · Tự động hóa, sao lưu, phát hành v1.1</h3>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">S8-01</td><td>Giao dịch định kỳ: dữ liệu và giao diện</td><td>Thêm, sửa, xóa quy tắc định kỳ theo wireframe 9</td><td class="mod">feature:settings</td><td>–</td><td class="num">2,5</td></tr>
+<tr><td class="id">S8-02</td><td>Worker định kỳ (FR-21)</td><td>WorkManager chạy hằng ngày, tạo bù các lần bị lỡ, chạy lại không tạo trùng</td><td class="mod">core:data</td><td>S8-01</td><td class="num">1,5</td></tr>
+<tr><td class="id">S8-03</td><td>Quyền và kênh thông báo</td><td>Xin <code>POST_NOTIFICATIONS</code> khi người dùng bật tính năng; tạo kênh riêng cho ngân sách và nhắc nhở</td><td class="mod">app</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S8-04</td><td>Thông báo ngân sách (FR-26)</td><td>Kiểm tra lúc lưu giao dịch; báo một lần khi đạt 80% và một lần khi đạt 100% trong mỗi kỳ</td><td class="mod">core:data</td><td>S8-03</td><td class="num">1</td></tr>
+<tr><td class="id">S8-05</td><td>Nhắc hằng ngày (FR-36)</td><td>Worker chạy vào giờ người dùng chọn, chỉ nhắc nếu hôm đó chưa ghi giao dịch</td><td class="mod">core:data</td><td>S8-03</td><td class="num">1,5</td></tr>
+<tr><td class="id">S8-06</td><td>Định dạng file sao lưu (NFR-16)</td><td>JSON có số phiên bản; ghi thành tài liệu trong thư mục dự án để bản iOS dùng chung</td><td class="mod">core:data</td><td>–</td><td class="num">1,5</td></tr>
+<tr><td class="id">S8-07</td><td>Mã hóa file (NFR-07)</td><td>AES-256-GCM, khóa sinh từ mật khẩu sao lưu bằng PBKDF2-HMAC-SHA256 (xem phát hiện 1); test giải mã thất bại khi sai mật khẩu</td><td class="mod">core:data</td><td>S8-06</td><td class="num">1,5</td></tr>
+<tr><td class="id">S8-08</td><td>Sao lưu lên Google Drive (FR-31)</td><td>Authorization API xin quyền <code>drive.appdata</code>; tải lên, tải xuống thư mục <code>appDataFolder</code>; worker tự sao lưu hằng tuần khi được bật</td><td class="mod">core:data, feature:settings</td><td>S8-07</td><td class="num">3</td></tr>
+<tr><td class="id">S8-09</td><td>Khôi phục</td><td>Kiểm tra file, thay toàn bộ database, đối chiếu số giao dịch và số dư sau khi khôi phục</td><td class="mod">core:data</td><td>S8-08</td><td class="num">1,5</td></tr>
+<tr><td class="id">S8-10</td><td>Ẩn nội dung trong đa nhiệm (FR-33)</td><td><code>setRecentsScreenshotEnabled(false)</code> trên API 33+, <code>FLAG_SECURE</code> cho máy cũ; chỉ bật khi đã bật khóa app</td><td class="mod">app</td><td>–</td><td class="num">0,5</td></tr>
+<tr><td class="id">S8-11</td><td>Test sao lưu và worker</td><td>Sao lưu rồi khôi phục trên máy khác; test worker bằng <code>WorkManagerTestInitHelper</code></td><td class="mod">core:data</td><td>S8-02, S8-09</td><td class="num">2</td></tr>
+<tr><td class="id">S8-12</td><td>Phát hành v1.1</td><td>Ghi chú phiên bản, cập nhật trang giới thiệu, phát hành từng phần</td><td class="mod">–</td><td>S8-01 đến S8-11</td><td class="num">1,5</td></tr>
+<tr class="total"><td colspan="5">Tổng S8 · 12 task</td><td class="num">19</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>4. Tổng hợp</h2>
+<table>
+<thead><tr><th>Sprint</th><th class="num">Task</th><th class="num">Giờ ước tính</th><th class="num">Giờ theo kế hoạch</th><th>Đánh giá</th></tr></thead>
+<tbody>
+<tr><td>S0</td><td class="num">15</td><td class="num">22</td><td class="num">22</td><td>Vừa khít. Nếu S0-03 gặp lỗi AGP 9 thì sẽ vượt</td></tr>
+<tr><td>S1</td><td class="num">12</td><td class="num">21,5</td><td class="num">22</td><td>Vừa</td></tr>
+<tr><td>S2</td><td class="num">12</td><td class="num">22</td><td class="num">22</td><td>Rủi ro cao nhất về học; có phương án dời S2-10</td></tr>
+<tr><td>S3</td><td class="num">13</td><td class="num">21,5</td><td class="num">22</td><td>Vừa</td></tr>
+<tr><td>S4</td><td class="num">11</td><td class="num">21,5</td><td class="num">22</td><td>Vừa</td></tr>
+<tr><td>S5</td><td class="num">12</td><td class="num">22</td><td class="num">22</td><td>Phụ thuộc số lỗi tester báo về</td></tr>
+<tr><td>S6</td><td class="num">10</td><td class="num">19</td><td class="num">20</td><td>Còn dư 1 giờ</td></tr>
+<tr><td>S7</td><td class="num">10</td><td class="num">19</td><td class="num">20</td><td>Còn dư 1 giờ</td></tr>
+<tr><td>S8</td><td class="num">12</td><td class="num">19</td><td class="num">19</td><td>Vừa</td></tr>
+<tr class="total"><td>Tổng</td><td class="num">107</td><td class="num">187,5</td><td class="num">191</td><td></td></tr>
+</tbody>
+</table>
+<p class="note">Các sprint MVP (S0–S5) gần như không có giờ dự phòng. Ngày phát hành được phép lùi (đã thống nhất ngày 10/10/2026): nếu một sprint trễ, dời việc còn lại sang sprint sau và lùi lịch phía sau, không làm vội. Closed testing 14 ngày không rút ngắn được, nên chất lượng bản đưa cho tester quan trọng hơn ngày bắt đầu.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe</title>
+<style>
+:root{color-scheme:light dark}
+body{margin:0;background:#fafaf9;color:#1c1917;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:32px 20px 64px}
+nav.top{font-size:14px;margin-bottom:16px}
+a{color:#0b6b4a}
+h1{font-size:30px;line-height:1.25}
+h2{margin-top:40px;font-size:22px;border-bottom:1px solid #e7e5e4;padding-bottom:6px}
+h3{font-size:18px;margin-top:28px}
+table{border-collapse:collapse;margin:16px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid #d6d3d1;padding:6px 10px;text-align:left;vertical-align:top}
+th{background:#f5f5f4}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:#f5f5f4;padding:1px 4px;border-radius:4px}
+pre{background:#f5f5f4;padding:12px;overflow-x:auto;line-height:1.25}
+pre code{background:none;padding:0}
+figure{margin:20px 0}
+figure img{max-width:100%;height:auto;border:1px solid #e7e5e4;border-radius:8px;background:#fff}
+figcaption{font-size:13px;color:#57534e}
+li p{margin:2px 0}
+@media (prefers-color-scheme:dark){
+  body{background:#1c1917;color:#f5f5f4}
+  th{background:#292524} th,td{border-color:#44403c}
+  code,pre{background:#292524} a{color:#6ee7b7} figcaption{color:#a8a29e}
+}</style>
+</head>
+<body>
+<main>
+<nav class="top"><a href="index.html">← Mục lục</a></nav>
+<h1 id="wireframe">Wireframe</h1>
+<p>Android và iOS dùng chung bố cục cho cả 11 màn hình. Khác biệt chỉ nằm ở thành phần điều hướng và điều khiển, liệt kê ở bảng cuối tab này. Bản hi-fi của 3 màn hình chính nằm trên <a href="mockup/index.html">canvas mockup Android và iOS</a>.</p>
+<h3 id="1-onboarding-fr-34">1. Onboarding (FR-34)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│                           Bỏ qua │
+│           [ minh họa ]           │
+│  Ghi chi tiêu bằng một câu       │
+│  Gõ &quot;phở 45k&quot; là xong.           │
+│              ● ○ ○               │
+│  [           Bắt đầu           ]  │
+└──────────────────────────────────┘</code></pre>
+<p>Bước 2: tên ví và số dư hiện tại. Bước 3: gõ thử một câu mẫu và thấy nháp hiện ra.</p>
+<h3 id="2-trang-chủ-đang-nhập-fr-01-đến-fr-08">2. Trang chủ, đang nhập (FR-01 đến FR-08)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ Tháng 10 ▾                   (⚙) │
+│ ┌──────────────────────────────┐ │
+│ │ Đã chi tháng này             │ │
+│ │ 4.250.000 ₫   Hôm nay 62.000 │ │
+│ │ [██████████░░░░░] 68% ngân sách│ │
+│ └──────────────────────────────┘ │
+│ Sắp vượt: Ăn uống [█████████░] 92%│
+│ Gần đây                    Xem ▸ │
+│ (i) Grab · Di chuyển     -62.000 │
+│ (i) Tiền điện · Hóa đơn -850.000 │
+│ ┌ Nháp (2) ────────────────────┐ │
+│ │ -45.000 ₫ [Ăn uống][Hôm nay] │ │
+│ │ -29.000 ₫ [Cà phê] [Hôm nay] │ │
+│ │ Ví: [Tiền mặt]     [ Lưu 2 ] │ │
+│ └──────────────────────────────┘ │
+│ [ phở 45k, cafe 29k        (mic)]│
+│  Tổng quan  Giao dịch  NS  T.kê  │
+└──────────────────────────────────┘</code></pre>
+<p>Ô nhập luôn nằm ngay trên thanh điều hướng. Thẻ Nháp chỉ hiện khi đang gõ; khi ô trống, chỗ đó hiện gợi ý câu mẫu.</p>
+<h3 id="3-nhập-nhanh-fr-14-đến-fr-16">3. Nhập nhanh (FR-14 đến FR-16)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ (màn hình phía sau được làm mờ)  │
+│ ┌──────────────────────────────┐ │
+│ │            ───               │ │
+│ │ Ghi nhanh                    │ │
+│ │ [ grab 62k              (mic)]│ │
+│ │ -62.000 ₫ [Di chuyển][MoMo]  │ │
+│ │ [Ảnh] [Lịch sử]      [ Lưu ] │ │
+│ └──────────────────────────────┘ │
+└──────────────────────────────────┘</code></pre>
+<p>Mở từ widget, ô Cài đặt nhanh (iOS: Control), phím tắt hoặc khi nhận chia sẻ. Khi nhận ảnh chia sẻ, ô nhập được điền sẵn văn bản đọc từ ảnh.</p>
+<h3 id="4-giao-dịch-fr-18-fr-20">4. Giao dịch (FR-18, FR-20)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ Giao dịch                    (⌕) │
+│ [Tất cả ▾][Tháng 10 ▾][Danh mục▾]│
+│ Hôm nay · T7 10/10       -62.000 │
+│  (i) Grab · MoMo         -62.000 │
+│ Hôm qua · T6 09/10    -1.014.000 │
+│  (i) Tiền điện · VCB    -850.000 │
+│  (i) Siêu thị · Tiền mặt -100.000 │
+│  (i) Cơm trưa · Tiền mặt  -35.000 │
+│  (i) Cà phê · Tiền mặt    -29.000 │
+│ T5 08/10                -125.000 │
+│  (i) Xăng · Tiền mặt      -80.000 │
+└──────────────────────────────────┘</code></pre>
+<p>Trên tablet, danh sách nằm bên trái và chi tiết giao dịch bên phải.</p>
+<h3 id="5-chi-tiết-giao-dịch-fr-17-fr-19">5. Chi tiết giao dịch (FR-17, FR-19)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ ←  Chi tiết                 Xóa  │
+│ [  Chi  |  Thu  |  Chuyển  ]     │
+│ Số tiền    [         850.000 ₫] │
+│ Danh mục   [Hóa đơn › Điện     ▸] │
+│ Ví         [VCB               ▸] │
+│ Thời gian  [09/10/2026 08:30  ▸] │
+│ Ghi chú    [Tiền điện tháng 9    ] │
+│ Câu gốc    &quot;điện 850k bằng vcb&quot;   │
+│ Ảnh        [+ Thêm ảnh]          │
+│ [              Lưu             ] │
+└──────────────────────────────────┘</code></pre>
+<h3 id="6-ngân-sách-fr-25-fr-26">6. Ngân sách (FR-25, FR-26)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ Ngân sách · Tháng 10         (+) │
+│ Tổng      4.250.000 / 6.250.000  │
+│ [██████████░░░░░] 68%             │
+│ Ăn uống   1.560.000 / 1.700.000  │
+│ [██████████████░] 92%  (!)        │
+│ Hóa đơn   1.050.000 / 1.200.000  │
+│ [█████████████░░] 88%             │
+│ Di chuyển   820.000 / 1.000.000  │
+│ [████████████░░░] 82%             │
+│ Còn 21 ngày · khoảng 95.000 ₫/ngày│
+└──────────────────────────────────┘</code></pre>
+<h3 id="7-thống-kê-fr-27-đến-fr-29">7. Thống kê (FR-27 đến FR-29)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ Thống kê       [Tuần|Tháng|Năm] │
+│ ‹      Tháng 10/2026 ▾         › │
+│ Chi 4.250.000    Thu 15.000.000  │
+│        ( biểu đồ tròn )         │
+│ Ăn uống   1.560.000  37%   +12%  │
+│ Hóa đơn   1.050.000  25%    +3%  │
+│ Di chuyển   820.000  19%    -8%  │
+│ Mua sắm     480.000  11%         │
+│ Khác        340.000   8%         │
+│ [▁▃▂▅▁▇▂▃▁▂] chi theo ngày        │
+│ [ Hỏi: tháng này ăn uống bao...?]│
+└──────────────────────────────────┘</code></pre>
+<p>Chạm vào tên tháng để mở bộ chọn tháng và năm. Chế độ Năm hiện 12 cột chi theo tháng; chạm một cột để mở tháng đó. Nút ‹ › chỉ dùng để sang tháng liền kề.</p>
+<h3 id="8-ví-và-danh-mục-fr-09-fr-23-fr-24">8. Ví và danh mục (FR-09, FR-23, FR-24)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ ←  Ví và danh mục                │
+│ [   Ví   | Danh mục | Từ điển ] │
+│ (i) Tiền mặt · mặc định   820.000 │
+│ (i) VCB · &quot;vcb, thẻ&quot;  12.400.000 │
+│ (i) MoMo · &quot;momo&quot;        350.000 │
+│ [ + Thêm ví ]                    │
+└──────────────────────────────────┘</code></pre>
+<p>Tab Từ điển liệt kê các quy tắc đã học, ví dụ <code>cf</code> → Ăn uống › Cà phê, xóa được từng dòng.</p>
+<h3 id="9-giao-dịch-định-kỳ-fr-21">9. Giao dịch định kỳ (FR-21)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ ←  Định kỳ                    (+) │
+│ Gửi xe       -150.000 · ngày 1   │
+│ Internet     -220.000 · ngày 15  │
+│ Netflix      -260.000 · ngày 20  │
+│ Lương     +15.000.000 · ngày 5   │
+└──────────────────────────────────┘</code></pre>
+<h3 id="10-cài-đặt-fr-11-fr-30-đến-fr-33-fr-35-fr-36">10. Cài đặt (FR-11, FR-30 đến FR-33, FR-35, FR-36)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│ ←  Cài đặt                       │
+│ CHUNG                            │
+│ Ngôn ngữ            Tiếng Việt ▸ │
+│ Giao diện         Theo hệ thống ▸ │
+│ Ngày bắt đầu tháng            1 ▸ │
+│ Ví mặc định            Tiền mặt ▸ │
+│ Nhắc ghi chép        21:00  [ON] │
+│ BẢO MẬT                          │
+│ Khóa bằng sinh trắc học     [ON] │
+│ DỮ LIỆU                          │
+│ Sao lưu                        ▸ │
+│ Xuất CSV                       ▸ │
+│ AI                               │
+│ AI trên cloud               [OFF] │
+└──────────────────────────────────┘</code></pre>
+<h3 id="11-màn-hình-khóa-fr-32">11. Màn hình khóa (FR-32)</h3>
+<pre><code class="language-text">┌──────────────────────────────────┐
+│            [ logo app ]          │
+│       ChiNhanh đang được khóa     │
+│  [  Mở khóa bằng sinh trắc học  ]  │
+└──────────────────────────────────┘</code></pre>
+<h3 id="12-widget-fr-14">12. Widget (FR-14)</h3>
+<pre><code class="language-text">┌──────────────────┐   ┌─────────────────────────────────┐
+│ Hôm nay   62.000 │   │ Hôm nay 62.000 · Tháng 4,25tr  │
+│ Tháng  4.250.000 │   │ [██████░░░] 68% ngân sách   (+)  │
+│              (+) │   └─────────────────────────────────┘
+└──────────────────┘
+      Nhỏ (2×2)                   Ngang (4×1)</code></pre>
+<p>Nút (+) mở hộp thoại Nhập nhanh (màn hình 3).</p>
+<h2 id="khác-biệt-giữa-android-và-ios">Khác biệt giữa Android và iOS</h2>
+<table><thead><tr><th>Thành phần</th><th>Android · Material 3 Expressive</th><th>iOS · HIG (iOS 26, Liquid Glass)</th></tr></thead><tbody><tr><td>Điều hướng chính</td><td>Navigation bar 4 mục; navigation rail trên tablet</td><td>Tab bar nổi dạng kính; sidebar trên iPad</td></tr><tr><td>Tiêu đề màn hình</td><td>Top app bar, thu gọn khi cuộn</td><td>Large title, thu nhỏ vào thanh điều hướng khi cuộn</td></tr><tr><td>Ô nhập câu</td><td>Thanh cố định ngay trên navigation bar</td><td>Bottom accessory của tab bar</td></tr><tr><td>Thẻ Nháp</td><td>Card với input chip, nút &quot;Lưu&quot; kiểu filled</td><td>Nhóm inset với nút dạng capsule, nút &quot;Lưu&quot; kiểu prominent</td></tr><tr><td>Nhập nhanh</td><td>Modal bottom sheet</td><td>Sheet có detent nửa màn hình</td></tr><tr><td>Bộ lọc giao dịch</td><td>Filter chip cuộn ngang</td><td>Menu kéo xuống trên thanh điều hướng; ô tìm kiếm hiện khi kéo danh sách xuống</td></tr><tr><td>Sửa và xóa giao dịch</td><td>Chạm để mở màn hình sửa toàn trang; nhấn giữ mở menu Sửa, Xóa; vuốt để xóa, Snackbar có nút Hoàn tác</td><td>Chạm để mở sheet sửa; vuốt trái hiện Sửa và Xóa; nhấn giữ mở context menu; thông báo nhỏ có nút Hoàn tác</td></tr><tr><td>Chi/Thu/Chuyển, Tháng/Tuần</td><td>Segmented button</td><td>Segmented control</td></tr><tr><td>Chọn ngày</td><td>Date picker dạng dialog; chọn tháng bằng bottom sheet lưới 12 tháng</td><td>Date picker dạng compact; chọn tháng bằng sheet có bánh xe tháng và năm</td></tr><tr><td>Cài đặt</td><td>Danh sách M3 với switch</td><td>Inset grouped list với toggle</td></tr><tr><td>Màu</td><td>Dynamic Color theo hình nền, dự phòng bằng màu thương hiệu</td><td>Màu nhấn (tint) thương hiệu trên nền hệ thống</td></tr><tr><td>Font</td><td>Roboto Flex, thang chữ M3</td><td>SF Pro, Dynamic Type</td></tr><tr><td>Quay lại</td><td>Predictive back</td><td>Vuốt từ cạnh trái; nút back mang tên màn hình trước</td></tr><tr><td>Lối tắt ngoài app</td><td>Widget (Glance), ô Cài đặt nhanh, App shortcuts</td><td>Widget (WidgetKit), Control trong Control Center, Quick Actions, Phím tắt (App Intents)</td></tr><tr><td>Chia sẻ vào app</td><td>Share target</td><td>Share Extension</td></tr></tbody></table>
+<p>Ghi chú cho bản iOS: Gemini Nano tương ứng với Foundation Models framework, ML Kit OCR tương ứng với Vision, và sao lưu (FR-31) nên dùng iCloud thay cho Google Drive.</p>
+
+</main>
+</body>
+</html>

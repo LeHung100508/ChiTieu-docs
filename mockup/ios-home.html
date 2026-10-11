@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>iOS – Tổng quan</title>
+</head>
+<body>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E7A4E}a:hover{color:#145C39}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+button,input{font-family:inherit}
+.num{font-family:ui-rounded,-apple-system,'SF Pro Rounded','Inter',sans-serif}
+.glass{background:rgba(255,255,255,0.72);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:0.5px solid rgba(0,0,0,0.08);box-shadow:0 8px 24px rgba(0,0,0,0.10)}
+.row{display:flex;align-items:center;gap:12px;padding:0 16px;min-height:60px;box-sizing:border-box}
+.sq{width:32px;height:32px;flex:none;border-radius:8px;color:#FFFFFF;display:flex;align-items:center;justify-content:center}
+.cap{height:32px;padding:0 12px;border:0;border-radius:16px;font-size:15px;font-weight:500}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:54px;border-radius:27px;text-decoration:none;color:#1C1C1E;font-size:10px;font-weight:600}
+</style>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: #F2F2F7; color: #000000; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif">
+<div style="height: 56px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 0 16px">
+<button class="glass" style="height: 44px; padding: 0 14px; border-radius: 22px; display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 600; color: #1E7A4E">Tháng 10<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="glass" aria-label="Cài đặt" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: #1C1C1E"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button>
+</div>
+<h1 style="margin: 0; padding: 0 16px 8px; font-size: 34px; font-weight: 700; letter-spacing: 0.3px">Tổng quan</h1>
+<main style="padding: 0 16px; display: flex; flex-direction: column; gap: 12px">
+<section style="background: #FFFFFF; border-radius: 26px; padding: 18px 20px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 15px; color: #6C6C70">Đã chi tháng này</div>
+<div class="num" style="font-size: 40px; font-weight: 700; line-height: 48px">4.250.000 ₫</div>
+<div style="font-size: 15px; color: #6C6C70">Hôm nay 62.000 ₫</div>
+<div style="margin-top: 10px; display: flex; align-items: center; gap: 10px">
+<div aria-hidden="true" style="flex: 1; height: 6px; border-radius: 3px; background: #E5E5EA; overflow: hidden"><div style="width: 68%; height: 6px; border-radius: 3px; background: #1E7A4E"></div></div>
+<span style="font-size: 13px; font-weight: 600; color: #3A3A3C">68% ngân sách</span>
+</div>
+</section>
+<section style="background: #FFFFFF; border-radius: 26px; display: flex; align-items: center; gap: 12px; padding: 14px 16px">
+<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#C93400"/><path d="M12 7v6M12 16.5v.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/></svg>
+<div style="flex: 1; font-size: 15px"><b style="font-weight: 600">Ăn uống</b> sắp vượt ngân sách</div>
+<span class="num" style="font-size: 15px; font-weight: 700; color: #C93400">92%</span>
+</section>
+<div style="display: flex; align-items: baseline; justify-content: space-between; padding: 6px 4px 0">
+<h2 style="margin: 0; font-size: 20px; font-weight: 700">Gần đây</h2>
+<a href="ios-transactions.html" style="font-size: 15px; text-decoration: none">Xem tất cả</a>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; background: #FFFFFF; border-radius: 26px; overflow: hidden">
+<li class="row"><span class="sq" style="background: #0062CC"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="10" width="18" height="7" rx="2"/><path d="M6 10l2-4h8l2 4"/></svg></span><div style="flex: 1; min-width: 0; border-bottom: 0.5px solid #C6C6C8; align-self: stretch; display: flex; align-items: center; gap: 8px"><div style="flex: 1"><div style="font-size: 17px">Grab</div><div style="font-size: 13px; color: #6C6C70">Di chuyển · MoMo · 7:45</div></div><span class="num" style="font-size: 17px">−62.000 ₫</span></div></li>
+<li class="row"><span class="sq" style="background: #B25000"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><div style="flex: 1; min-width: 0; border-bottom: 0.5px solid #C6C6C8; align-self: stretch; display: flex; align-items: center; gap: 8px"><div style="flex: 1"><div style="font-size: 17px">Tiền điện tháng 9</div><div style="font-size: 13px; color: #6C6C70">Hóa đơn · VCB · Hôm qua</div></div><span class="num" style="font-size: 17px">−850.000 ₫</span></div></li>
+<li class="row"><span class="sq" style="background: #8944AB"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.5 11h11L21 8H6.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg></span><div style="flex: 1; min-width: 0; align-self: stretch; display: flex; align-items: center; gap: 8px"><div style="flex: 1"><div style="font-size: 17px">Siêu thị</div><div style="font-size: 13px; color: #6C6C70">Mua sắm · Tiền mặt · Hôm qua</div></div><span class="num" style="font-size: 17px">−100.000 ₫</span></div></li>
+</ul>
+</main>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 10px; padding: 0 12px 20px">
+<section aria-label="Nháp giao dịch" style="background: #FFFFFF; border-radius: 26px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14)">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="font-size: 15px; font-weight: 600; color: #6C6C70">Nháp · 2 giao dịch</div>
+<button aria-label="Bỏ nháp" style="width: 30px; height: 30px; border: 0; border-radius: 15px; background: #E9E9EE; color: #3A3A3C; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; min-height: 40px">
+<span class="num" style="font-size: 22px; font-weight: 700">−45.000 ₫</span>
+<span style="flex: 1; font-size: 15px; color: #6C6C70">phở</span>
+<button class="cap" style="background: rgba(30, 122, 78, 0.12); color: #145C39">Ăn uống</button>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; min-height: 40px">
+<span class="num" style="font-size: 22px; font-weight: 700">−29.000 ₫</span>
+<span style="flex: 1; font-size: 15px; color: #6C6C70">cafe</span>
+<button class="cap" style="background: rgba(30, 122, 78, 0.12); color: #145C39">Ăn uống › Cà phê</button>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding-top: 10px; border-top: 0.5px solid #C6C6C8">
+<button class="cap" style="background: #E9E9EE; color: #1C1C1E">Hôm nay</button>
+<button class="cap" style="background: #E9E9EE; color: #1C1C1E">Tiền mặt</button>
+<span style="flex: 1"></span>
+<button style="height: 44px; padding: 0 22px; border: 0; border-radius: 22px; background: #1E7A4E; color: #FFFFFF; font-size: 17px; font-weight: 600">Lưu 2</button>
+</div>
+</section>
+<div class="glass" style="height: 52px; border-radius: 26px; display: flex; align-items: center; gap: 4px; padding: 0 6px 0 18px">
+<label for="q" class="sr">Câu nhập giao dịch</label>
+<input id="q" value="phở 45k, cafe 29k" style="flex: 1; min-width: 0; border: 0; background: transparent; font-size: 17px; color: #000000; outline: none">
+<button aria-label="Nhập bằng giọng nói" style="width: 44px; height: 44px; border: 0; border-radius: 22px; background: none; color: #3A3A3C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+</div>
+<nav aria-label="Thanh tab" class="glass" style="height: 62px; border-radius: 31px; padding: 4px; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px">
+<a href="ios-home.html" class="tab" aria-current="page" style="color: #1E7A4E; background: rgba(0, 0, 0, 0.06)"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-6v-5h-4v5H4z"/></svg>Tổng quan</a>
+<a href="ios-transactions.html" class="tab"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h1M11 9h6M7 13h1M11 13h6"/></svg>Giao dịch</a>
+<a href="ios-budget.html" class="tab"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12h8.5"/></svg>Ngân sách</a>
+<a href="ios-stats.html" class="tab"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-8M12 20V5M19 20v-11"/></svg>Thống kê</a>
+</nav>
+</div>
+</div>
+</body>
+</html>
