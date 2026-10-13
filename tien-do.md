@@ -1,8 +1,8 @@
 # Tiến độ ChiNhanh Android
 
-- **Repo GitHub:** (chưa có, agent hỏi người dùng rồi ghi URL vào đây)
+- **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
 - **Task hiện tại:** S0-01
-- **Cập nhật lần cuối:** 2026-10-11
+- **Cập nhật lần cuối:** 2026-10-13
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -12,7 +12,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 
 | Task | Việc | Giờ | Trạng thái | Ngày xong | Ghi chú |
 | --- | --- | --- | --- | --- | --- |
-| S0-01 | Tạo project | 1 | Chưa làm | | |
+| S0-01 | Tạo project | 1 | Chờ rà soát | | Đã có project Android, cần rà soát |
 | S0-02 | Version Catalog | 1 | Chưa làm | | |
 | S0-03 | Convention plugins | 3 | Chưa làm | | |
 | S0-04 | Khung module | 1,5 | Chưa làm | | |
