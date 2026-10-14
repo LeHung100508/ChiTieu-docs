@@ -112,7 +112,7 @@ ol.path{padding-left:22px}
 <table>
 <thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td class="id">S0-01</td><td>Tạo project</td><td>Kotlin DSL, AGP 9 (hoặc AGP 8.x nếu S0-03 gặp lỗi), Kotlin 2.x, JDK 17; <code>minSdk</code> 26, <code>targetSdk</code>/<code>compileSdk</code> 36. Chốt <code>applicationId</code>. App trống chạy được</td><td class="mod">app</td><td>–</td><td class="num">1</td></tr>
+<tr><td class="id">S0-01</td><td>Tạo project</td><td>Kotlin DSL, AGP 9 (hoặc AGP 8.x nếu S0-03 gặp lỗi), Kotlin 2.x, JDK 17; <code>minSdk</code> 26, <code>targetSdk</code>/<code>compileSdk</code> 37. Chốt <code>applicationId</code>. App trống chạy được</td><td class="mod">app</td><td>–</td><td class="num">1</td></tr>
 <tr><td class="id">S0-02</td><td>Version Catalog</td><td><code>libs.versions.toml</code> có đủ thư viện dự kiến: Compose BOM, Hilt, Room, Navigation 3, DataStore, Paging, Glance, Vico, ML Kit, test</td><td class="mod">gradle</td><td>S0-01</td><td class="num">1</td></tr>
 <tr><td class="id">S0-03</td><td>Convention plugins</td><td><code>build-logic</code>: android.application, android.library, android.library.compose, android.hilt, android.room, jvm.library. Kiểm tra từng plugin chạy được với AGP 9</td><td class="mod">build-logic</td><td>S0-02</td><td class="num">3</td></tr>
 <tr><td class="id">S0-04</td><td>Khung module</td><td><code>core:{model, parser, database, datastore, data, designsystem, ui, testing}</code>, <code>feature:{onboarding, quickadd, transactions, budget, stats, settings}</code>, <code>:benchmarks</code>. Feature không phụ thuộc lẫn nhau</td><td class="mod">tất cả</td><td>S0-03</td><td class="num">1,5</td></tr>

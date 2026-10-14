@@ -52,7 +52,7 @@
 - Mã hóa file sao lưu bằng AES-256-GCM, khóa sinh từ mật khẩu bằng PBKDF2-HMAC-SHA256 qua `javax.crypto`. Không dùng Tink.
 - Vico chỉ dùng cho biểu đồ cột; biểu đồ tròn tự vẽ bằng `Canvas`.
 - Dùng AGP 9. Nếu Hilt, Room, KSP hoặc Roborazzi chưa tương thích thì dùng AGP 8.x cho MVP.
-- `minSdk` 26, `targetSdk` 36.
+- `minSdk` 26, `targetSdk` 37, `compileSdk` 37 (nâng từ 36 do Compose BOM và Core KTX mới yêu cầu).
 
 **Phiên bản thư viện:** kiến thức của bạn có thể đã cũ. Trước khi khuyên dùng một phiên bản hay API mới, kiểm tra trên trang chính thức (developer.android.com, kotlinlang.org, GitHub release của thư viện) nếu có công cụ tra cứu. Nếu không tra được thì nói rõ.
 
