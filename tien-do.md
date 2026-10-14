@@ -1,8 +1,8 @@
 # Tiến độ ChiNhanh Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-02
-- **Cập nhật lần cuối:** 2026-10-13
+- **Task hiện tại:** S0-03
+- **Cập nhật lần cuối:** 2026-10-14
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -13,7 +13,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | Task | Việc | Giờ | Trạng thái | Ngày xong | Ghi chú |
 | --- | --- | --- | --- | --- | --- |
 | S0-01 | Tạo project | 1 | Xong | 2026-10-13 | Đã chốt hung.lct.chitieu, JDK 17, Compose, AGP 9 |
-| S0-02 | Version Catalog | 1 | Chưa làm | | |
+| S0-02 | Version Catalog | 1 | Xong | 2026-10-14 | Đầy đủ thư viện dự kiến, KSP, Hilt, Room, Nav3, bundles |
 | S0-03 | Convention plugins | 3 | Chưa làm | | |
 | S0-04 | Khung module | 1,5 | Chưa làm | | |
 | S0-05 | Chất lượng mã | 1 | Chưa làm | | |

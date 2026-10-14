@@ -6,7 +6,9 @@ Thư mục này là bản chính của mọi tài liệu dự án ChiNhanh. Mọ
 - `wireframe.html`: wireframe 11 màn hình, widget và bảng khác biệt Android/iOS
 - `dac-ta-ios.html`: đặc tả bản iOS, chỉ ghi phần khác bản Android
 - `ke-hoach-android.html`: kế hoạch phát triển Android, 9 sprint 2 tuần
+- `ke-hoach-ios.html`: kế hoạch phát triển iOS, 9 sprint 2 tuần
 - `task-android.html`: 107 task chia theo sprint, kèm phân tích đường găng và quyết định kỹ thuật
+- `task-ios.html`: 107 task iOS chia theo sprint, tương ứng bản Android và tối ưu cho hệ sinh thái Apple
 - `luat-agent.md`: luật cho agent AI hướng dẫn người dùng tự code từng task (mentor, không viết code hộ)
 - `tien-do.md`: trạng thái từng task, nợ kỹ thuật, ngoại lệ, nhật ký sprint; agent cập nhật theo `luat-agent.md`
 - `hoc/`: tài liệu lý thuyết agent soạn cho từng task
