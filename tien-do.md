@@ -1,8 +1,8 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-05
-- **Cập nhật lần cuối:** 2026-10-15
+- **Task hiện tại:** S0-06
+- **Cập nhật lần cuối:** 2026-10-19
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -16,7 +16,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | S0-02 | Version Catalog | 1 | Xong | 2026-10-14 | Đầy đủ thư viện dự kiến, KSP, Hilt, Room, Nav3, bundles |
 | S0-03 | Convention plugins | 3 | Xong | 2026-10-14 | Đủ 6 plugin chitieu.*, build-logic, SDK 37, AGP 9 |
 | S0-04 | Khung module | 1,5 | Xong | 2026-10-15 | Đủ 15 module (8 core, 6 feature, benchmarks), compileSdk 37, assembleDebug thành công |
-| S0-05 | Chất lượng mã | 1 | Chưa làm | | |
+| S0-05 | Chất lượng mã | 1 | Xong | 2026-10-19 | Spotless (ktlint), Detekt (Compose rules), ./gradlew check chạy sạch 100% |
 | S0-06 | CI | 1,5 | Chưa làm | | |
 | S0-07 | Design system: màu và chữ | 1,5 | Chưa làm | | |
 | S0-08 | Design system: component | 1,5 | Chưa làm | | |
