@@ -171,6 +171,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 
 | Ngày | Task | Phần được viết hộ | Lý do |
 | --- | --- | --- | --- |
+| 2026-10-21 | – (tách docs) | Agent chạy lệnh git: subtree split, push lên ChiTieu-docs, tạo nhánh chore/tach-docs, gắn submodule, commit và push nhánh | Người dùng yêu cầu ngoại lệ "chạy lệnh git tách docs" |
 
 ## Nhật ký sprint
 
