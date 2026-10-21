@@ -77,7 +77,7 @@ ol.path{padding-left:22px}
 <tr><td>Kiến trúc parser</td><td>Pipeline Kotlin thuần: chuẩn hóa → tách khoản → số tiền → thời gian → loại → ví → danh mục. Mỗi trường có độ tin cậy từ 0 đến 1</td><td>Độ tin cậy dùng để tô nổi chip chưa chắc (FR-08) và quyết định khi nào gọi Gemini (FR-10)</td></tr>
 <tr><td>Xóa giao dịch</td><td>Xóa mềm, sau 5 giây mới xóa thật</td><td>Để Hoàn tác được (FR-19) mà không cần lưu lại bản sao</td></tr>
 <tr><td>Schema MVP</td><td>Tạo đủ bảng <code>Wallet</code>, <code>Category</code>, <code>Transaction</code>, <code>KeywordRule</code>, <code>Budget</code> và bảng FTS ngay ở S1</td><td>Không phải viết migration trước khi phát hành MVP</td></tr>
-<tr><td>Bộ câu mẫu</td><td>File JSON độc lập với ngôn ngữ lập trình</td><td>Dùng chung với bản iOS để hai bộ phân tích cho cùng kết quả</td></tr>
+<tr><td>Bộ câu mẫu</td><td>File JSON độc lập với ngôn ngữ lập trình, đặt cùng từ điển từ khóa ở <code>shared/parser/</code> của repo tài liệu <code>ChiTieu-docs</code>, tức đường dẫn <code>docs/shared/parser/</code> trong cả hai repo ứng dụng</td><td>Dùng chung với bản iOS để hai bộ phân tích cho cùng kết quả. Test của cả hai bản đọc trực tiếp qua submodule <code>docs/</code>, không chép sang chỗ khác; CI checkout kèm submodule (quyết định ngày 20/10/2026)</td></tr>
 </tbody>
 </table>
 
@@ -120,14 +120,14 @@ ol.path{padding-left:22px}
 <tr><td class="id">S0-06</td><td>CI</td><td>GitHub Actions: build, lint, Detekt, Spotless, unit test, báo cáo Kover, cache Gradle. Mỗi pull request đều phải qua</td><td class="mod">.github</td><td>S0-05</td><td class="num">1,5</td></tr>
 <tr><td class="id">S0-07</td><td>Design system: màu và chữ</td><td>ColorScheme sáng/tối sinh từ màu gốc <code>#1B6B4A</code> (Material Theme Builder), Roboto Flex, Typography, Shapes; công tắc Dynamic Color</td><td class="mod">core:designsystem</td><td>S0-04</td><td class="num">1,5</td></tr>
 <tr><td class="id">S0-08</td><td>Design system: component</td><td><code>AmountText</code> (định dạng VND), chip, thẻ tổng, icon danh mục; mỗi component có Preview sáng và tối</td><td class="mod">core:designsystem</td><td>S0-07</td><td class="num">1,5</td></tr>
-<tr><td class="id">S0-09</td><td>Bộ câu mẫu</td><td>200 câu JSON gồm câu đầu vào và kết quả mong đợi (loại, số tiền, danh mục, ngày tương đối, ví). Phủ mọi cách viết trong FR-02, FR-03</td><td class="mod">core:parser</td><td>S0-04</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-09</td><td>Bộ câu mẫu</td><td>200 câu JSON gồm câu đầu vào và kết quả mong đợi (loại, số tiền, danh mục, ngày, ví). Phủ mọi cách viết trong FR-02, FR-03. File đặt ở <code>docs/shared/parser/</code>, không nằm trong <code>core:parser</code>, vì bản iOS đọc cùng file này qua submodule <code>docs/</code>. Để hai nền tảng chạy cùng một bộ: file có số phiên bản; mỗi câu có <code>id</code> cố định; ghi rõ thời điểm tham chiếu và múi giờ (Asia/Ho_Chi_Minh) để ngày tương đối cho cùng kết quả; danh mục ghi bằng <code>seedKey</code>, không ghi tên hiển thị; có <code>README.md</code> mô tả schema. <code>core:parser</code> đọc file này làm test resource. Khi <code>docs/</code> đã là submodule, CI phải checkout kèm submodule</td><td class="mod">docs/shared/parser, core:parser</td><td>S0-04</td><td class="num">2</td></tr>
 <tr><td class="id">S0-10</td><td>Parser: chuẩn hóa và tách từ</td><td>Chữ thường, bản bỏ dấu để so khớp (giữ bản gốc làm ghi chú), tách cụm số và đơn vị (<code>k</code>, <code>tr</code>, <code>củ</code>, <code>lít</code>, <code>nghìn</code>, <code>ngàn</code>)</td><td class="mod">core:parser</td><td>S0-09</td><td class="num">1,5</td></tr>
 <tr><td class="id">S0-11</td><td>Parser: số tiền (FR-02)</td><td>Hiểu <code>45k</code>, <code>45.000</code>, <code>1tr2</code>, <code>1,5tr</code>, <code>2 củ</code>, <code>5 lít</code>, <code>năm chục</code>. Đúng ≥ 95% số tiền trên bộ mẫu (Cổng 1)</td><td class="mod">core:parser</td><td>S0-10</td><td class="num">2</td></tr>
 <tr><td class="id">S0-12</td><td>Parser: thời gian (FR-03)</td><td><code>hôm qua</code>, <code>hôm kia</code>, <code>sáng nay</code>, <code>tối qua</code>, <code>thứ 2 tuần trước</code>, <code>ngày 5</code>, <code>5/10</code>. Truyền <code>Clock</code> vào để test được</td><td class="mod">core:parser</td><td>S0-10</td><td class="num">1,5</td></tr>
-<tr><td class="id">S0-13</td><td>Parser: danh mục và tách khoản (FR-04, FR-07)</td><td>Từ điển từ khóa mặc định dạng JSON; tách khoản theo dấu phẩy, "và", xuống dòng; mỗi trường có độ tin cậy</td><td class="mod">core:parser</td><td>S0-11, S0-12</td><td class="num">1,5</td></tr>
+<tr><td class="id">S0-13</td><td>Parser: danh mục và tách khoản (FR-04, FR-07)</td><td>Từ điển từ khóa mặc định dạng JSON, đặt trong <code>docs/shared/parser/</code> cạnh bộ câu mẫu, khóa theo <code>seedKey</code>; <code>core:parser</code> đọc làm resource lúc chạy app, không phải resource của test; tách khoản theo dấu phẩy, "và", xuống dòng; mỗi trường có độ tin cậy</td><td class="mod">core:parser</td><td>S0-11, S0-12</td><td class="num">1,5</td></tr>
 <tr><td class="id">S0-14</td><td>Đo parser trên JVM (NFR-02)</td><td>Test chạy cả bộ mẫu, p95 dưới 50 ms mỗi câu trên JVM. Đây là phép đo sớm, phép đo chính thức ở S4-10</td><td class="mod">core:parser</td><td>S0-13</td><td class="num">1</td></tr>
 <tr><td class="id">S0-15</td><td>Tài khoản Google Play</td><td>Tạo tài khoản Play Console, trả phí, gửi xác minh danh tính và nhà phát triển. Làm song song từ ngày đầu</td><td class="mod">–</td><td>–</td><td class="num">1</td></tr>
-<tr class="total"><td colspan="5">Tổng S0 · 15 task</td><td class="num">22</td></tr>
+<tr class="total"><td colspan="5">Tổng S0 · 15 task</td><td class="num">22,5</td></tr>
 </tbody>
 </table>
 </div>
@@ -308,7 +308,7 @@ ol.path{padding-left:22px}
 <table>
 <thead><tr><th>Sprint</th><th class="num">Task</th><th class="num">Giờ ước tính</th><th class="num">Giờ theo kế hoạch</th><th>Đánh giá</th></tr></thead>
 <tbody>
-<tr><td>S0</td><td class="num">15</td><td class="num">22</td><td class="num">22</td><td>Vừa khít. Nếu S0-03 gặp lỗi AGP 9 thì sẽ vượt</td></tr>
+<tr><td>S0</td><td class="num">15</td><td class="num">22,5</td><td class="num">22</td><td>Vượt 0,5 giờ do S0-09 thêm yêu cầu dùng chung với iOS (20/10/2026)</td></tr>
 <tr><td>S1</td><td class="num">12</td><td class="num">21,5</td><td class="num">22</td><td>Vừa</td></tr>
 <tr><td>S2</td><td class="num">12</td><td class="num">22</td><td class="num">22</td><td>Rủi ro cao nhất về học; có phương án dời S2-10</td></tr>
 <tr><td>S3</td><td class="num">13</td><td class="num">21,5</td><td class="num">22</td><td>Vừa</td></tr>
@@ -317,7 +317,7 @@ ol.path{padding-left:22px}
 <tr><td>S6</td><td class="num">10</td><td class="num">19</td><td class="num">20</td><td>Còn dư 1 giờ</td></tr>
 <tr><td>S7</td><td class="num">10</td><td class="num">19</td><td class="num">20</td><td>Còn dư 1 giờ</td></tr>
 <tr><td>S8</td><td class="num">12</td><td class="num">19</td><td class="num">19</td><td>Vừa</td></tr>
-<tr class="total"><td>Tổng</td><td class="num">107</td><td class="num">187,5</td><td class="num">191</td><td></td></tr>
+<tr class="total"><td>Tổng</td><td class="num">107</td><td class="num">188</td><td class="num">191</td><td></td></tr>
 </tbody>
 </table>
 <p class="note">Các sprint MVP (S0–S5) gần như không có giờ dự phòng. Ngày phát hành được phép lùi (đã thống nhất ngày 10/10/2026): nếu một sprint trễ, dời việc còn lại sang sprint sau và lùi lịch phía sau, không làm vội. Closed testing 14 ngày không rút ngắn được, nên chất lượng bản đưa cho tester quan trọng hơn ngày bắt đầu.</p>

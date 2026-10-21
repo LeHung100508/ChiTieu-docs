@@ -5,292 +5,572 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kế hoạch phát triển iOS – ChiNhanh</title>
 <style>
-:root{color-scheme:light dark;--line:#d6d3d1;--soft:#f5f5f4;--muted:#57534e;--found:#78716c;--mvp:#1b6b4a;--rel:#b86e00;--v11:#2f5fa7}
+:root{color-scheme:light dark;--line:#d6d3d1;--soft:#f5f5f4;--muted:#57534e;--learn:#7c3aed;--found:#78716c;--mvp:#1b6b4a;--rel:#b86e00;--v11:#2f5fa7;--warn-bg:#fff7ed;--warn-line:#fdba74}
 body{margin:0;background:#fafaf9;color:#1c1917;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:1000px;margin:0 auto;padding:32px 20px 64px}
+main{max-width:1000px;margin:0 auto;padding:32px 16px 64px}
 nav.top{font-size:14px;margin-bottom:16px}
 a{color:#0b6b4a}
 h1{font-size:30px;line-height:1.25;margin-bottom:8px}
 h2{margin-top:44px;font-size:22px;border-bottom:1px solid #e7e5e4;padding-bottom:6px}
 h3{font-size:18px;margin:28px 0 8px}
+h4{font-size:16px;margin:24px 0 4px}
 table{border-collapse:collapse;margin:16px 0;font-size:14px;display:block;overflow-x:auto}
 th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
 th{background:var(--soft)}
 td.num,th.num{text-align:right;white-space:nowrap}
+td.lv{white-space:nowrap;text-align:center}
 code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(--soft);padding:1px 4px;border-radius:4px}
 .lead{font-size:18px}
 .meta{color:var(--muted);font-size:14px}
 .tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:10px;color:#fff;vertical-align:2px}
-.t-found{background:var(--found)}.t-mvp{background:var(--mvp)}.t-rel{background:var(--rel)}.t-v11{background:var(--v11)}
+.t-learn{background:var(--learn)}.t-found{background:var(--found)}.t-mvp{background:var(--mvp)}.t-rel{background:var(--rel)}.t-v11{background:var(--v11)}
 .sprint{border:1px solid var(--line);border-radius:12px;padding:4px 20px 12px;margin:20px 0}
 .sprint h3{margin-top:16px}
 .done{background:var(--soft);border-radius:8px;padding:8px 12px;font-size:15px}
+.draft{border:1px solid var(--warn-line);background:var(--warn-bg);border-radius:10px;padding:10px 14px;font-size:15px}
+.new{display:inline-block;font-size:11px;font-weight:700;padding:0 6px;border-radius:8px;background:var(--learn);color:#fff;vertical-align:1px}
 /* Timeline */
 .tl{overflow-x:auto;margin:16px 0}
-.grid{display:grid;grid-template-columns:200px repeat(19,minmax(26px,1fr));gap:4px 2px;min-width:760px;font-size:13px;align-items:center}
+.grid{display:grid;grid-template-columns:200px repeat(21,minmax(26px,1fr));gap:4px 2px;min-width:800px;font-size:13px;align-items:center}
 .wk{text-align:center;color:var(--muted);font-size:12px}
+.grid2 .lbl{font-weight:600}
 .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:8px}
 .bar{height:22px;border-radius:6px;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;padding:0 6px;white-space:nowrap;overflow:hidden}
-.b-found{background:var(--found)}.b-mvp{background:var(--mvp)}.b-rel{background:var(--rel)}.b-v11{background:var(--v11)}
+.b-learn{background:var(--learn)}.b-found{background:var(--found)}.b-mvp{background:var(--mvp)}.b-rel{background:var(--rel)}.b-v11{background:var(--v11)}
 .b-wait{background:repeating-linear-gradient(45deg,var(--rel),var(--rel) 6px,#d99a3c 6px,#d99a3c 12px)}
 .gate{font-size:12px;font-weight:600;color:var(--rel);white-space:nowrap}
+.grid2{display:grid;grid-template-columns:64px repeat(19,minmax(34px,1fr));gap:6px 2px;min-width:760px;font-size:13px;align-items:center}
+.grid2 .wk{font-size:11px}
+.grid2 .bar{justify-content:center;padding:0 2px;font-size:11px}
 @media (prefers-color-scheme:dark){
-  :root{--line:#44403c;--soft:#292524;--muted:#a8a29e}
+  :root{--line:#44403c;--soft:#292524;--muted:#a8a29e;--warn-bg:#2a1f14;--warn-line:#9a5b13}
   body{background:#1c1917;color:#f5f5f4} a{color:#6ee7b7}
+  h2{border-bottom-color:#44403c}
   .gate{color:#f0b35a}
 }
 </style>
 </head>
 <body>
 <main>
-<nav class="top"><a href="index.html">← Mục lục</a> · <a href="dac-ta-ios.html">Đặc tả iOS</a> · <a href="task-ios.html">Chia task iOS</a> · <a href="ke-hoach-android.html">Kế hoạch Android (tham chiếu)</a></nav>
+<nav class="top"><a href="index.html">← Mục lục</a> · <a href="dac-ta-ios.html">Đặc tả iOS</a> · <a href="ke-hoach-android.html">Kế hoạch Android (tham chiếu)</a></nav>
 
 <h1>Kế hoạch phát triển ChiNhanh trên iOS</h1>
-<p class="meta">Lập ngày 13/10/2026 · Căn cứ: <a href="dac-ta-ios.html">đặc tả iOS</a>, <a href="dac-ta-android.html">đặc tả Android</a>, <a href="wireframe.html">wireframe</a>, <a href="mockup/index.html">mockup</a> · Chi tiết từng task: <a href="task-ios.html">chia task theo sprint</a></p>
+<p class="meta">Lập ngày 20/10/2026, duyệt cùng ngày · Căn cứ: <a href="dac-ta-ios.html">đặc tả iOS</a>, <a href="dac-ta-android.html">đặc tả Android</a>, <a href="ke-hoach-android.html">kế hoạch Android</a>, <a href="wireframe.html">wireframe</a>, <a href="mockup/index.html">mockup</a> · Chi tiết từng task: <a href="task-ios.html">chia task theo sprint</a> (mới có iL)</p>
 
-<p class="lead">Kế hoạch gồm <b>9 sprint, mỗi sprint 2 tuần</b>, cộng 1 tuần kiểm thử TestFlight và duyệt App Store. Bản MVP (21 yêu cầu Must) dự kiến lên App Store Production vào cuối <b>tuần 13</b>, bản v1.1 (13 yêu cầu Should) hoàn thành ở <b>tuần 19</b>. Nhịp độ và chất lượng mã được ưu tiên hàng đầu, các mốc thời gian có thể linh hoạt điều chỉnh khi cần.</p>
+<p class="draft"><b>Đã duyệt ngày 20/10/2026.</b> Các quyết định ở <a href="#cho-chot">mục 7</a>. Những việc còn lại ở <a href="#sau-khi-chot">mục 8</a>, mỗi việc sửa tài liệu cần bạn đồng ý riêng.</p>
+
+<p class="lead">Kế hoạch gồm <b>1 sprint làm quen và 9 sprint sản phẩm</b>, mỗi sprint 2 tuần, <b>làm xen kẽ với các sprint Android</b>. Tuần được đếm theo lịch chung, bắt đầu từ Android S0 (10/10/2026). MVP iOS (21 yêu cầu Must) dự kiến lên App Store khoảng <b>tuần 29</b>, bản v1.1 (13 yêu cầu Should) xong ở <b>tuần 38</b>. Các mốc này được phép lùi để giữ chất lượng.</p>
+
+<p>Mục tiêu số 1 vẫn là <b>học</b>. Vì vậy kế hoạch này khác bản iOS cũ ở 5 điểm:</p>
+<ul>
+<li>Thêm sprint <b>iL</b> để học Swift, Xcode và SwiftUI trước khi đụng vào code sản phẩm.</li>
+<li>Có <b>bản đồ kiến thức</b> (mục 2): liệt kê mọi thứ cần học, đối chiếu với kiến thức Android bạn đã có, và ghi rõ học ở sprint nào.</li>
+<li>Đưa sớm các quyết định của iOS mà sửa muộn sẽ tốn công: vị trí lưu dữ liệu trong App Group và schema tương thích CloudKit, cùng ở iS1.</li>
+<li>Thêm các bước <b>thử nhanh (spike)</b> cho những phần chưa chắc hỗ trợ tiếng Việt: nhận dạng giọng nói và Foundation Models.</li>
+<li>Làm <b>song song với Android, luân phiên theo sprint</b>, code iOS ở repo riêng.</li>
+</ul>
 
 <h2>1. Giả định và cách làm việc</h2>
 <ul>
-<li><b>Năng lực:</b> Một lập trình viên làm ngoài giờ, khoảng 10–12 giờ mỗi tuần (khoảng 22 giờ mỗi sprint). Thời lượng đã bao gồm tìm hiểu API mới của iOS 26/27, viết test và rà soát chất lượng.</li>
-<li><b>Môi trường phát triển:</b> Mac Apple silicon, macOS Tahoe 26.6+, Xcode 27 với SDK iOS 27. Ít nhất một thiết bị iPhone thật hỗ trợ Apple Intelligence để kiểm thử Foundation Models.</li>
-<li><b>Nhịp sprint:</b>
-  <ul>
-  <li>Đầu sprint: Rà soát mục tiêu, cập nhật backlog và chuẩn bị tài liệu kỹ thuật liên quan.</li>
-  <li>Mỗi buổi làm việc: Ghi nhật ký commit rõ ràng theo mã tính năng, chạy test cục bộ trước khi push.</li>
-  <li>Cuối sprint: Build và kiểm thử trực tiếp trên iPhone/iPad thật, tự đánh giá 3 câu hỏi cải tiến: việc gì tốt, việc gì chậm, sprint sau đổi gì.</li>
-  </ul>
-</li>
-<li><b>Quy trình Git:</b> Nhánh <code>main</code> luôn ở trạng thái build được. Mỗi tính năng phát triển trên nhánh riêng, tạo Pull Request và chạy CI (GitHub Actions / Xcode Cloud) trước khi merge.</li>
-<li><b>Nếu trễ:</b> Giữ vững phạm vi Must của MVP. Nếu phát sinh độ trễ, dời các việc chưa xong sang sprint tiếp theo hoặc tinh giản các hạng mục phụ, không giảm tiêu chuẩn kiểm thử.</li>
+<li><b>Năng lực và nhịp:</b> vẫn 10–12 giờ mỗi tuần, 22 giờ mỗi sprint. Hai bản luân phiên theo sprint: xong một sprint Android thì làm một sprint iOS. Mỗi bản vì thế chỉ đi được nửa tốc độ, kể cả Android (xem mục 3). Lượng kiến thức mới trên iOS nhiều hơn, nên dự kiến có sprint sẽ trễ. Khi trễ thì dời việc sang sprint sau, không làm vội.</li>
+<li><b>Repo:</b> ba repo trên GitHub, đều public: <code>ChiTieu</code> (Android), <code>ChiTieu-ios</code> (iOS) và <code>ChiTieu-docs</code> (tài liệu). Hai repo ứng dụng độc lập với nhau, clone ở đâu cũng được. Repo tài liệu được gắn vào cả hai dưới dạng git submodule tại <code>docs/</code>, nên agent ở repo nào cũng đọc tài liệu qua <code>docs/</code>, và tự nhận nền tảng nhờ dòng <code>Nền tảng:</code> trong <code>CLAUDE.md</code>. Tiến độ iOS ghi ở <code>docs/tien-do-ios.md</code>. Mỗi lần commit có hai bước: commit trong <code>docs/</code> trước, rồi commit con trỏ submodule ở repo ứng dụng (mục 13.4 của luật). Repo iOS để public nên không bao giờ commit chứng chỉ, file <code>.p12</code>, provisioning profile hay khóa API của App Store Connect.</li>
+<li><b>File dùng chung:</b> bộ câu mẫu và từ điển từ khóa nằm ở <code>docs/shared/parser/</code>; test của cả hai bản đọc trực tiếp, không chép sang chỗ khác. Danh sách cột CSV và định dạng sao lưu cũng ghi trong repo tài liệu. CI của hai repo ứng dụng phải checkout kèm submodule.</li>
+<li><b>Máy:</b> chỉ làm iOS được trên Mac Apple silicon. Máy này chạy macOS 27.0.1, đủ điều kiện cho Xcode 27 (cần Tahoe 26.6 trở lên), nhưng <b>chưa cài Xcode</b>, mới có Command Line Tools với Swift 6.4. Trên máy Windows chỉ làm được Android và đọc tài liệu.</li>
+<li><b>Thiết bị:</b> iPhone của bạn ra đời trước iPhone 15 Pro. Như vậy là đủ cho gần hết các sprint, miễn máy chạy được iOS 26 (iPhone 11 trở lên). Riêng FR-10 và FR-29 không chạy được trên máy này; cách xử lý ở iS6. CloudKit và TestFlight cần Apple Developer Program (99 USD/năm).</li>
+<li><b>Quy trình:</b> giống bản Android. Agent làm mentor, bạn tự code. Mã task có dạng <code>iL-01</code>, <code>iS0-01</code>; commit <code>[iS0-01]</code>; nhánh <code>task/iS0-01-...</code>. Commit <code>[wip]</code> khi đổi máy, commit đóng task sau khi rà soát đạt.</li>
+<li><b>Cách học:</b> mỗi khái niệm mới đều được đặt cạnh khái niệm Android tương ứng. Ví dụ minh họa luôn dùng bài toán khác bài toán của task, đúng <code>luat-agent.md</code>.</li>
 </ul>
 
-<h3>Định nghĩa "Hoàn thành" cho mọi việc (Definition of Done)</h3>
+<h3>Định nghĩa "Hoàn thành" cho mọi việc</h3>
 <ul>
-<li>Có unit test bằng Swift Testing cho toàn bộ logic domain và parser. Có snapshot test (<code>swift-snapshot-testing</code>) cho các màn hình mới.</li>
-<li>CI xanh: build thành công, SwiftLint / swift-format sạch cảnh báo, toàn bộ test suite vượt qua.</li>
-<li>Không hard-code chuỗi giao diện: 100% chuỗi nằm trong String Catalog (tiếng Việt mặc định và tiếng Anh).</li>
-<li>Chạy thực tế mượt mà trên thiết bị thật ở cả chế độ sáng (Light) và tối (Dark), hỗ trợ Dynamic Type cơ bản.</li>
-<li>Đạt đầy đủ tiêu chí chấp nhận của FR tương ứng trong đặc tả iOS.</li>
+<li>Logic có unit test bằng Swift Testing. Màn hình mới có snapshot test (swift-snapshot-testing).</li>
+<li>CI xanh: build, swift-format, SwiftLint, test. Không còn cảnh báo concurrency ở Swift 6 language mode.</li>
+<li>Không có chuỗi hard-code: mọi chuỗi nằm trong String Catalog, có đủ tiếng Việt và tiếng Anh.</li>
+<li>Đã chạy trên iPhone thật, ở cả chế độ sáng và tối, với cỡ chữ mặc định và một cỡ chữ lớn.</li>
+<li>Đạt tiêu chí chấp nhận của FR trong đặc tả iOS. FR không có khác biệt thì dùng tiêu chí trong đặc tả Android.</li>
 </ul>
 
-<h2>2. Lộ trình</h2>
-<div class="tl" role="img" aria-label="Lộ trình 19 tuần iOS: sprint 0 tuần 1–2, MVP tuần 3–10, phát hành tuần 11–13, v1.1 tuần 14–19">
-<div class="grid">
-  <div></div>
-  <div class="wk">1</div><div class="wk">2</div><div class="wk">3</div><div class="wk">4</div><div class="wk">5</div><div class="wk">6</div><div class="wk">7</div><div class="wk">8</div><div class="wk">9</div><div class="wk">10</div><div class="wk">11</div><div class="wk">12</div><div class="wk">13</div><div class="wk">14</div><div class="wk">15</div><div class="wk">16</div><div class="wk">17</div><div class="wk">18</div><div class="wk">19</div>
+<h2>2. Bản đồ kiến thức iOS cần học</h2>
+<p>Đây là toàn bộ những gì dự án đòi hỏi, suy ra từ 36 FR, 16 NFR và tech stack trong đặc tả iOS. Cột "Mức" cho biết cần học sâu đến đâu:</p>
+<ul class="meta">
+<li><b>●●●</b> Nắm vững: dùng hằng ngày, phải tự giải thích được.</li>
+<li><b>●●</b> Dùng được: làm đúng khi có tài liệu bên cạnh.</li>
+<li><b>●</b> Biết là có: chỉ học khi thật sự cần.</li>
+</ul>
 
-  <div class="lbl">S0 · Nền tảng</div><div class="bar b-found" style="grid-column:2 / 4">S0</div>
-  <div class="gate" style="grid-column:4 / 9">◆ Cổng 1: parser ≥ 95%</div><div style="grid-column:9 / 21"></div>
+<h4>Những khác biệt lớn nhất khi chuyển từ Android sang iOS</h4>
+<ol>
+<li><b>Value semantics:</b> <code>struct</code> được sao chép khi gán, khác với <code>data class</code> vốn là tham chiếu. Phần lớn model, state và view trong SwiftUI đều là <code>struct</code>.</li>
+<li><b>Không có GC:</b> Swift quản lý bộ nhớ bằng ARC. Closure giữ <code>self</code> có thể gây retain cycle và rò bộ nhớ.</li>
+<li><b>Concurrency được kiểm ngay lúc biên dịch:</b> Swift 6 báo lỗi data race từ trình biên dịch (<code>Sendable</code>, actor isolation), không đợi đến lúc chạy như coroutine.</li>
+<li><b><code>String</code> không đánh chỉ số bằng <code>Int</code>:</b> phải dùng <code>String.Index</code> và làm việc theo grapheme. Điều này ảnh hưởng trực tiếp đến parser tiếng Việt.</li>
+<li><b>Mỗi extension là một tiến trình riêng:</b> widget, Share Extension và Control chạy riêng. Dữ liệu dùng chung phải đi qua App Group.</li>
+<li><b>Không có chạy nền đảm bảo</b> như WorkManager. Mọi bản phát hành đều phải qua App Review. Chữ ký số, provisioning profile và capability bắt buộc phải hiểu.</li>
+</ol>
 
-  <div class="lbl">S1 · Dữ liệu, ví, danh mục</div><div style="grid-column:2 / 4"></div><div class="bar b-mvp" style="grid-column:4 / 6">S1</div><div style="grid-column:6 / 21"></div>
-  <div class="lbl">S2 · Nhập bằng câu</div><div style="grid-column:2 / 6"></div><div class="bar b-mvp" style="grid-column:6 / 8">S2</div><div style="grid-column:8 / 21"></div>
-  <div class="lbl">S3 · Giao dịch, ngân sách</div><div style="grid-column:2 / 8"></div><div class="bar b-mvp" style="grid-column:8 / 10">S3</div><div style="grid-column:10 / 21"></div>
-  <div class="lbl">S4 · Thống kê, hoàn thiện</div><div style="grid-column:2 / 10"></div><div class="bar b-mvp" style="grid-column:10 / 12">S4</div><div style="grid-column:12 / 21"></div>
-  <div class="lbl"></div><div style="grid-column:2 / 10"></div><div class="gate" style="grid-column:10 / 16">◆ Cổng 2: đủ 21 Must, NFR đạt</div><div style="grid-column:16 / 21"></div>
-
-  <div class="lbl">S5 · TestFlight & Phê duyệt</div><div style="grid-column:2 / 12"></div><div class="bar b-rel" style="grid-column:12 / 14">S5 · TestFlight</div><div style="grid-column:14 / 21"></div>
-  <div class="lbl">Chờ duyệt App Store</div><div style="grid-column:2 / 14"></div><div class="bar b-wait" style="grid-column:14 / 15"></div><div class="gate" style="grid-column:15 / 21">◆ Cổng 3: lên App Store</div>
-
-  <div class="lbl">S6 · AI trên máy</div><div style="grid-column:2 / 15"></div><div class="bar b-v11" style="grid-column:15 / 17">S6</div><div style="grid-column:17 / 21"></div>
-  <div class="lbl">S7 · Ảnh và lối tắt</div><div style="grid-column:2 / 17"></div><div class="bar b-v11" style="grid-column:17 / 19">S7</div><div style="grid-column:19 / 21"></div>
-  <div class="lbl">S8 · Tự động hóa, sao lưu</div><div style="grid-column:2 / 19"></div><div class="bar b-v11" style="grid-column:19 / 21">S8</div>
-</div>
-</div>
-<p class="meta"><span class="tag t-found">Nền tảng</span> <span class="tag t-mvp">MVP</span> <span class="tag t-rel">Phát hành</span> <span class="tag t-v11">v1.1</span> · Các cổng kiểm soát chất lượng đồng bộ với lộ trình Android.</p>
-
-<h2>3. Tổng quan các sprint</h2>
+<h4>A. Ngôn ngữ Swift</h4>
 <table>
-<thead><tr><th>Sprint</th><th>Tuần</th><th>Mục tiêu</th><th>Yêu cầu</th><th>Công nghệ học chính</th><th class="num">Giờ</th></tr></thead>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
 <tbody>
-<tr><td>S0</td><td>1–2</td><td>Khung dự án và bộ phân tích câu</td><td>FR-02, FR-03, FR-04, FR-07 (lõi), NFR-02</td><td>Xcode 27, Swift 6 (Strict Concurrency), Swift Package Manager (Local Packages), Swift Testing, SwiftLint, CI</td><td class="num">22</td></tr>
-<tr><td>S1</td><td>3–4</td><td>Dữ liệu, ví, danh mục, onboarding</td><td>FR-23, FR-24, FR-34, FR-35</td><td>SwiftData (<code>@Model</code>, <code>#Predicate</code>), <code>@Observable</code> ViewModel, <code>@AppStorage</code>, String Catalog</td><td class="num">22</td></tr>
-<tr><td>S2</td><td>5–6</td><td>Nhập bằng câu từ đầu đến cuối</td><td>FR-01, FR-05 đến FR-08, FR-13</td><td>SwiftUI state hoisting, <code>NavigationStack</code>, SpeechAnalyzer (vi-VN), Sheet & Chip tương tác, <code>AsyncSequence</code> debounce</td><td class="num">22</td></tr>
-<tr><td>S3</td><td>7–8</td><td>Giao dịch, ngân sách, widget</td><td>FR-14, FR-18, FR-19, FR-20, FR-25</td><td>SwiftData pagination / optimization, WidgetKit + App Intents, <code>NavigationSplitView</code> (iPad), vuốt xóa hoàn tác</td><td class="num">22</td></tr>
-<tr><td>S4</td><td>9–10</td><td>Thống kê và hoàn thiện MVP</td><td>FR-27, FR-30, FR-32, NFR-01, NFR-03, NFR-10 đến NFR-12</td><td>Swift Charts, <code>ShareLink</code> & <code>fileExporter</code> (CSV UTF-8 BOM), LocalAuthentication, Instruments (App Launch & Hitches)</td><td class="num">22</td></tr>
-<tr><td>S5</td><td>11–12 (+13)</td><td>TestFlight và phát hành App Store</td><td>NFR-05, NFR-08, quy trình Apple</td><td>App Store Connect, TestFlight, <code>PrivacyInfo.xcprivacy</code>, App Privacy Nutrition Labels, DSA Trader declaration</td><td class="num">22</td></tr>
-<tr><td>S6</td><td>14–15</td><td>AI trên máy và học từ người dùng</td><td>FR-09, FR-10, FR-12, FR-29</td><td>Foundation Models (<code>SystemLanguageModel</code>, <code>@Generable</code> struct, tool calling), SQLite KeywordRule</td><td class="num">20</td></tr>
-<tr><td>S7</td><td>16–17</td><td>Nhập từ ảnh và lối tắt</td><td>FR-15, FR-16, FR-17, FR-28</td><td>ControlWidget, App Shortcuts, Share Extension + App Group, Vision & VisionKit (OCR chuyển khoản & hóa đơn)</td><td class="num">20</td></tr>
-<tr><td>S8</td><td>18–19</td><td>Tự động hóa và sao lưu, phát hành v1.1</td><td>FR-21, FR-26, FR-31, FR-33, FR-36, NFR-07, NFR-16</td><td><code>BGTaskScheduler</code> & xử lý khi mở app, <code>UNUserNotificationCenter</code>, SwiftData + CloudKit, CryptoKit & CommonCrypto (AES-256-GCM)</td><td class="num">19</td></tr>
+<tr><td>Cú pháp, optional (<code>if let</code>, <code>guard let</code>, <code>??</code>)</td><td>Kotlin nullable, <code>?.</code>, <code>?:</code></td><td>Toàn bộ</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td><code>struct</code> và <code>class</code>, <code>mutating</code>, copy-on-write</td><td><code>data class</code>, <code>copy()</code></td><td>Model, state</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td><code>enum</code> có associated value, <code>switch</code> pattern matching</td><td><code>sealed class</code>, <code>when</code></td><td>Kết quả parser, UI state</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td>Protocol, extension, generics, <code>some</code> và <code>any</code></td><td>Interface, extension function, generics</td><td>Repository, DI, fake</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td>Closure, capture list <code>[weak self]</code></td><td>Lambda</td><td>Callback, Task</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td>ARC, retain cycle, <code>weak</code> và <code>unowned</code></td><td>GC của JVM (không có khái niệm tương đương)</td><td>Toàn bộ</td><td>iL</td><td class="lv">●●</td></tr>
+<tr><td>Lỗi: <code>throws</code>, typed throws, <code>Result</code></td><td>Exception, <code>Result</code></td><td>Data, parser</td><td>iL</td><td class="lv">●●</td></tr>
+<tr><td><code>Codable</code>, <code>JSONDecoder</code></td><td>kotlinx.serialization</td><td>Bộ câu mẫu, CSV, sao lưu (NFR-16)</td><td>iS0, iS8</td><td class="lv">●●●</td></tr>
+<tr><td>Property wrapper và macro (<code>@Observable</code>, <code>@Model</code>, <code>#Predicate</code>, <code>#Preview</code>, <code>@Generable</code>). Từ Xcode 27, <code>@State</code> cũng là macro</td><td>Annotation và KSP</td><td>Toàn bộ</td><td>iL</td><td class="lv">●●</td></tr>
+<tr><td>Result builder (<code>@ViewBuilder</code>)</td><td>DSL của Compose</td><td>SwiftUI</td><td>iL</td><td class="lv">●●</td></tr>
+<tr><td><code>String</code>, <code>Character</code>, Unicode, bỏ dấu bằng <code>folding(options:)</code></td><td><code>String</code>, <code>java.text.Normalizer</code></td><td>Parser tiếng Việt (FR-02 đến FR-07)</td><td>iS0</td><td class="lv">●●●</td></tr>
+<tr><td>Swift Regex, RegexBuilder</td><td><code>Regex</code> của Kotlin</td><td>Parser</td><td>iS0</td><td class="lv">●●</td></tr>
+<tr><td><code>Date</code>, <code>Calendar</code>, <code>DateComponents</code>, <code>TimeZone</code>, <code>FormatStyle</code></td><td><code>java.time</code></td><td>FR-03, thống kê, định dạng tiền</td><td>iS0</td><td class="lv">●●●</td></tr>
+<tr><td>Gọi C API từ Swift, <code>UnsafeRawBufferPointer</code></td><td>JNI (hiếm khi dùng)</td><td>PBKDF2 qua CommonCrypto (NFR-07)</td><td>iS8</td><td class="lv">●</td></tr>
 </tbody>
 </table>
-<p class="meta">S1–S4 hoàn thành trọn vẹn 21 yêu cầu Must. S6–S8 triển khai 13 yêu cầu Should. Hai yêu cầu Could (FR-11, FR-22) đưa vào backlog mục 6.</p>
 
-<h2>4. Chi tiết từng sprint</h2>
+<h4>B. Concurrency và Observation</h4>
+<table>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
+<tbody>
+<tr><td><code>async</code>/<code>await</code>, <code>Task</code>, hủy task</td><td>Coroutine, <code>Job</code></td><td>Toàn bộ</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td>Actor isolation, <code>@MainActor</code>, <code>Sendable</code>, Swift 6 language mode</td><td>Dispatcher (Kotlin không kiểm lúc biên dịch)</td><td>Toàn bộ, NFR-14</td><td>iL, iS0</td><td class="lv">●●●</td></tr>
+<tr><td>Approachable concurrency: mặc định <code>MainActor</code>, <code>nonisolated</code>, <code>@concurrent</code></td><td><code>withContext(Dispatchers.Default)</code></td><td>Chạy parser ngoài luồng chính</td><td>iS0, iS2</td><td class="lv">●●●</td></tr>
+<tr><td><code>AsyncSequence</code>, <code>AsyncStream</code>, debounce (swift-async-algorithms)</td><td><code>Flow</code>, <code>debounce</code></td><td>Phân tích khi gõ (FR-01)</td><td>iS2</td><td class="lv">●●</td></tr>
+<tr><td><code>async let</code>, <code>TaskGroup</code></td><td><code>coroutineScope</code>, <code>async</code></td><td>Truy vấn thống kê</td><td>iS4</td><td class="lv">●●</td></tr>
+<tr><td>Observation: <code>@Observable</code>, <code>Observations</code></td><td><code>StateFlow</code>, <code>collectAsStateWithLifecycle</code></td><td>Mọi view model</td><td>iL, iS1</td><td class="lv">●●●</td></tr>
+</tbody>
+</table>
+
+<h4>C. Xcode, build và công cụ</h4>
+<table>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
+<tbody>
+<tr><td>Project, target, scheme, build configuration, build settings</td><td>Module, build type, variant</td><td>Toàn bộ</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td>Swift Package Manager, local package, <code>Package.swift</code></td><td>Module Gradle, Version Catalog, convention plugin</td><td>Chia module</td><td>iS0</td><td class="lv">●●●</td></tr>
+<tr><td>Bundle ID, team, chứng chỉ, provisioning profile, capability, entitlement</td><td><code>applicationId</code>, keystore</td><td>Máy thật, App Group, iCloud, phát hành</td><td>iL → iS5</td><td class="lv">●●</td></tr>
+<tr><td><code>Info.plist</code>, chuỗi xin quyền, <code>PrivacyInfo.xcprivacy</code></td><td><code>AndroidManifest.xml</code></td><td>NFR-08, NFR-09</td><td>iS2, iS5</td><td class="lv">●●</td></tr>
+<tr><td>Simulator, chạy trên máy thật (Developer Mode)</td><td>Emulator, adb</td><td>Toàn bộ</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td>Debug: breakpoint, LLDB, View Hierarchy, Memory Graph</td><td>Debugger, Layout Inspector</td><td>Toàn bộ</td><td>iL</td><td class="lv">●●</td></tr>
+<tr><td>Instruments: Time Profiler, SwiftUI, Hitches, App Launch, Allocations</td><td>Profiler, Macrobenchmark, Perfetto</td><td>NFR-01, NFR-03</td><td>iS3, iS4</td><td class="lv">●●</td></tr>
+<tr><td>swift-format (có sẵn trong toolchain), SwiftLint</td><td>Spotless, Detekt</td><td>NFR-14</td><td>iS0</td><td class="lv">●●</td></tr>
+<tr><td><code>xcodebuild</code> và CI (GitHub Actions macOS hoặc Xcode Cloud)</td><td>Gradle trên GitHub Actions</td><td>NFR-14</td><td>iS0</td><td class="lv">●●</td></tr>
+</tbody>
+</table>
+
+<h4>D. SwiftUI và thiết kế</h4>
+<table>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
+<tbody>
+<tr><td>View là <code>struct</code>, <code>body</code>, thứ tự modifier, identity của view</td><td>Composable, thứ tự <code>Modifier</code>, <code>key</code></td><td>Mọi màn hình</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td><code>@State</code>, <code>@Binding</code>, <code>@Bindable</code>, <code>@Environment</code></td><td><code>remember</code>, state hoisting, <code>CompositionLocal</code></td><td>Mọi màn hình</td><td>iL, iS1</td><td class="lv">●●●</td></tr>
+<tr><td>Bố cục: stack, <code>Grid</code>, <code>ViewThatFits</code>, safe area</td><td><code>Row</code>, <code>Column</code>, <code>Box</code>, insets</td><td>Mọi màn hình</td><td>iL</td><td class="lv">●●</td></tr>
+<tr><td><code>List</code>, <code>LazyVStack</code>, identity trong <code>ForEach</code></td><td><code>LazyColumn</code> có key</td><td>FR-18, NFR-03</td><td>iS3</td><td class="lv">●●●</td></tr>
+<tr><td><code>NavigationStack(path:)</code>, <code>sheet</code>, <code>TabView</code> với <code>Tab</code> và <code>.sidebarAdaptable</code>, <code>NavigationSplitView</code></td><td>Navigation 3, bottom sheet, material3-adaptive</td><td>Khung app, iPad</td><td>iS2, iS3</td><td class="lv">●●●</td></tr>
+<tr><td>Liquid Glass và HIG: thanh tab, toolbar, <code>.glassEffect()</code>, <code>.tabViewBottomAccessory</code></td><td>Material 3 Expressive</td><td>Design system, ô Nhập nhanh</td><td>iS0, iS2</td><td class="lv">●●</td></tr>
+<tr><td><code>@FocusState</code>, bàn phím, toolbar bàn phím</td><td><code>FocusRequester</code>, IME insets</td><td>Ô nhập (FR-01)</td><td>iS2</td><td class="lv">●●</td></tr>
+<tr><td><code>#Preview</code>, <code>@Previewable</code>. <code>PreviewProvider</code> đã bị deprecated từ Xcode 27</td><td><code>@Preview</code></td><td>Mọi màn hình</td><td>iL</td><td class="lv">●●●</td></tr>
+<tr><td>String Catalog, <code>LocalizedStringResource</code>, số nhiều, định dạng tiền theo locale</td><td><code>strings.xml</code>, plurals</td><td>NFR-12, FR-35</td><td>iS1</td><td class="lv">●●●</td></tr>
+<tr><td>VoiceOver, Dynamic Type, vùng chạm 44 pt, Reduce Motion, Reduce Transparency</td><td>TalkBack, cỡ chữ, vùng chạm 48 dp</td><td>NFR-11</td><td>iS4</td><td class="lv">●●</td></tr>
+<tr><td>Swift Charts: <code>BarMark</code>, <code>SectorMark</code></td><td>Vico, <code>Canvas</code></td><td>FR-27, FR-28</td><td>iS4</td><td class="lv">●●</td></tr>
+<tr><td>Animation, transition</td><td>Compose animation</td><td>Thẻ nháp, hoàn tác</td><td>iS2</td><td class="lv">●</td></tr>
+<tr><td>UIKit tối thiểu: <code>UIHostingController</code>, <code>UIViewControllerRepresentable</code></td><td>Interop View và Compose</td><td>Share Extension, máy quét tài liệu</td><td>iS7</td><td class="lv">●</td></tr>
+</tbody>
+</table>
+
+<h4>E. Dữ liệu</h4>
+<table>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
+<tbody>
+<tr><td>SwiftData: <code>@Model</code>, <code>ModelContainer</code>, <code>ModelContext</code>, <code>@Query</code>, <code>#Predicate</code>, <code>FetchDescriptor</code>, quan hệ và delete rule</td><td>Room: entity, DAO, <code>Flow</code></td><td>FR-18 đến FR-29</td><td>iS1</td><td class="lv">●●●</td></tr>
+<tr><td><code>VersionedSchema</code>, <code>SchemaMigrationPlan</code></td><td>Room migration</td><td>NFR-06</td><td>iS1</td><td class="lv">●●</td></tr>
+<tr><td>SwiftData với concurrency: <code>@ModelActor</code>, <code>PersistentIdentifier</code></td><td>DAO <code>suspend</code>, dispatcher IO</td><td>Dữ liệu mẫu, thống kê, sao lưu</td><td>iS1, iS3</td><td class="lv">●●</td></tr>
+<tr><td>Ràng buộc schema để sync CloudKit: thuộc tính phải optional hoặc có giá trị mặc định, không dùng <code>unique</code></td><td>Không có</td><td>FR-31</td><td>iS1 (thiết kế), iS8 (bật)</td><td class="lv">●●</td></tr>
+<tr><td><code>@AppStorage</code>, <code>UserDefaults(suiteName:)</code></td><td>DataStore</td><td>FR-35, widget</td><td>iS1</td><td class="lv">●●</td></tr>
+<tr><td>Sandbox, <code>FileManager</code>, container của App Group, Data Protection</td><td><code>filesDir</code></td><td>Widget, extension, NFR-07</td><td>iS1, iS3</td><td class="lv">●●</td></tr>
+<tr><td>GRDB với FTS5 (dự phòng, chỉ dùng nếu tìm kiếm chậm)</td><td>Room FTS4</td><td>FR-20</td><td>iS3</td><td class="lv">●</td></tr>
+<tr><td>Keychain</td><td>Android Keystore</td><td>Nếu cần lưu bí mật</td><td>iS8</td><td class="lv">●</td></tr>
+</tbody>
+</table>
+
+<h4>F. Hệ sinh thái Apple</h4>
+<table>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
+<tbody>
+<tr><td>Vòng đời app: <code>App</code>, <code>Scene</code>, <code>scenePhase</code>. Từ SDK 27, app bắt buộc dùng scene lifecycle</td><td>Vòng đời Activity, <code>ProcessLifecycleOwner</code></td><td>FR-21, FR-33</td><td>iL, iS8</td><td class="lv">●●</td></tr>
+<tr><td>App Group, extension là tiến trình riêng, giới hạn bộ nhớ của extension</td><td>Nhiều process, <code>ContentProvider</code></td><td>FR-14, FR-15, FR-16</td><td>iS3</td><td class="lv">●●</td></tr>
+<tr><td>WidgetKit: <code>TimelineProvider</code>, widget màn hình khóa, <code>Button(intent:)</code>, <code>WidgetCenter</code></td><td>Glance</td><td>FR-14</td><td>iS3</td><td class="lv">●●</td></tr>
+<tr><td>App Intents: <code>AppIntent</code>, <code>AppShortcutsProvider</code>, <code>ControlWidget</code>, App Schemas (iOS 27)</td><td><code>TileService</code>, <code>ShortcutManagerCompat</code></td><td>FR-14, FR-15</td><td>iS3, iS7</td><td class="lv">●●</td></tr>
+<tr><td>Share Extension</td><td>Share target</td><td>FR-16</td><td>iS7</td><td class="lv">●●</td></tr>
+<tr><td>Vision (<code>RecognizeTextRequest</code>, <code>RecognizeDocumentsRequest</code>), VisionKit</td><td>ML Kit Text Recognition, Document Scanner</td><td>FR-16, FR-17</td><td>iS7</td><td class="lv">●●</td></tr>
+<tr><td>Speech: <code>SpeechAnalyzer</code>, <code>SpeechTranscriber</code>, dự phòng <code>SFSpeechRecognizer</code>; <code>AVAudioSession</code></td><td><code>SpeechRecognizer</code></td><td>FR-13</td><td>iS2</td><td class="lv">●●</td></tr>
+<tr><td>Foundation Models: <code>SystemLanguageModel</code>, <code>LanguageModelSession</code>, <code>@Generable</code>, <code>@Guide</code>, tool calling</td><td>Gemini Nano (ML Kit GenAI)</td><td>FR-10, FR-29</td><td>iS6</td><td class="lv">●●</td></tr>
+<tr><td><code>UNUserNotificationCenter</code>, thông báo cục bộ</td><td><code>NotificationManager</code></td><td>FR-21, FR-26, FR-36</td><td>iS8</td><td class="lv">●●</td></tr>
+<tr><td><code>BGTaskScheduler</code>, <code>BGAppRefreshTask</code></td><td>WorkManager</td><td>FR-21</td><td>iS8</td><td class="lv">●●</td></tr>
+<tr><td>LocalAuthentication (<code>LAContext</code>)</td><td>BiometricPrompt</td><td>FR-32</td><td>iS4</td><td class="lv">●●</td></tr>
+<tr><td>CryptoKit (<code>AES.GCM</code>), CommonCrypto (PBKDF2)</td><td><code>javax.crypto</code></td><td>NFR-07, NFR-16</td><td>iS8</td><td class="lv">●●</td></tr>
+<tr><td>SwiftData với CloudKit, CloudKit Console</td><td>Drive <code>appDataFolder</code></td><td>FR-31</td><td>iS8</td><td class="lv">●●</td></tr>
+<tr><td><code>ShareLink</code>, <code>fileExporter</code>, <code>Transferable</code></td><td>Storage Access Framework</td><td>FR-30</td><td>iS4</td><td class="lv">●●</td></tr>
+<tr><td>MetricKit, Xcode Organizer</td><td>Crashlytics, Android vitals</td><td>NFR-05</td><td>iS5</td><td class="lv">●</td></tr>
+</tbody>
+</table>
+
+<h4>G. Kiểm thử</h4>
+<table>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
+<tbody>
+<tr><td>Swift Testing: <code>@Test</code>, <code>#expect</code>, <code>#require</code>, test có tham số (<code>arguments:</code>), trait</td><td>JUnit 5, parameterized test</td><td>Parser với 200 câu mẫu, mọi logic</td><td>iL, iS0</td><td class="lv">●●●</td></tr>
+<tr><td>Fake dựa trên protocol, không dùng thư viện mock</td><td>Fake thay cho mock</td><td>Repository, view model</td><td>iS1</td><td class="lv">●●●</td></tr>
+<tr><td>Test SwiftData với container trong bộ nhớ</td><td>Room in-memory</td><td>Data, migration</td><td>iS1</td><td class="lv">●●</td></tr>
+<tr><td>swift-snapshot-testing</td><td>Roborazzi</td><td>Màn hình mới, ảnh cho App Store</td><td>iS2</td><td class="lv">●●</td></tr>
+<tr><td>XCUITest</td><td>Compose UI Test</td><td>Luồng nhập, hoàn tác</td><td>iS2, iS3</td><td class="lv">●●</td></tr>
+<tr><td>Đo hiệu năng bằng XCTest (<code>measure</code>, <code>XCTApplicationLaunchMetric</code>)</td><td>Microbenchmark, Macrobenchmark</td><td>NFR-01, NFR-02</td><td>iS0, iS4</td><td class="lv">●</td></tr>
+</tbody>
+</table>
+
+<h4>H. Phát hành</h4>
+<table>
+<thead><tr><th>Chủ đề</th><th>Tương ứng Android</th><th>Dùng cho</th><th>Sprint</th><th>Mức</th></tr></thead>
+<tbody>
+<tr><td>App Store Connect, App ID, TestFlight nội bộ và bên ngoài, Beta App Review</td><td>Play Console, các kênh test</td><td>Phát hành</td><td>iS5</td><td class="lv">●●</td></tr>
+<tr><td>App Review Guidelines, nhãn App Privacy, Privacy Manifest, phân loại độ tuổi, khai mã hóa, DSA</td><td>Data safety, phân loại nội dung</td><td>NFR-08, phát hành</td><td>iS5</td><td class="lv">●●</td></tr>
+<tr><td>Archive, tải bản build lên (Xcode Organizer, <code>xcodebuild</code> hoặc Xcode Cloud), phát hành từng phần</td><td>Gradle Play Publisher, staged rollout</td><td>Phát hành</td><td>iS5</td><td class="lv">●●</td></tr>
+</tbody>
+</table>
+
+<h2>3. Lộ trình xen kẽ với Android</h2>
+<p>Mỗi cột là một đợt 2 tuần, đánh số tuần theo lịch chung tính từ Android S0. iOS luôn đi sau Android một sprint, nên khi làm iOS đã có sẵn bộ câu mẫu, định dạng file và cách làm bên Android để tham chiếu. Tuần chờ duyệt của bản này nằm gọn trong sprint của bản kia.</p>
+<div class="tl" role="img" aria-label="Lộ trình 38 tuần: Android và iOS luân phiên theo sprint 2 tuần. iOS làm quen tuần 3–4, MVP iOS tuần 7–24, phát hành tuần 27–29, v1.1 tuần 31–38">
+<div class="grid2">
+  <div style="grid-row:1;grid-column:1"></div>
+  <div class="wk" style="grid-row:1;grid-column:2">1–2</div>
+  <div class="wk" style="grid-row:1;grid-column:3">3–4</div>
+  <div class="wk" style="grid-row:1;grid-column:4">5–6</div>
+  <div class="wk" style="grid-row:1;grid-column:5">7–8</div>
+  <div class="wk" style="grid-row:1;grid-column:6">9–10</div>
+  <div class="wk" style="grid-row:1;grid-column:7">11–12</div>
+  <div class="wk" style="grid-row:1;grid-column:8">13–14</div>
+  <div class="wk" style="grid-row:1;grid-column:9">15–16</div>
+  <div class="wk" style="grid-row:1;grid-column:10">17–18</div>
+  <div class="wk" style="grid-row:1;grid-column:11">19–20</div>
+  <div class="wk" style="grid-row:1;grid-column:12">21–22</div>
+  <div class="wk" style="grid-row:1;grid-column:13">23–24</div>
+  <div class="wk" style="grid-row:1;grid-column:14">25–26</div>
+  <div class="wk" style="grid-row:1;grid-column:15">27–28</div>
+  <div class="wk" style="grid-row:1;grid-column:16">29–30</div>
+  <div class="wk" style="grid-row:1;grid-column:17">31–32</div>
+  <div class="wk" style="grid-row:1;grid-column:18">33–34</div>
+  <div class="wk" style="grid-row:1;grid-column:19">35–36</div>
+  <div class="wk" style="grid-row:1;grid-column:20">37–38</div>
+  <div class="lbl" style="grid-row:2;grid-column:1">Android</div>
+  <div class="bar b-found" style="grid-row:2;grid-column:2">S0</div>
+  <div class="bar b-mvp" style="grid-row:2;grid-column:4">S1</div>
+  <div class="bar b-mvp" style="grid-row:2;grid-column:6">S2</div>
+  <div class="bar b-mvp" style="grid-row:2;grid-column:8">S3</div>
+  <div class="bar b-mvp" style="grid-row:2;grid-column:10">S4</div>
+  <div class="bar b-rel" style="grid-row:2;grid-column:12">S5</div>
+  <div class="bar b-wait" style="grid-row:2;grid-column:13"></div>
+  <div class="bar b-v11" style="grid-row:2;grid-column:14">S6</div>
+  <div class="bar b-v11" style="grid-row:2;grid-column:16">S7</div>
+  <div class="bar b-v11" style="grid-row:2;grid-column:18">S8</div>
+  <div class="lbl" style="grid-row:3;grid-column:1">iOS</div>
+  <div class="bar b-learn" style="grid-row:3;grid-column:3">iL</div>
+  <div class="bar b-found" style="grid-row:3;grid-column:5">iS0</div>
+  <div class="bar b-mvp" style="grid-row:3;grid-column:7">iS1</div>
+  <div class="bar b-mvp" style="grid-row:3;grid-column:9">iS2</div>
+  <div class="bar b-mvp" style="grid-row:3;grid-column:11">iS3</div>
+  <div class="bar b-mvp" style="grid-row:3;grid-column:13">iS4</div>
+  <div class="bar b-rel" style="grid-row:3;grid-column:15">iS5</div>
+  <div class="bar b-wait" style="grid-row:3;grid-column:16"></div>
+  <div class="bar b-v11" style="grid-row:3;grid-column:17">iS6</div>
+  <div class="bar b-v11" style="grid-row:3;grid-column:19">iS7</div>
+  <div class="bar b-v11" style="grid-row:3;grid-column:20">iS8</div>
+</div>
+</div>
+<p class="meta"><span class="tag t-learn">Làm quen</span> <span class="tag t-found">Nền tảng</span> <span class="tag t-mvp">MVP</span> <span class="tag t-rel">Phát hành</span> <span class="tag t-v11">v1.1</span> · Ô sọc là tuần chờ duyệt. iS0 đến iS8 tương ứng S0 đến S8 của Android, cùng phạm vi FR.</p>
+
+<table>
+<thead><tr><th>Mốc</th><th>Điều kiện</th><th>iOS</th><th>Android (lịch mới)</th></tr></thead>
+<tbody>
+<tr><td>Cổng 0</td><td>Đủ nền Swift, Xcode, SwiftUI</td><td>Cuối tuần 4</td><td>–</td></tr>
+<tr><td>Cổng 1</td><td>Parser ≥ 95% trên bộ câu mẫu; iOS khớp với Android</td><td>Cuối tuần 8</td><td>Cuối tuần 2 (không đổi)</td></tr>
+<tr><td>Cổng 2</td><td>Đủ 21 yêu cầu Must, NFR đạt</td><td>Cuối tuần 24</td><td>Cuối tuần 18 (cũ: 10)</td></tr>
+<tr><td>Cổng 3</td><td>Lên store</td><td>Khoảng tuần 29</td><td>Khoảng tuần 23 (cũ: 13)</td></tr>
+<tr><td>v1.1</td><td>Đủ 13 yêu cầu Should</td><td>Cuối tuần 38</td><td>Cuối tuần 34 (cũ: 19)</td></tr>
+</tbody>
+</table>
+<p class="meta">Cột Android là hệ quả của việc làm xen kẽ. Kế hoạch Android chưa được sửa; xem mục 8.</p>
+
+<h2>4. Tổng quan các sprint</h2>
+<table>
+<thead><tr><th>Sprint</th><th>Tuần (lịch chung)</th><th>Mục tiêu</th><th>Yêu cầu</th><th>Công nghệ học chính</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>iL <span class="new">MỚI</span></td><td>3–4</td><td>Làm quen Swift, Xcode, SwiftUI</td><td>Chưa có FR</td><td>Swift, ARC, Swift concurrency, SwiftUI cơ bản, Swift Testing, Xcode</td><td class="num">22</td></tr>
+<tr><td>iS0</td><td>7–8</td><td>Khung dự án và bộ phân tích câu</td><td>FR-02, FR-03, FR-04, FR-07 (lõi), NFR-02</td><td>SPM local package, String và Unicode, Regex, Calendar, swift-format, SwiftLint, CI</td><td class="num">22</td></tr>
+<tr><td>iS1</td><td>11–12</td><td>Dữ liệu, ví, danh mục, onboarding</td><td>FR-23, FR-24, FR-34, FR-35</td><td>SwiftData, Observation, DI thủ công, <code>@AppStorage</code>, String Catalog, App Group</td><td class="num">22</td></tr>
+<tr><td>iS2</td><td>15–16</td><td>Nhập bằng câu từ đầu đến cuối</td><td>FR-01, FR-05 đến FR-08, FR-13</td><td><code>TabView</code>, <code>NavigationStack</code>, <code>AsyncSequence</code>, <code>@concurrent</code>, Speech, snapshot test, XCUITest</td><td class="num">22</td></tr>
+<tr><td>iS3</td><td>19–20</td><td>Giao dịch, ngân sách, widget</td><td>FR-14, FR-18, FR-19, FR-20, FR-25</td><td><code>List</code> hiệu năng cao, <code>#Predicate</code>, WidgetKit, App Intents, <code>NavigationSplitView</code>, Instruments</td><td class="num">22</td></tr>
+<tr><td>iS4</td><td>23–24</td><td>Thống kê và hoàn thiện MVP</td><td>FR-27, FR-30, FR-32, NFR-01, NFR-03, NFR-10 đến NFR-12</td><td>Swift Charts, <code>Transferable</code>, LocalAuthentication, accessibility, Instruments</td><td class="num">22</td></tr>
+<tr><td>iS5</td><td>27–28 (+29)</td><td>TestFlight và phát hành App Store</td><td>NFR-04, NFR-05, NFR-08, quy trình Apple</td><td>Signing, App Store Connect, TestFlight, Privacy Manifest, App Review</td><td class="num">22</td></tr>
+<tr><td>iS6</td><td>31–32</td><td>AI trên máy và học từ người dùng</td><td>FR-09, FR-10, FR-12, FR-29</td><td>Foundation Models, <code>@Generable</code>, tool calling</td><td class="num">20</td></tr>
+<tr><td>iS7</td><td>35–36</td><td>Nhập từ ảnh và lối tắt</td><td>FR-15, FR-16, FR-17, FR-28</td><td>Share Extension, Vision, VisionKit, App Shortcuts, <code>ControlWidget</code>, UIKit interop</td><td class="num">20</td></tr>
+<tr><td>iS8</td><td>37–38</td><td>Tự động hóa, iCloud, sao lưu, phát hành v1.1</td><td>FR-21, FR-26, FR-31, FR-33, FR-36, NFR-07, NFR-16</td><td><code>BGTaskScheduler</code>, thông báo cục bộ, CloudKit, CryptoKit, CommonCrypto</td><td class="num">19</td></tr>
+</tbody>
+</table>
+<p class="meta">iS1–iS4 phủ đủ 21 yêu cầu Must, iS6–iS8 phủ đủ 13 yêu cầu Should. Hai yêu cầu Could (FR-11, FR-22) nằm trong backlog ở mục 6.</p>
+
+<h2>5. Chi tiết từng sprint</h2>
 
 <div class="sprint">
-<h3><span class="tag t-found">S0</span> Tuần 1–2 · Khung dự án và bộ phân tích câu</h3>
-<p><b>Mục tiêu:</b> Tạo cấu trúc dự án chuẩn modular bằng SPM, thiết lập pipeline CI và xây dựng bộ phân tích câu tiếng Việt thuần Swift với độ chính xác cao.</p>
+<h3><span class="tag t-learn">iL</span> Tuần 3–4, sau Android S0 · Làm quen Swift, Xcode và SwiftUI</h3>
+<p><b>Mục tiêu:</b> có đủ nền để vào iS0 mà không bị ngợp. Code của sprint này để trong một thư mục luyện tập, không đưa vào sản phẩm. Bài tập dùng chủ đề khác app chi tiêu, ví dụ danh sách sách đọc.</p>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Tạo project & SPM</td><td>Xcode 27, cấu trúc local package: <code>Core/{Parser, Model, Data, DesignSystem, Testing}</code>, <code>Features/...</code>. Target iOS 26.0+, Swift 6 language mode với strict concurrency</td><td class="num">2</td></tr>
-<tr><td>Chất lượng mã & CI</td><td>Tích hợp SwiftLint / swift-format. Cấu hình GitHub Actions / Xcode Cloud chạy build, lint, Swift Testing trên mỗi commit</td><td class="num">2</td></tr>
-<tr><td>Design System</td><td>Bộ màu thương hiệu (màu chủ đạo <code>#1B6B4A</code>), hỗ trợ Liquid Glass, Light/Dark mode, kiểu chữ hệ thống (San Francisco); các component chip trạng thái, ô nhập, thẻ số tiền</td><td class="num">3</td></tr>
-<tr><td>Bộ phân tích câu (TDD)</td><td>Package <code>Core/Parser</code> viết bằng Swift thuần không phụ thuộc UI. Dùng chung file JSON 200 câu mẫu với bản Android. Triển khai tuần tự: số tiền (FR-02), thời gian (FR-03), danh mục theo từ khóa (FR-04), tách nhiều khoản (FR-07)</td><td class="num">9</td></tr>
-<tr><td>Đo hiệu năng parser</td><td>XCTest / Swift Testing benchmark, đảm bảo xử lý ≤ 50 ms mỗi câu trên iPhone 11 trở lên (NFR-02)</td><td class="num">2</td></tr>
-<tr><td>Tài khoản Apple Developer</td><td>Kích hoạt Apple Developer Program, chuẩn bị Bundle ID, App ID, chứng chỉ phát triển và provisioning profile</td><td class="num">4</td></tr>
+<tr><td>Cài môi trường</td><td>Xcode 27 và simulator. Tạo repo public <code>ChiTieu-ios</code>, gắn submodule tài liệu tại <code>docs/</code>, có thư mục luyện tập <code>luyen-tap/</code>. Chạy app mẫu trên simulator và trên iPhone thật bằng Apple ID miễn phí (signing tự động, Developer Mode)</td><td class="num">2,5</td></tr>
+<tr><td>Swift qua đối chiếu với Kotlin</td><td>Optional, <code>struct</code> và <code>class</code>, <code>enum</code> có associated value, protocol, extension, generics, closure, xử lý lỗi. Mỗi chủ đề có bài tập nhỏ kèm test bằng Swift Testing</td><td class="num">6,5</td></tr>
+<tr><td>Bộ nhớ</td><td>ARC, cố ý tạo một retain cycle rồi tìm nó bằng Memory Graph Debugger</td><td class="num">1,5</td></tr>
+<tr><td>Swift concurrency nhập môn</td><td><code>async</code>/<code>await</code>, <code>Task</code>, actor, <code>Sendable</code>, <code>@MainActor</code>; bật Swift 6 language mode và tập đọc hiểu lỗi của compiler</td><td class="num">4</td></tr>
+<tr><td>SwiftUI nhập môn</td><td>View, modifier, <code>@State</code>, <code>@Binding</code>, <code>@Observable</code>, <code>List</code>, <code>NavigationStack</code>, <code>#Preview</code>; app tập gồm 2 màn hình: danh sách và chi tiết</td><td class="num">6</td></tr>
+<tr><td>Debug</td><td>Breakpoint, LLDB (<code>po</code>, <code>p</code>), View Hierarchy Debugger</td><td class="num">1,5</td></tr>
 </tbody>
 </table>
-<p><b>Học trước:</b> Swift 6 strict concurrency và mô hình Actor / <code>Sendable</code>; kỹ thuật chia package SPM local; kiểm thử hiện đại với framework Swift Testing (<code>@Test</code>, <code>#expect</code>).</p>
-<p><b>Song song:</b> Đăng ký tài khoản Apple Developer Program nếu chưa có để sẵn sàng quyền hạn và cấu hình CloudKit sau này.</p>
-<p class="done"><b>Xong khi (Cổng 1):</b> CI xanh. Parser nhận diện đúng số tiền ≥ 95% trên bộ 200 câu mẫu dùng chung. Các thành phần Design System hiển thị chuẩn xác trong SwiftUI Previews.</p>
+<p><b>Học trước:</b> A Swift Tour trong The Swift Programming Language; SwiftUI Tutorials và Develop in Swift của Apple; bài giới thiệu Swift Testing.</p>
+<p><b>Song song:</b> kiểm tra iPhone của bạn đã lên được iOS 26 chưa.</p>
+<p class="done"><b>Xong khi (Cổng 0):</b> bộ bài tập Swift có test xanh. App tập chạy được trên iPhone thật. Bạn tự giải thích được 5 điều: value type và reference type, optional, ARC, actor isolation, identity trong SwiftUI. Mentor sẽ hỏi để kiểm tra.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-mvp">S1</span> Tuần 3–4 · Dữ liệu, ví, danh mục, onboarding</h3>
-<p><b>Mục tiêu:</b> Lưu trữ dữ liệu cục bộ an toàn bằng SwiftData. Hoàn thiện luồng chào mừng (onboarding), quản lý ví và danh mục.</p>
+<h3><span class="tag t-found">iS0</span> Tuần 7–8, sau Android S1 · Khung dự án và bộ phân tích câu</h3>
+<p><b>Mục tiêu:</b> có dự án chạy được với CI và một bộ phân tích câu cho kết quả giống bản Android trên cùng bộ câu mẫu.</p>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Mô hình SwiftData</td><td>Định nghĩa các <code>@Model</code>: <code>Wallet</code>, <code>Category</code>, <code>Transaction</code>, <code>KeywordRule</code>. Số tiền kiểu <code>Int64</code> đơn vị đồng (NFR-06). Khung kế hoạch migration với <code>VersionedSchema</code></td><td class="num">5</td></tr>
-<tr><td>Danh mục mặc định</td><td>Bộ hạt giống (seed data) gồm 15 danh mục chi và 5 danh mục thu, gắn icon SF Symbols và màu tương ứng (FR-24)</td><td class="num">1</td></tr>
-<tr><td>Repository & DI</td><td>Kiến trúc tầng Data/Repository offline-first; quản lý dependency thông qua init injection hoặc SwiftUI Environment</td><td class="num">3</td></tr>
-<tr><td>Cấu hình người dùng</td><td>Dùng <code>@AppStorage</code> lưu ví mặc định, ngày bắt đầu tháng, trạng thái hoàn thành onboarding (FR-35)</td><td class="num">2</td></tr>
-<tr><td>Onboarding</td><td>Luồng 3 bước theo wireframe: giới thiệu, tạo ví ban đầu, thử một câu mẫu; hoàn tất ghi giao dịch đầu tiên dưới 60 giây (FR-34)</td><td class="num">4</td></tr>
-<tr><td>Quản lý ví & danh mục</td><td>Màn hình thêm, sửa, lưu trữ ví; quản lý cây danh mục và danh mục con (FR-23, FR-24)</td><td class="num">4</td></tr>
-<tr><td>Cài đặt cơ bản</td><td>Liên kết mở trang Cài đặt hệ thống (chọn ngôn ngữ), chọn giao diện sáng/tối, chọn ngày chu kỳ tháng (FR-35)</td><td class="num">3</td></tr>
+<tr><td>Tạo project</td><td>Xcode 27, target iOS 26.0, Swift 6 language mode, mặc định <code>MainActor</code>. Chốt Bundle ID và App Group ID. Dùng nhóm thư mục đồng bộ của Xcode để giảm xung đột file <code>.pbxproj</code> khi làm trên nhiều máy</td><td class="num">2</td></tr>
+<tr><td>Chia package</td><td>Local package <code>Core/{Parser, Model, Data, DesignSystem, Testing}</code> và <code>Features/{QuickAdd, Transactions, Budget, Stats, Settings, Onboarding}</code>. Quy tắc phụ thuộc: Parser là Swift thuần, Feature không phụ thuộc Feature khác. Phần lớn code nằm trong package, target App chỉ lắp ghép</td><td class="num">2,5</td></tr>
+<tr><td>Chất lượng mã và CI</td><td>swift-format và SwiftLint. GitHub Actions trên runner macOS (miễn phí vì repo public), chọn đúng phiên bản Xcode của runner; chạy build, lint, test và báo coverage trên mỗi pull request; checkout kèm submodule <code>docs/</code> vì test parser đọc <code>docs/shared/parser/</code></td><td class="num">3</td></tr>
+<tr><td>Design system</td><td>Màu thương hiệu <code>#1B6B4A</code> cho sáng và tối, chữ theo Dynamic Type, các component: số tiền, chip, thẻ tổng. Ưu tiên component hệ thống để có sẵn Liquid Glass. Có Preview</td><td class="num">2,5</td></tr>
+<tr><td>Bộ phân tích câu (TDD)</td><td>Đọc bộ câu mẫu và từ điển từ khóa ở <code>docs/shared/parser/</code> bằng <code>Codable</code> (file nằm ngoài package, cần tìm cách cho test đọc được); chuẩn hóa và bỏ dấu tiếng Việt; số tiền (FR-02); thời gian (FR-03, inject <code>Calendar</code> và thời điểm hiện tại); danh mục theo từ khóa và tách nhiều khoản (FR-04, FR-07); mỗi trường có độ tin cậy từ 0 đến 1</td><td class="num">10</td></tr>
+<tr><td>Đo hiệu năng parser</td><td>Đo bằng XCTest, mục tiêu ≤ 50 ms mỗi câu (NFR-02)</td><td class="num">1</td></tr>
+<tr><td>Đối chiếu với Android <span class="new">MỚI</span></td><td>Chạy cùng bộ câu trên cả hai parser; câu nào cho kết quả khác thì ghi lý do và sửa một bên</td><td class="num">1</td></tr>
 </tbody>
 </table>
-<p><b>Học trước:</b> SwiftData relationships, <code>@Query</code>, xử lý migration schema; kiến trúc UDF (Unidirectional Data Flow) với <code>@Observable</code>.</p>
-<p class="done"><b>Xong khi:</b> Cài app mới vượt qua onboarding suôn sẻ, tạo ví và danh mục thành công, tắt và mở lại dữ liệu vẫn nguyên vẹn. Unit test kiểm thử SwiftData schema và ViewModel đạt 100% pass.</p>
+<p><b>Học trước:</b> Swift Package Manager với local package; <code>String</code>, <code>Character</code> và Unicode trong Swift; Swift Regex; test có tham số trong Swift Testing; <code>Calendar</code> và <code>FormatStyle</code>.</p>
+<p><b>Song song:</b> đăng ký Apple Developer Program trước iS3, để kịp dùng App Group trên máy thật và CloudKit về sau.</p>
+<p class="done"><b>Xong khi (Cổng 1):</b> CI xanh. Parser nhận đúng số tiền ở ≥ 95% câu mẫu, và mọi chỗ khác với bản Android đều có lý do được ghi lại. Design system hiện đúng trong Preview ở cả sáng và tối.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-mvp">S2</span> Tuần 5–6 · Nhập bằng câu từ đầu đến cuối</h3>
-<p><b>Mục tiêu:</b> Hiện thực luồng nhập liệu cốt lõi: gõ hoặc đọc giọng nói tiếng Việt, xem thẻ nháp tức thì, chỉnh sửa qua chip và bấm lưu.</p>
+<h3><span class="tag t-mvp">iS1</span> Tuần 11–12, sau Android S2 · Dữ liệu, ví, danh mục, onboarding</h3>
+<p><b>Mục tiêu:</b> dữ liệu lưu bền bằng SwiftData, thiết kế đúng ngay từ đầu cho widget và iCloud. Hoàn thành onboarding, Ví, Danh mục và Cài đặt cơ bản.</p>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Khung app chính</td><td><code>TabView</code> thích ứng (thanh tab trên iPhone, hỗ trợ chuyển sidebar trên iPad qua <code>.sidebarAdaptable</code>), điều hướng <code>NavigationStack</code></td><td class="num">4</td></tr>
-<tr><td>Trang chủ</td><td>Thẻ tổng quan chi tiêu tháng, thanh cảnh báo hạn mức ngân sách, danh sách giao dịch gần đây theo mockup iOS · Home</td><td class="num">3</td></tr>
-<tr><td>Ô nhập và thẻ nháp</td><td>Phân tích khi gõ với debounce qua <code>Task</code> / <code>AsyncSequence</code>, kết quả nháp hiển thị trong vòng 300 ms, danh sách chip có thể tương tác (FR-01, FR-08)</td><td class="num">6</td></tr>
-<tr><td>Hoàn thiện parser</td><td>Nhận diện loại Thu/Chi/Chuyển ví, bắt ví theo tên hoặc bí danh, bóc tách nhiều khoản chi cùng câu (FR-05, FR-06, FR-07)</td><td class="num">3</td></tr>
-<tr><td>Sheet chọn cho chip</td><td>Bottom sheet chọn nhanh danh mục, ví nguồn/đích, chọn ngày giờ</td><td class="num">2</td></tr>
-<tr><td>Nhập bằng giọng nói</td><td>Tích hợp SpeechAnalyzer (hoặc <code>SFSpeechRecognizer</code> với locale vi-VN), đẩy văn bản nhận diện trực tiếp vào luồng phân tích (FR-13)</td><td class="num">2</td></tr>
-<tr><td>Kiểm thử giao diện</td><td>UI Test luồng nhập; snapshot test cho màn hình Trang chủ và thẻ nháp ở cả Light/Dark mode</td><td class="num">2</td></tr>
+<tr><td>Domain model</td><td>Struct thuần <code>Sendable</code>, khóa chính <code>UUID</code>: <code>Money(Int64)</code>, <code>Transaction</code>, <code>Wallet</code>, <code>Category</code>, <code>Budget</code>, <code>KeywordRule</code></td><td class="num">1</td></tr>
+<tr><td>SwiftData schema</td><td><code>@Model</code> cho 5 thực thể MVP. Schema tương thích CloudKit ngay từ đầu: mọi thuộc tính optional hoặc có giá trị mặc định, không dùng <code>unique</code>. Store đặt trong container của App Group để widget đọc được. <code>VersionedSchema</code> v1</td><td class="num">3</td></tr>
+<tr><td>Truy vấn</td><td>Khi nào dùng <code>@Query</code> trong view, khi nào dùng <code>FetchDescriptor</code> trong repository; số dư ví tính từ giao dịch; giao dịch theo khoảng ngày</td><td class="num">2</td></tr>
+<tr><td>Test dữ liệu</td><td>CRUD với container trong bộ nhớ; khung test cho migration</td><td class="num">2</td></tr>
+<tr><td>Danh mục mặc định</td><td>Lưu <code>seedKey</code>, tên lấy từ String Catalog (vi/en), icon SF Symbols</td><td class="num">1,5</td></tr>
+<tr><td>Repository và DI</td><td>Protocol cho repository, inject qua <code>init</code> và <code>Environment</code>, fake đặt trong <code>Core/Testing</code>. Không dùng thư viện DI</td><td class="num">2</td></tr>
+<tr><td>Cấu hình</td><td><code>@AppStorage</code>: ví mặc định, ngày bắt đầu tháng, giao diện, cờ onboarding (FR-35)</td><td class="num">1,5</td></tr>
+<tr><td>Onboarding</td><td>3 bước theo wireframe, ghi được giao dịch đầu tiên trong 60 giây (FR-34)</td><td class="num">3</td></tr>
+<tr><td>Ví và Danh mục</td><td>Thêm, sửa, lưu trữ ví và bí danh; danh mục có 1 cấp con (FR-23, FR-24)</td><td class="num">4</td></tr>
+<tr><td>Cài đặt cơ bản</td><td>Sáng, tối hoặc theo hệ thống; ngày bắt đầu tháng; nút mở trang Cài đặt của app để đổi ngôn ngữ (FR-35)</td><td class="num">2</td></tr>
 </tbody>
 </table>
-<p><b>Học trước:</b> SwiftUI state management, xử lý async stream debounce, Speech framework và cấp quyền micro/speech trong <code>Info.plist</code>.</p>
-<p class="done"><b>Xong khi:</b> Gõ câu <code>sáng phở 45k, trưa cơm 35k và cafe 29k</code> sinh ra đúng 3 thẻ nháp và lưu 1 lần; nói bằng giọng nói nhận diện và phân tích chính xác trên iPhone thật.</p>
+<p><b>Học trước:</b> SwiftData (quan hệ, <code>#Predicate</code>, migration); Observation và UDF với <code>@Observable</code>; String Catalog; App Group.</p>
+<p class="done"><b>Xong khi:</b> cài mới, qua onboarding, tạo ví và danh mục; tắt app mở lại dữ liệu vẫn còn. Test cho data và view model đều xanh.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-mvp">S3</span> Tuần 7–8 · Giao dịch, ngân sách, widget</h3>
-<p><b>Mục tiêu:</b> Quản lý lịch sử giao dịch toàn diện, thiết lập ngân sách danh mục, đưa Widget ra Màn hình chính và màn hình khóa.</p>
+<h3><span class="tag t-mvp">iS2</span> Tuần 15–16, sau Android S3 · Nhập bằng câu từ đầu đến cuối</h3>
+<p><b>Mục tiêu:</b> gõ hoặc nói một câu, thấy thẻ nháp ngay, sửa bằng chip rồi lưu.</p>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Danh sách giao dịch</td><td>Nhóm theo ngày, tính tổng chi/thu từng ngày, tối ưu cuộn mượt mà với 10.000 bản ghi mẫu (FR-18)</td><td class="num">4</td></tr>
-<tr><td>Tìm kiếm và bộ lọc</td><td>Tìm kiếm tức thì bằng <code>localizedStandardContains</code> (hoặc GRDB FTS nếu cần) trên ghi chú và câu gốc; filter chips theo thời gian, ví, danh mục (FR-20)</td><td class="num">3</td></tr>
-<tr><td>Sửa & Xóa giao dịch</td><td>Màn hình chi tiết/chỉnh sửa; hành động vuốt để xóa có thông báo Hoàn tác trong 5 giây (FR-19)</td><td class="num">4</td></tr>
-<tr><td>Quản lý ngân sách</td><td>Ngân sách tháng theo danh mục và tổng chi, thanh tiến độ trực quan đổi màu cảnh báo ở 80% và 100% (FR-25)</td><td class="num">4</td></tr>
-<tr><td>WidgetKit</td><td>Widget nhỏ và vừa trên Màn hình chính, widget Màn hình khóa; nút "+" sử dụng App Intent mở thẳng sheet Nhập nhanh (FR-14)</td><td class="num">5</td></tr>
-<tr><td>Hỗ trợ iPad</td><td>Tối ưu bố cục hai cột với <code>NavigationSplitView</code> cho danh sách và chi tiết giao dịch</td><td class="num">2</td></tr>
+<tr><td>Khung app</td><td><code>TabView</code> với <code>Tab</code> và <code>.sidebarAdaptable</code>, <code>NavigationStack</code> với path dạng giá trị</td><td class="num">2,5</td></tr>
+<tr><td>Bàn phím và safe area</td><td>Ô nhập neo đáy màn hình (<code>.tabViewBottomAccessory</code> hoặc <code>safeAreaInset</code>), <code>@FocusState</code></td><td class="num">1</td></tr>
+<tr><td>Cài snapshot test</td><td>swift-snapshot-testing chạy được trên CI, sáng và tối</td><td class="num">1</td></tr>
+<tr><td>Trang chủ</td><td>Tổng chi tháng, chi hôm nay, 5 giao dịch gần nhất, theo mockup iOS Home</td><td class="num">2,5</td></tr>
+<tr><td>Máy trạng thái Nhập nhanh</td><td>Debounce khi gõ, hủy lần phân tích cũ, parser chạy ngoài <code>MainActor</code>, ra nháp trong 300 ms</td><td class="num">2</td></tr>
+<tr><td>Ô nhập và thẻ nháp</td><td>Chip chạm để sửa, chip độ tin cậy thấp được tô nổi, nút "Lưu n giao dịch" (FR-01, FR-08)</td><td class="num">3</td></tr>
+<tr><td>Sheet cho chip</td><td>Chọn danh mục, ví, ngày giờ, sửa số tiền</td><td class="num">2</td></tr>
+<tr><td>Parser: loại và ví</td><td>Thu, chi, chuyển; "từ X sang Y"; khớp bí danh ví (FR-05, FR-06)</td><td class="num">2</td></tr>
+<tr><td>Nhiều khoản</td><td>Một câu 3 khoản ra 3 nháp, lưu trong một lần ghi (FR-07)</td><td class="num">1</td></tr>
+<tr><td>Giọng nói <span class="new">SPIKE</span></td><td>Bước đầu: kiểm tra trên máy thật xem <code>SpeechTranscriber</code> có hỗ trợ vi-VN không. Nếu không thì dùng <code>SFSpeechRecognizer</code>. Sau đó đưa văn bản vào luồng nhập (FR-13)</td><td class="num">2</td></tr>
+<tr><td>Test luồng nhập</td><td>XCUITest cho luồng gõ, xem nháp, lưu; snapshot Trang chủ và thẻ nháp</td><td class="num">2</td></tr>
+<tr><td>Demo và sửa lỗi</td><td>Chạy trên iPhone thật, chỉnh trải nghiệm bàn phím và nhập liệu</td><td class="num">1</td></tr>
 </tbody>
 </table>
-<p><b>Học trước:</b> WidgetKit timelines, App Intents framework (Interactive Widgets), <code>NavigationSplitView</code> trên iPadOS.</p>
-<p><b>Song song:</b> Tuyển chọn nhóm người dùng thử nghiệm nội bộ qua TestFlight (bạn bè, cộng đồng iOS).</p>
-<p class="done"><b>Xong khi:</b> Danh sách 10.000 giao dịch cuộn đạt chuẩn không giật lag (Instruments Hitches kiểm tra đạt). Widget đồng bộ số dư ngay sau khi lưu giao dịch.</p>
+<p><b>Học trước:</b> navigation trong SwiftUI; <code>AsyncSequence</code> và swift-async-algorithms; <code>@concurrent</code>; framework Speech và chuỗi xin quyền trong <code>Info.plist</code>.</p>
+<p class="done"><b>Xong khi:</b> gõ "sáng phở 45k, trưa cơm 35k và cafe 29k" ra 3 nháp và lưu một lần. Nói câu tương tự trên iPhone thật cũng ra kết quả đúng.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-mvp">S4</span> Tuần 9–10 · Thống kê và hoàn thiện MVP</h3>
-<p><b>Mục tiêu:</b> Đạt đủ 21 yêu cầu Must, biểu đồ trực quan, tối ưu hiệu năng và đạt các tiêu chuẩn phi chức năng để sẵn sàng cho bản TestFlight.</p>
+<h3><span class="tag t-mvp">iS3</span> Tuần 19–20, sau Android S4 · Giao dịch, ngân sách, widget</h3>
+<p><b>Mục tiêu:</b> xem, tìm, sửa, xóa giao dịch; đặt ngân sách; có widget ngoài Màn hình chính.</p>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Màn hình Thống kê</td><td>Tổng quan theo tuần, tháng, năm; biểu đồ cột và biểu đồ phân bổ danh mục sử dụng Swift Charts; bộ chọn tháng nhanh tối đa 3 chạm (FR-27)</td><td class="num">6</td></tr>
-<tr><td>Xuất dữ liệu CSV</td><td>Sử dụng <code>ShareLink</code> và <code>fileExporter</code>, file UTF-8 có BOM mở đúng tiếng Việt trên Excel và Apple Numbers (FR-30)</td><td class="num">2</td></tr>
-<tr><td>Bảo mật khóa app</td><td>Tích hợp LocalAuthentication (Face ID / Touch ID / Passcode), tự động khóa lại sau khoảng thời gian tùy chọn (FR-32)</td><td class="num">3</td></tr>
-<tr><td>Khả năng tiếp cận</td><td>Hỗ trợ VoiceOver đầy đủ nhãn, Dynamic Type co giãn kích thước chữ an toàn, vùng chạm tối thiểu 44 pt, tôn trọng Reduce Motion (NFR-11)</td><td class="num">3</td></tr>
-<tr><td>Bản địa hóa (Localization)</td><td>Rà soát 100% chuỗi trong String Catalog vi/en, định dạng tiền tệ chuẩn locale qua <code>FormatStyle</code> (NFR-12)</td><td class="num">2</td></tr>
-<tr><td>Đo đạc hiệu năng</td><td>Dùng Instruments đo thời gian khởi động lạnh (≤ 1s trên iPhone 11) và độ trơn tru khi cuộn danh sách (NFR-01, NFR-03)</td><td class="num">3</td></tr>
-<tr><td>Kiểm tra tổng thể</td><td>Kiểm thử toàn bộ tính năng ở chế độ máy bay (offline 100%, NFR-10), xử lý triệt để các bug còn tồn đọng</td><td class="num">3</td></tr>
+<tr><td>Danh sách giao dịch</td><td>Nhóm theo ngày, tổng mỗi ngày (FR-18). <code>sectionBy</code> của <code>@Query</code> chỉ có từ iOS 27, nên phải tự nhóm khi chạy iOS 26</td><td class="num">2,5</td></tr>
+<tr><td>Dữ liệu mẫu</td><td>Sinh 10.000 giao dịch bằng <code>@ModelActor</code>, chỉ có ở bản Debug</td><td class="num">0,5</td></tr>
+<tr><td>Tìm kiếm</td><td><code>localizedStandardContains</code> trên ghi chú và câu gốc; đo xem có đạt 300 ms không. Không đạt thì quyết định chuyển phần tìm kiếm sang GRDB với FTS5 (FR-20)</td><td class="num">1,5</td></tr>
+<tr><td>Bộ lọc</td><td>Theo tháng, danh mục, ví, loại; kết hợp được với tìm kiếm</td><td class="num">1,5</td></tr>
+<tr><td>Màn hình sửa</td><td>Theo mockup iOS Edit (FR-19)</td><td class="num">2,5</td></tr>
+<tr><td>Xóa và hoàn tác</td><td>Vuốt để xóa, xóa mềm 5 giây kèm nút Hoàn tác, menu khi nhấn giữ</td><td class="num">1,5</td></tr>
+<tr><td>Ngân sách</td><td>Dữ liệu và giao diện theo mockup, thanh tiến độ đổi màu ở 80% và 100% (FR-25)</td><td class="num">4</td></tr>
+<tr><td>Nhập nhanh dùng lại được</td><td>Mở được sheet Nhập nhanh từ deep link và App Intent</td><td class="num">1,5</td></tr>
+<tr><td>Widget</td><td>Widget extension, đọc dữ liệu qua App Group, widget nhỏ, vừa và màn hình khóa, nút "+" là <code>Button(intent:)</code>, app gọi <code>reloadTimelines</code> sau mỗi lần lưu (FR-14)</td><td class="num">3</td></tr>
+<tr><td>iPad</td><td><code>NavigationSplitView</code> cho danh sách và chi tiết</td><td class="num">1,5</td></tr>
+<tr><td>Kiểm tra cuộn</td><td>Instruments (Hitches, SwiftUI) với 10.000 giao dịch; XCUITest cho xóa và hoàn tác (NFR-03)</td><td class="num">1,5</td></tr>
+<tr><td>Tuyển tester</td><td>Lập danh sách 15–20 tester TestFlight</td><td class="num">0,5</td></tr>
 </tbody>
 </table>
-<p><b>Học trước:</b> Swift Charts tùy biến màu sắc và tương tác chạm; LocalAuthentication bảo mật sinh trắc học; công cụ Instruments (App Launch, SwiftUI Hitches).</p>
-<p class="done"><b>Xong khi (Cổng 2):</b> Toàn bộ 21 yêu cầu Must đạt tiêu chí chấp nhận; khởi động lạnh ≤ 1 giây trên iPhone 11; không còn lỗi nghiêm trọng.</p>
+<p><b>Học trước:</b> hiệu năng và identity của <code>List</code>; WidgetKit và App Intents; App Group và extension; Instruments.</p>
+<p class="done"><b>Xong khi:</b> cuộn 10.000 giao dịch không bị hitch đáng kể. Số trên widget khớp với app ngay sau khi lưu.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-rel">S5</span> Tuần 11–12, chờ duyệt tuần 13 · TestFlight và phát hành App Store</h3>
-<p><b>Mục tiêu:</b> Đưa bản build lên TestFlight, thu thập phản hồi, hoàn tất hồ sơ pháp lý / bảo mật và đưa ứng dụng lên App Store Production.</p>
+<h3><span class="tag t-mvp">iS4</span> Tuần 23–24, sau Android S5 · Thống kê và hoàn thiện MVP</h3>
+<p><b>Mục tiêu:</b> đủ 21 yêu cầu Must và đạt các NFR để đưa lên TestFlight.</p>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Đóng gói và tối ưu build</td><td>Cấu hình Release build, bật tối ưu hóa kích thước (dung lượng tải về ≤ 20 MB, NFR-04)</td><td class="num">3</td></tr>
-<tr><td>Hồ sơ App Store Connect</td><td>Soạn trang giới thiệu app tiếng Việt và tiếng Anh, chụp ảnh màn hình từ snapshot test, thiết lập biểu tượng app</td><td class="num">4</td></tr>
-<tr><td>Quyền riêng tư & Pháp lý</td><td>Tạo <code>PrivacyInfo.xcprivacy</code> khai báo lý do dùng required-reason API (ví dụ <code>UserDefaults</code>), khai bảng App Privacy nutrition labels, trả lời bảng câu hỏi phân loại độ tuổi (4+), khai trạng thái DSA Trader</td><td class="num">4</td></tr>
-<tr><td>Phát hành TestFlight</td><td>Phát hành bản thử nghiệm nội bộ (Internal) và công khai (External TestFlight) qua Xcode Cloud hoặc fastlane</td><td class="num">3</td></tr>
-<tr><td>Sửa lỗi từ tester</td><td>Theo dõi phản hồi từ tester, xử lý sự cố crash, các câu nói lạ của người dùng được cập nhật thêm vào test suite parser</td><td class="num">8</td></tr>
+<tr><td>Truy vấn thống kê</td><td>Thu, chi, chênh lệch theo ngày, tuần, tháng; số liệu kỳ trước; theo ngày bắt đầu tháng</td><td class="num">2</td></tr>
+<tr><td>Kỳ thống kê</td><td>State cho Tuần, Tháng, Năm và chuyển kỳ</td><td class="num">1</td></tr>
+<tr><td>Biểu đồ</td><td>Swift Charts: <code>BarMark</code> và <code>SectorMark</code>, có nhãn cho VoiceOver</td><td class="num">2,5</td></tr>
+<tr><td>Màn Thống kê và chọn tháng</td><td>Theo mockup iOS Stats và Month picker, tối đa 3 chạm (FR-27)</td><td class="num">3,5</td></tr>
+<tr><td>Xuất CSV</td><td><code>ShareLink</code> và <code>fileExporter</code>, UTF-8 có BOM, cùng cột với bản Android (FR-30)</td><td class="num">2</td></tr>
+<tr><td>Khóa app</td><td><code>LAContext</code> với <code>.deviceOwnerAuthentication</code>, khóa lại sau thời gian chọn (FR-32)</td><td class="num">2,5</td></tr>
+<tr><td>Khả năng truy cập</td><td>VoiceOver, Dynamic Type đến cỡ lớn nhất, vùng chạm 44 pt, Reduce Motion và Reduce Transparency (NFR-11)</td><td class="num">2</td></tr>
+<tr><td>Đa ngôn ngữ</td><td>Rà toàn bộ String Catalog vi/en, định dạng tiền theo locale (NFR-12)</td><td class="num">1,5</td></tr>
+<tr><td>Hiệu năng</td><td>Khởi động lạnh ≤ 1 giây (Instruments App Launch, <code>XCTApplicationLaunchMetric</code>); cuộn (NFR-01, NFR-03)</td><td class="num">2,5</td></tr>
+<tr><td>Kiểm tra tổng</td><td>Mọi tính năng Must ở chế độ máy bay (NFR-10), sửa lỗi tồn đọng</td><td class="num">2,5</td></tr>
 </tbody>
 </table>
-<p><b>Tuần 13:</b> Nộp bản build lên App Store Review. Xử lý các yêu cầu phản hồi từ đội ngũ xét duyệt của Apple (nếu có) và phát hành chính thức (Phased Release).</p>
-<p class="done"><b>Xong khi (Cổng 3):</b> Ứng dụng chính thức xuất hiện trên App Store Production.</p>
+<p><b>Học trước:</b> Swift Charts; <code>Transferable</code>; LocalAuthentication; accessibility trong SwiftUI; Instruments App Launch.</p>
+<p class="done"><b>Xong khi (Cổng 2):</b> 21 yêu cầu Must đạt tiêu chí chấp nhận. Khởi động lạnh ≤ 1 giây trên iPhone 11 hoặc máy gần nhất bạn có. Không còn lỗi nghiêm trọng.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-v11">S6</span> Tuần 14–15 · AI trên máy và học từ người dùng</h3>
+<h3><span class="tag t-rel">iS5</span> Tuần 27–28, chờ duyệt tuần 29, sau Android S6 · TestFlight và phát hành App Store</h3>
+<p><b>Mục tiêu:</b> đưa app qua TestFlight rồi lên App Store. App Store không bắt buộc 14 ngày test với 12 tester như Google Play, nhưng mọi bản phát hành đều phải qua App Review.</p>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Học từ chỉnh sửa</td><td>Người dùng sửa danh mục của cùng một từ 2 lần sẽ tự động ghi nhớ vào <code>KeywordRule</code>; giao diện xem và xóa từ điển cá nhân (FR-09)</td><td class="num">3</td></tr>
-<tr><td>Gợi ý tự hoàn thành</td><td>Gợi ý thông minh các câu đã ghi từ 3 lần trở lên khi gõ ký tự đầu (FR-12)</td><td class="num">3</td></tr>
-<tr><td>Apple Intelligence (Foundation Models)</td><td>Tích hợp <code>SystemLanguageModel</code> với <code>@Generable struct ParsedTransaction</code> trên các máy hỗ trợ; timeout 3 giây dự phòng sang parser theo luật (FR-10)</td><td class="num">8</td></tr>
-<tr><td>Hỏi đáp chi tiêu</td><td>Nhận diện câu hỏi theo luật kết hợp Foundation Models tool calling (<code>querySpending</code>) truy vấn trực tiếp SwiftData trả về con số chi tiết (FR-29)</td><td class="num">6</td></tr>
+<tr><td>Bản build Release</td><td>Signing phân phối, archive, kiểm tra kích thước tải về ≤ 20 MB (NFR-04)</td><td class="num">2</td></tr>
+<tr><td>Quyền riêng tư và pháp lý</td><td><code>PrivacyInfo.xcprivacy</code>, nhãn App Privacy, phân loại độ tuổi, khai mã hóa, quyết định có phát hành ở EU không (DSA)</td><td class="num">3</td></tr>
+<tr><td>Trang App Store</td><td>Mô tả vi/en; ảnh chụp iPhone 6,9 inch và iPad 13 inch; URL chính sách quyền riêng tư (dùng chung với Android) và URL hỗ trợ</td><td class="num">3,5</td></tr>
+<tr><td>Giám sát</td><td>MetricKit và Xcode Organizer; không dùng SDK theo dõi; không ghi log nội dung giao dịch (NFR-05, NFR-08)</td><td class="num">1,5</td></tr>
+<tr><td>TestFlight</td><td>Nhóm nội bộ trước, sau đó nhóm bên ngoài (phải qua Beta App Review)</td><td class="num">2</td></tr>
+<tr><td>Sửa lỗi từ tester</td><td>Ưu tiên crash, sai số tiền, sai danh mục; câu bị phân tích sai được thêm vào bộ câu mẫu dùng chung</td><td class="num">8</td></tr>
+<tr><td>Nộp App Review</td><td>Ghi chú cho reviewer; dùng phát hành từng phần</td><td class="num">2</td></tr>
 </tbody>
 </table>
-<p class="done"><b>Xong khi:</b> Trên thiết bị có Apple Intelligence, các câu nói phức tạp được phân tích chuẩn xác thành struct hợp lệ; các thiết bị khác tiếp tục hoạt động mượt mà bằng bộ phân tích theo luật.</p>
+<p><b>Học trước:</b> App Review Guidelines (các mục về quyền riêng tư và dữ liệu); TestFlight; required-reason API trong Privacy Manifest.</p>
+<p class="done"><b>Xong khi (Cổng 3):</b> app có mặt trên App Store.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-v11">S7</span> Tuần 16–17 · Nhập từ ảnh và lối tắt</h3>
+<h3><span class="tag t-v11">iS6</span> Tuần 31–32, sau Android S7 · AI trên máy và học từ người dùng</h3>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Lối tắt & Phím tắt app</td><td>Tạo <code>ControlWidget</code> trong Control Center, Quick Actions khi giữ icon app, App Shortcut "Ghi chi tiêu" gán được vào nút Tác vụ (Action Button) (FR-15)</td><td class="num">3</td></tr>
-<tr><td>Đọc ảnh chuyển khoản</td><td>Share Extension nhận hình ảnh/văn bản từ app ngân hàng; nhận dạng chữ bằng Vision framework; bóc tách số tiền, nội dung và thời gian (FR-16)</td><td class="num">8</td></tr>
-<tr><td>Quét hóa đơn</td><td>Tích hợp camera VisionKit với <code>RecognizeDocumentsRequest</code>, nhận diện dòng tổng tiền và lưu ảnh đính kèm vào sandbox app (FR-17)</td><td class="num">6</td></tr>
-<tr><td>So sánh kỳ chi tiêu</td><td>Giao diện trực quan so sánh tỷ lệ % tăng giảm và chênh lệch số tiền so với tháng trước theo từng danh mục (FR-28)</td><td class="num">3</td></tr>
+<tr><td>Học từ chỉnh sửa</td><td>Sửa danh mục của cùng một từ khóa 2 lần thì lưu vào <code>KeywordRule</code>; xem và xóa được (FR-09)</td><td class="num">3</td></tr>
+<tr><td>Gợi ý tự hoàn thành</td><td>Gợi ý các câu đã ghi từ 3 lần trở lên (FR-12)</td><td class="num">3</td></tr>
+<tr><td>Foundation Models <span class="new">SPIKE</span></td><td>iPhone của bạn không có Apple Intelligence, nên bước đầu là thử trên simulator: cần kiểm tra Mac đã bật Apple Intelligence và simulator có dùng được model không. Song song, nhờ tester TestFlight có iPhone 15 Pro trở lên chạy bản thử. Model chỉ dùng được khi máy hỗ trợ và ngôn ngữ hệ thống nằm trong danh sách được hỗ trợ. Sau đó: <code>@Generable struct ParsedTransaction</code>, quá 3 giây thì dùng kết quả theo luật, đo độ chính xác trên bộ câu mẫu (FR-10)</td><td class="num">8</td></tr>
+<tr><td>Hỏi đáp chi tiêu</td><td>Nhận diện câu hỏi theo luật; tool <code>querySpending</code> truy vấn SwiftData khi có Apple Intelligence (FR-29)</td><td class="num">6</td></tr>
 </tbody>
 </table>
-<p class="done"><b>Xong khi:</b> Chia sẻ ảnh chụp "Chuyển khoản thành công" từ bất kỳ ứng dụng ngân hàng nào vào app sinh ra giao dịch nháp chính xác ngay tức thì.</p>
+<p><b>Học trước:</b> Foundation Models (availability, session, guided generation, tool calling); cách đánh giá đầu ra của mô hình.</p>
+<p class="done"><b>Xong khi:</b> trên máy có Apple Intelligence (simulator hoặc máy của tester), các câu mà parser theo luật không chắc được phân tích đúng hơn. Trên máy không có, app vẫn chạy như MVP. Con số trả lời ở FR-29 khớp với màn Thống kê.</p>
 </div>
 
 <div class="sprint">
-<h3><span class="tag t-v11">S8</span> Tuần 18–19 · Tự động hóa, sao lưu, phát hành v1.1</h3>
+<h3><span class="tag t-v11">iS7</span> Tuần 35–36, sau Android S8 · Nhập từ ảnh và lối tắt</h3>
 <table>
 <thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
 <tbody>
-<tr><td>Giao dịch định kỳ</td><td>Tự động đối soát và phát sinh giao dịch đến hạn khi app mở / quay lại foreground, kết hợp <code>BGAppRefreshTask</code> và thông báo cục bộ nhắc hạn (FR-21)</td><td class="num">4</td></tr>
-<tr><td>Hệ thống thông báo</td><td>Cảnh báo khi chạm mốc 80% và 100% hạn mức ngân sách (FR-26); thông báo nhắc ghi chi tiêu hàng ngày khi chưa phát sinh giao dịch qua <code>UNUserNotificationCenter</code> (FR-36)</td><td class="num">4</td></tr>
-<tr><td>Đồng bộ iCloud & Sao lưu mã hóa</td><td>Đồng bộ tự động giữa iPhone và iPad qua SwiftData với CloudKit (private database); tính năng xuất/nhập file sao lưu mã hóa AES-256-GCM dùng chung định dạng với Android (FR-31, NFR-07, NFR-16)</td><td class="num">8</td></tr>
-<tr><td>Bảo vệ quyền riêng tư đa nhiệm</td><td>Tự động phủ màn che bảo vệ khi <code>scenePhase</code> chuyển sang <code>.inactive</code> để không lộ số dư trong App Switcher (FR-33)</td><td class="num">1</td></tr>
-<tr><td>Phát hành v1.1</td><td>Đóng gói bản cập nhật v1.1, cập nhật thông tin tính năng mới và phát hành trên App Store</td><td class="num">2</td></tr>
+<tr><td>Lối tắt</td><td>App Shortcut "Ghi chi tiêu" (Spotlight, Phím tắt, nút Tác vụ), <code>ControlWidget</code>, Quick Actions; tất cả mở thẳng Nhập nhanh (FR-15)</td><td class="num">3</td></tr>
+<tr><td>Ảnh chuyển khoản</td><td>Share Extension nhận văn bản và ảnh (UIKit bọc SwiftUI); OCR bằng Vision; luật đọc màn hình chuyển khoản; chuyển nháp sang app qua App Group (FR-16)</td><td class="num">8</td></tr>
+<tr><td>Hóa đơn</td><td>Quét tài liệu bằng VisionKit, <code>RecognizeDocumentsRequest</code> lấy dòng tổng tiền, đính kèm ảnh; chỉ xin quyền camera khi bấm quét (FR-17)</td><td class="num">6</td></tr>
+<tr><td>So sánh tháng trước</td><td>Tăng giảm theo % và theo số tiền cho từng danh mục (FR-28)</td><td class="num">3</td></tr>
 </tbody>
 </table>
-<p class="done"><b>Xong khi:</b> Hoàn thành trọn vẹn 13 yêu cầu Should; file sao lưu trích xuất từ iPhone có thể khôi phục chuẩn xác trên máy Android và ngược lại.</p>
+<p><b>Học trước:</b> vòng đời và giới hạn bộ nhớ của app extension; Vision; App Intents nâng cao; UIKit interop.</p>
+<p class="done"><b>Xong khi:</b> chia sẻ ảnh màn hình "Chuyển khoản thành công" vào app thì ra nháp có số tiền, nội dung và thời gian.</p>
 </div>
 
-<h2>5. Rủi ro và cách xử lý</h2>
+<div class="sprint">
+<h3><span class="tag t-v11">iS8</span> Tuần 37–38 · Tự động hóa, iCloud, sao lưu, phát hành v1.1</h3>
+<table>
+<thead><tr><th>Việc</th><th>Chi tiết</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td>Giao dịch định kỳ</td><td>Tạo bù khi app mở hoặc quay lại foreground, đúng ngày gốc, không trùng; thêm <code>BGAppRefreshTask</code> và thông báo vào ngày đến hạn (FR-21)</td><td class="num">4</td></tr>
+<tr><td>Thông báo</td><td>Báo ngân sách 80% và 100% ngay khi lưu (FR-26); nhắc hằng ngày, hủy nhắc hôm nay khi đã có giao dịch (FR-36)</td><td class="num">3</td></tr>
+<tr><td>Đồng bộ iCloud</td><td>Bật CloudKit cho SwiftData (private database); thử trên iPhone và iPad cùng Apple ID (FR-31)</td><td class="num">4</td></tr>
+<tr><td>Sao lưu mã hóa</td><td>Đọc và ghi đúng định dạng file của Android (NFR-16). Khóa trong file là số nguyên chỉ có nghĩa trong file: iOS đánh số khi xuất, ánh xạ sang <code>UUID</code> khi nhập; <code>AES.GCM</code> của CryptoKit, PBKDF2 qua CommonCrypto (NFR-07); test chéo bằng file do bản Android tạo</td><td class="num">5</td></tr>
+<tr><td>Màn che</td><td>Phủ màn che khi <code>scenePhase</code> là <code>.inactive</code> (FR-33)</td><td class="num">1</td></tr>
+<tr><td>Phát hành v1.1</td><td>Ghi chú phiên bản, cập nhật trang App Store, phát hành từng phần</td><td class="num">2</td></tr>
+</tbody>
+</table>
+<p><b>Học trước:</b> giới hạn chạy nền trên iOS; UserNotifications; CloudKit với SwiftData; CryptoKit.</p>
+<p class="done"><b>Xong khi:</b> đủ 13 yêu cầu Should. Sao lưu trên iPhone rồi khôi phục trên Android, và ngược lại, đều ra đúng số giao dịch và số dư.</p>
+</div>
+
+<h2>6. Rủi ro và backlog</h2>
 <table>
 <thead><tr><th>Rủi ro</th><th>Ảnh hưởng</th><th>Cách xử lý</th></tr></thead>
 <tbody>
-<tr><td>Parser tiếng Việt sai sót với văn phong địa phương</td><td>Ảnh hưởng trải nghiệm cốt lõi</td><td>Áp dụng triệt để TDD từ S0; bổ sung câu lỗi của tester vào bộ kiểm thử; luôn có màn hình xem trước và chip sửa đổi trước khi lưu (FR-08)</td></tr>
-<tr><td>Apple Intelligence / Foundation Models chỉ hỗ trợ một số thiết bị mới</td><td>Người dùng máy cũ không dùng được tính năng AI</td><td>Bộ phân tích theo luật luôn là nền tảng cốt lõi (chạy offline trên 100% thiết bị); AI chỉ đóng vai trò tăng cường khi có điều kiện phần cứng hỗ trợ</td></tr>
-<tr><td>Cơ chế chạy nền iOS bị hệ thống hạn chế (không có WorkManager)</td><td>Giao dịch định kỳ có thể bị chậm trễ</td><td>Thiết kế cơ chế tự động quét bù giao dịch quá hạn mỗi khi app khởi động hoặc kích hoạt vào foreground, kết hợp thông báo cục bộ</td></tr>
-<tr><td>Bị từ chối App Store do thiếu khai báo Privacy Manifest</td><td>Chậm tiến độ duyệt phát hành</td><td>Chuẩn bị file <code>PrivacyInfo.xcprivacy</code> đầy đủ từ S5; kiểm tra kỹ mã nguồn và các dependency bên thứ ba</td></tr>
-<tr><td>Định dạng ảnh chụp màn hình ngân hàng quá đa dạng</td><td>FR-16 nhận dạng sai lệch thông tin</td><td>Thu thập ảnh thực tế từ tester ngay từ S3; tập trung tối ưu tập luật nhận dạng cho 5 ngân hàng phổ biến nhất trước</td></tr>
-<tr><td>Lệch định dạng sao lưu giữa Android và iOS</td><td>Người dùng không thể chuyển dữ liệu qua lại</td><td>Dùng chung schema JSON và chuẩn mã hóa AES-256-GCM PBKDF2 (NFR-16); viết unit test chéo với dữ liệu mẫu từ S0/S8</td></tr>
+<tr><td>Strict concurrency của Swift 6 sinh nhiều lỗi khó hiểu</td><td>Chậm iS0–iS2</td><td>Luyện trước ở iL; dùng mặc định <code>MainActor</code>; parser là Swift thuần với kiểu <code>Sendable</code></td></tr>
+<tr><td><code>SpeechTranscriber</code> hoặc Foundation Models chưa hỗ trợ tốt tiếng Việt</td><td>FR-13, FR-10, FR-29 kém</td><td>Spike ngay đầu iS2 và iS6, trên máy thật; luôn có đường dự phòng theo luật</td></tr>
+<tr><td>SwiftData chậm với 10.000 giao dịch hoặc khi tìm kiếm</td><td>NFR-03, FR-20</td><td>Đo sớm ở iS3; dự phòng GRDB với FTS5 chỉ cho phần tìm kiếm</td></tr>
+<tr><td>Sửa schema muộn để bật CloudKit</td><td>Phải viết migration, mất dữ liệu tester</td><td>Thiết kế theo ràng buộc CloudKit ngay từ iS1</td></tr>
+<tr><td>Xung đột file <code>.pbxproj</code> khi làm trên nhiều máy</td><td>Mất thời gian gộp nhánh</td><td>Code nằm trong local package; dùng nhóm thư mục đồng bộ; commit <code>[wip]</code> trước khi đổi máy</td></tr>
+<tr><td>Định dạng dùng chung giữa hai bản bị lệch (bộ câu mẫu, CSV, sao lưu)</td><td>Hỏng NFR-16, hai parser cho kết quả khác nhau</td><td>Chỉ một bản ở <code>docs/shared/parser/</code>, test của hai bản cùng đọc; test chéo ở iS0 và iS8</td></tr>
+<tr><td>Bị từ chối ở App Review</td><td>Trễ Cổng 3</td><td>Chuẩn bị Privacy Manifest và nhãn quyền riêng tư từ iS4; ghi chú rõ cho reviewer</td></tr>
+<tr><td>Làm song song khiến cả hai bản chậm lại</td><td>Android MVP lùi từ tuần 13 sang khoảng tuần 23</td><td>Chấp nhận, vì mục tiêu số 1 là học. Ghi rõ lịch mới trong kế hoạch Android</td></tr>
+<tr><td>Quên ngữ cảnh khi chuyển qua lại giữa hai bản</td><td>Mất thời gian khởi động mỗi sprint</td><td>Luân phiên theo sprint, không theo ngày. Cuối sprint ghi rõ chỗ dừng vào file tiến độ của từng repo</td></tr>
+<tr><td>Quên commit theo hai bước, hoặc submodule <code>docs/</code> đang trỏ tới bản cũ</td><td>Máy khác thiếu tài liệu, agent hướng dẫn theo tài liệu cũ</td><td>Mục 13.4 của luật: đầu phiên agent kiểm tra submodule; luôn commit trong <code>docs/</code> trước, con trỏ submodule sau</td></tr>
+<tr><td>Không có máy hỗ trợ Apple Intelligence</td><td>FR-10, FR-29 khó kiểm thử</td><td>Thử trên simulator nếu được; nhờ tester TestFlight; parser theo luật vẫn là lõi</td></tr>
+</tbody>
+</table>
+<p><b>Backlog sau v1.1:</b> FR-11 (AI trên cloud: API cho mô hình cloud trên iOS 27 cần tra lại khi làm, vì đặc tả ghi protocol <code>LanguageModel</code> còn bài tổng hợp WWDC 2026 ghi <code>PrivateCloudComputeLanguageModel</code>); FR-22 (thẻ tag); <code>sectionBy</code> khi nâng target lên iOS 27; bản cho Mac và Apple Watch.</p>
+
+<h2 id="cho-chot">7. Quyết định đã chốt</h2>
+<p class="meta">Bạn chốt ngày 20/10/2026.</p>
+<table>
+<thead><tr><th>#</th><th>Câu hỏi</th><th>Quyết định</th><th>Hệ quả</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Khi nào bắt đầu iOS?</td><td><b>Song song ngay, luân phiên theo sprint.</b> Xong Android S0 thì làm iL</td><td>Android MVP lùi sang khoảng tuần 23, iOS MVP khoảng tuần 29</td></tr>
+<tr><td>2</td><td>Code iOS để ở đâu?</td><td><b>Repo riêng, độc lập.</b> Tài liệu và file dùng chung tách thành repo <code>ChiTieu-docs</code>, gắn vào cả hai repo ứng dụng dưới dạng submodule tại <code>docs/</code> (đổi ngày 20/10/2026, thay cho cách clone hai repo cạnh nhau)</td><td>Agent tự nhận nền tảng qua dòng <code>Nền tảng:</code> trong <code>CLAUDE.md</code>; commit theo hai bước; tiến độ iOS ở <code>docs/tien-do-ios.md</code></td></tr>
+<tr><td>3</td><td>Mã task</td><td><b><code>iL-01</code>, <code>iS0-01</code></b>; commit <code>[iS0-01]</code>; nhánh <code>task/iS0-01-...</code></td><td>Không trùng với mã task Android</td></tr>
+<tr><td>4</td><td>Khóa chính và khóa trong file sao lưu</td><td><b>iOS dùng <code>UUID</code>.</b> Khóa trong file sao lưu là số nguyên chỉ có nghĩa trong file</td><td>Cần sửa NFR-16 và ghi chú vào task S8-06 của Android</td></tr>
+<tr><td>5</td><td>Sprint làm quen</td><td><b>Giữ iL 2 tuần</b></td><td>–</td></tr>
+<tr><td>6</td><td>CI iOS</td><td><b>Repo public, dùng GitHub Actions</b></td><td>Không commit bí mật; CI dùng lại kiến thức từ Android S0-06</td></tr>
+<tr><td>7</td><td>Thiết bị test</td><td><b>iPhone đời trước iPhone 15 Pro</b></td><td>FR-10 và FR-29 thử trên simulator hoặc qua tester; máy cần chạy được iOS 26</td></tr>
 </tbody>
 </table>
 
-<h2>6. Backlog sau v1.1</h2>
-<ul>
-<li>FR-11: Tích hợp mô hình ngôn ngữ trên cloud thông qua protocol <code>LanguageModel</code> (yêu cầu iOS 27), người dùng chủ động kích hoạt.</li>
-<li>FR-22: Gắn thẻ (tag) phân loại giao dịch (ví dụ <code>#DuLich</code>, <code>#Tet2026</code>) và thống kê lọc theo thẻ.</li>
-<li>Mở rộng trải nghiệm tối ưu cho macOS (Mac Catalyst / Designed for iPad) và watchOS nếu nhu cầu người dùng tăng cao.</li>
+<h2 id="sau-khi-chot">8. Việc làm sau khi kế hoạch được duyệt</h2>
+<p>Mỗi việc sửa tài liệu dưới đây cần bạn đồng ý riêng, đúng như <code>luat-agent.md</code>. Việc 2 phải làm trước khi bắt đầu iL.</p>
+<ol>
+<li><b>Đã xong ngày 20/10/2026:</b> sửa S0-09 và S0-13 của Android để bộ câu mẫu và từ điển nằm ở <code>docs/shared/parser/</code>; chia task iL; thêm mục 13 vào <code>luat-agent.md</code> (ba repo, docs là submodule); cập nhật <code>docs/CLAUDE.md</code>, <code>index.html</code>, cùng <code>CLAUDE.md</code> và <code>AGENTS.md</code> của repo Android.</li>
+<li><b>Tách <code>docs/</code> thành repo <code>ChiTieu-docs</code></b> (sau khi merge PR #1, trước iL-01): tạo repo public, đưa thư mục <code>docs/</code> sang và giữ lịch sử bằng <code>git subtree split</code>, rồi gắn lại vào repo Android dưới dạng submodule tại <code>docs/</code>. Bạn tự chạy lệnh, agent đưa từng lệnh.</li>
+<li><b>Chia iS0 đến iS8 trong <code>task-ios.html</code>:</b> trước khi bắt đầu iS0, tương ứng 107 task Android, cộng các task mới (spike, đối chiếu).</li>
+<li><b>Sửa <code>ke-hoach-android.html</code>:</b> đổi lộ trình sang lịch xen kẽ (MVP khoảng tuần 23, v1.1 tuần 34).</li>
+<li><b>Sửa đặc tả:</b> quy ước khóa trong file sao lưu (NFR-16, cả bản Android và iOS) và ghi chú vào task S8-06; tên API cho FR-11 để lúc làm thì tra lại.</li>
+</ol>
+
+<h2>Nguồn</h2>
+<p class="meta">Tra cứu ngày 20/10/2026. Phần lớn là bài tổng hợp của bên thứ ba; khi làm từng task cần đối chiếu lại tài liệu chính thức trên developer.apple.com.</p>
+<ul class="meta">
+<li><a href="https://blakecrosley.com/blog/xcode-27-release">Xcode 27 Is Out: Requirements, Targets, and What Broke</a>: Xcode 27 GA ngày 14/9/2026, Swift 6.4, cần Tahoe 26.6 và Apple silicon, <code>@State</code> thành macro, <code>PreviewProvider</code> bị deprecated, bắt buộc scene lifecycle</li>
+<li><a href="https://www.kodeco.com/53143466-wwdc-2026-recap">Kodeco – WWDC 2026 Recap</a>: Foundation Models (on-device, Private Cloud Compute), App Schemas, <code>sectionBy</code> của SwiftData</li>
+<li><a href="https://mjtsai.com/blog/2026/06/24/swift-6-4/">Michael Tsai – Swift 6.4</a></li>
+<li><a href="https://developer.apple.com/forums/thread/805378">Apple Developer Forums – Foundation Models và ngôn ngữ hệ thống</a>: Foundation Models hỗ trợ cùng danh sách ngôn ngữ với Apple Intelligence, có tiếng Việt; phụ thuộc ngôn ngữ hệ thống của máy</li>
+<li><a href="https://developer.apple.com/forums/thread/790108">Apple Developer Forums – SpeechAnalyzer</a>: danh sách locale phải kiểm tra lúc chạy, chưa xác nhận được vi-VN</li>
+<li><a href="https://developer.apple.com/wwdc/2026/">Apple – WWDC 2026</a></li>
 </ul>
 </main>
 </body>

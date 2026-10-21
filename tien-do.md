@@ -1,8 +1,9 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-06
-- **Cập nhật lần cuối:** 2026-10-19
+- **Task hiện tại:** S0-07
+- **Lượt hiện tại:** Android S0 (lượt sau: iOS iL). Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
+- **Cập nhật lần cuối:** 2026-10-21
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -17,10 +18,10 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | S0-03 | Convention plugins | 3 | Xong | 2026-10-14 | Đủ 6 plugin chitieu.*, build-logic, SDK 37, AGP 9 |
 | S0-04 | Khung module | 1,5 | Xong | 2026-10-15 | Đủ 15 module (8 core, 6 feature, benchmarks), compileSdk 37, assembleDebug thành công |
 | S0-05 | Chất lượng mã | 1 | Xong | 2026-10-19 | Spotless (ktlint), Detekt (Compose rules), ./gradlew check chạy sạch 100% |
-| S0-06 | CI | 1,5 | Chưa làm | | |
+| S0-06 | CI | 1,5 | Xong | 2026-10-21 | GitHub Actions một lệnh Gradle, Kover (skipProjects benchmarks), ruleset main bắt buộc PR và check Build & Verify; PR #1 xanh |
 | S0-07 | Design system: màu và chữ | 1,5 | Chưa làm | | |
 | S0-08 | Design system: component | 1,5 | Chưa làm | | |
-| S0-09 | Bộ câu mẫu | 1,5 | Chưa làm | | |
+| S0-09 | Bộ câu mẫu | 2 | Chưa làm | | |
 | S0-10 | Parser: chuẩn hóa và tách từ | 1,5 | Chưa làm | | |
 | S0-11 | Parser: số tiền (FR-02) | 2 | Chưa làm | | |
 | S0-12 | Parser: thời gian (FR-03) | 1,5 | Chưa làm | | |
@@ -164,6 +165,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 
 | Ngày | Task | Mục hoãn | Xử lý trước task |
 | --- | --- | --- | --- |
+| 2026-10-20 | S0-06 | Cảnh báo ReportingExtension.file(String) của Detekt 1.23.8 | Khi Detekt 2.0 ổn định hoặc trước khi nâng lên Gradle 10 |
 
 ## Ngoại lệ (agent viết hộ)
 
