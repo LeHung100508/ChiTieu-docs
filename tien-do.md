@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-08
+- **Task hiện tại:** S0-09
 - **Lượt hiện tại:** Android S0 (lượt sau: iOS iL). Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-10-21
+- **Cập nhật lần cuối:** 2026-10-23
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -20,7 +20,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | S0-05 | Chất lượng mã | 1 | Xong | 2026-10-19 | Spotless (ktlint), Detekt (Compose rules), ./gradlew check chạy sạch 100% |
 | S0-06 | CI | 1,5 | Xong | 2026-10-21 | GitHub Actions một lệnh Gradle, Kover (skipProjects benchmarks), ruleset main bắt buộc PR và check Build & Verify; PR #1 xanh |
 | S0-07 | Design system: màu và chữ | 1,5 | Xong | 2026-10-21 | ColorScheme đủ role (kể cả surfaceContainer*) từ #1B6B4A, Roboto Flex đóng gói với 4 weight qua FontVariation, 15 style Typography, Shapes, công tắc Dynamic Color; app dùng ChiTieuTheme chung |
-| S0-08 | Design system: component | 1,5 | Chưa làm | | |
+| S0-08 | Design system: component | 1,5 | Xong | 2026-10-23 | AmountText (định dạng theo locale, dấu −, có unit test), ChiTieuChip, SummaryCard (style summaryAmount khớp mockup), CategoryIcon; mỗi component có Preview sáng và tối |
 | S0-09 | Bộ câu mẫu | 2 | Chưa làm | | |
 | S0-10 | Parser: chuẩn hóa và tách từ | 1,5 | Chưa làm | | |
 | S0-11 | Parser: số tiền (FR-02) | 2 | Chưa làm | | |
