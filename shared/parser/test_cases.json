@@ -1,0 +1,4303 @@
+{
+  "version": 1,
+  "referenceTime": "2026-10-20T10:00:00+07:00",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "description": "Bộ 200 câu mẫu kiểm thử bộ phân tích ngôn ngữ tự nhiên ChiTieu (Single Source of Truth cho Android và iOS)",
+  "totalCases": 200,
+  "mockWallets": [
+    {
+      "key": "cash",
+      "name": "Tiền mặt",
+      "aliases": [
+        "tiền mặt",
+        "ví tiền mặt",
+        "tien mat"
+      ]
+    },
+    {
+      "key": "momo",
+      "name": "MoMo",
+      "aliases": [
+        "momo",
+        "ví momo"
+      ]
+    },
+    {
+      "key": "vcb",
+      "name": "Vietcombank",
+      "aliases": [
+        "vcb",
+        "vietcombank",
+        "ngân hàng vcb",
+        "thẻ vcb"
+      ]
+    },
+    {
+      "key": "techcombank",
+      "name": "Techcombank",
+      "aliases": [
+        "tech",
+        "techcombank",
+        "tcb"
+      ]
+    },
+    {
+      "key": "mb",
+      "name": "MB Bank",
+      "aliases": [
+        "mb",
+        "mbbank",
+        "quân đội"
+      ]
+    },
+    {
+      "key": "bidv",
+      "name": "BIDV",
+      "aliases": [
+        "bidv"
+      ]
+    },
+    {
+      "key": "zalopay",
+      "name": "ZaloPay",
+      "aliases": [
+        "zalopay",
+        "zalo pay"
+      ]
+    },
+    {
+      "key": "shopeepay",
+      "name": "ShopeePay",
+      "aliases": [
+        "shopeepay",
+        "shopee pay"
+      ]
+    },
+    {
+      "key": "viettelpay",
+      "name": "Viettel Money",
+      "aliases": [
+        "viettelpay",
+        "viettel money"
+      ]
+    },
+    {
+      "key": "credit_card",
+      "name": "Thẻ tín dụng",
+      "aliases": [
+        "thẻ tín dụng",
+        "quẹt thẻ",
+        "credit",
+        "the tin dung"
+      ]
+    }
+  ],
+  "testCases": [
+    {
+      "id": "tc_001",
+      "input": "phở bò 45k",
+      "tags": [
+        "amount_k",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "phở bò"
+        }
+      ]
+    },
+    {
+      "id": "tc_002",
+      "input": "cơm rang 35k",
+      "tags": [
+        "amount_k",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cơm rang"
+        }
+      ]
+    },
+    {
+      "id": "tc_003",
+      "input": "đổ xăng 50k",
+      "tags": [
+        "amount_k",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_004",
+      "input": "bánh mì 20k",
+      "tags": [
+        "amount_k",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 20000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bánh mì"
+        }
+      ]
+    },
+    {
+      "id": "tc_005",
+      "input": "mua trà sữa 30k",
+      "tags": [
+        "amount_k",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua trà sữa"
+        }
+      ]
+    },
+    {
+      "id": "tc_006",
+      "input": "gửi xe 5k",
+      "tags": [
+        "amount_k",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 5000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "gửi xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_007",
+      "input": "cà phê đen 15k",
+      "tags": [
+        "amount_k",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 15000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cà phê đen"
+        }
+      ]
+    },
+    {
+      "id": "tc_008",
+      "input": "ăn bún bò 40 nghìn",
+      "tags": [
+        "amount_nghin",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn bún bò"
+        }
+      ]
+    },
+    {
+      "id": "tc_009",
+      "input": "đổ xăng 60 nghìn",
+      "tags": [
+        "amount_nghin",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_010",
+      "input": "mua rau 25 nghìn",
+      "tags": [
+        "amount_nghin",
+        "groceries"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua rau"
+        }
+      ]
+    },
+    {
+      "id": "tc_011",
+      "input": "bánh cuốn 30 ngàn",
+      "tags": [
+        "amount_ngan",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bánh cuốn"
+        }
+      ]
+    },
+    {
+      "id": "tc_012",
+      "input": "vé xe buýt 7 ngàn",
+      "tags": [
+        "amount_ngan",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 7000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "vé xe buýt"
+        }
+      ]
+    },
+    {
+      "id": "tc_013",
+      "input": "mua trứng 35 ngàn",
+      "tags": [
+        "amount_ngan",
+        "groceries"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua trứng"
+        }
+      ]
+    },
+    {
+      "id": "tc_014",
+      "input": "tiền điện 450.000",
+      "tags": [
+        "amount_dot",
+        "bills"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 450000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền điện"
+        }
+      ]
+    },
+    {
+      "id": "tc_015",
+      "input": "tiền nước 120.000",
+      "tags": [
+        "amount_dot",
+        "bills"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 120000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền nước"
+        }
+      ]
+    },
+    {
+      "id": "tc_016",
+      "input": "mua áo sơ mi 350000",
+      "tags": [
+        "amount_raw",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 350000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua áo sơ mi"
+        }
+      ]
+    },
+    {
+      "id": "tc_017",
+      "input": "tiền mạng 220000",
+      "tags": [
+        "amount_raw",
+        "bills"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 220000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền mạng"
+        }
+      ]
+    },
+    {
+      "id": "tc_018",
+      "input": "thay nhớt xe 150.000 đ",
+      "tags": [
+        "amount_dot",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 150000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "thay nhớt xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_019",
+      "input": "mua giày 1.250.000",
+      "tags": [
+        "amount_dot",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1250000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua giày"
+        }
+      ]
+    },
+    {
+      "id": "tc_020",
+      "input": "tiền nhà 3.500.000",
+      "tags": [
+        "amount_dot",
+        "housing"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 3500000,
+          "categoryKey": "housing",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền nhà"
+        }
+      ]
+    },
+    {
+      "id": "tc_021",
+      "input": "mua tủ lạnh 6.800.000 đ",
+      "tags": [
+        "amount_dot",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 6800000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua tủ lạnh"
+        }
+      ]
+    },
+    {
+      "id": "tc_022",
+      "input": "tai nghe 1tr2",
+      "tags": [
+        "amount_tr",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1200000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tai nghe"
+        }
+      ]
+    },
+    {
+      "id": "tc_023",
+      "input": "mua máy ép 1tr5",
+      "tags": [
+        "amount_tr",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1500000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua máy ép"
+        }
+      ]
+    },
+    {
+      "id": "tc_024",
+      "input": "đóng tiền học 2tr3",
+      "tags": [
+        "amount_tr",
+        "education"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 2300000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đóng tiền học"
+        }
+      ]
+    },
+    {
+      "id": "tc_025",
+      "input": "sửa xe máy 1tr8",
+      "tags": [
+        "amount_tr",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1800000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "sửa xe máy"
+        }
+      ]
+    },
+    {
+      "id": "tc_026",
+      "input": "mua kính 1,5tr",
+      "tags": [
+        "amount_comma_tr",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1500000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua kính"
+        }
+      ]
+    },
+    {
+      "id": "tc_027",
+      "input": "bàn làm việc 2,2tr",
+      "tags": [
+        "amount_comma_tr",
+        "housing"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 2200000,
+          "categoryKey": "housing",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bàn làm việc"
+        }
+      ]
+    },
+    {
+      "id": "tc_028",
+      "input": "mua đệm 3.5tr",
+      "tags": [
+        "amount_dot_tr",
+        "housing"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 3500000,
+          "categoryKey": "housing",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua đệm"
+        }
+      ]
+    },
+    {
+      "id": "tc_029",
+      "input": "đồng hồ 4.2tr",
+      "tags": [
+        "amount_dot_tr",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 4200000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đồng hồ"
+        }
+      ]
+    },
+    {
+      "id": "tc_030",
+      "input": "mua xe đạp 2 triệu",
+      "tags": [
+        "amount_trieu",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 2000000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua xe đạp"
+        }
+      ]
+    },
+    {
+      "id": "tc_031",
+      "input": "tiền bảo hiểm 5 triệu",
+      "tags": [
+        "amount_trieu",
+        "bills"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 5000000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền bảo hiểm"
+        }
+      ]
+    },
+    {
+      "id": "tc_032",
+      "input": "vé máy bay 3 triệu rưỡi",
+      "tags": [
+        "amount_trieu_ruoi",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 3500000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "vé máy bay"
+        }
+      ]
+    },
+    {
+      "id": "tc_033",
+      "input": "mua laptop 15tr",
+      "tags": [
+        "amount_tr",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 15000000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua laptop"
+        }
+      ]
+    },
+    {
+      "id": "tc_034",
+      "input": "sữa tắm 85k5",
+      "tags": [
+        "amount_k5",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 85500,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "sữa tắm"
+        }
+      ]
+    },
+    {
+      "id": "tc_035",
+      "input": "tiền xăng 70k",
+      "tags": [
+        "amount_k",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 70000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_036",
+      "input": "mua điện thoại 4 củ",
+      "tags": [
+        "slang_cu",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 4000000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua điện thoại"
+        }
+      ]
+    },
+    {
+      "id": "tc_037",
+      "input": "tiền phòng trọ 2 củ",
+      "tags": [
+        "slang_cu",
+        "housing"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 2000000,
+          "categoryKey": "housing",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền phòng trọ"
+        }
+      ]
+    },
+    {
+      "id": "tc_038",
+      "input": "mua vest 1 củ",
+      "tags": [
+        "slang_cu",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1000000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua vest"
+        }
+      ]
+    },
+    {
+      "id": "tc_039",
+      "input": "mua nồi chiên nửa củ",
+      "tags": [
+        "slang_nua_cu",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 500000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua nồi chiên"
+        }
+      ]
+    },
+    {
+      "id": "tc_040",
+      "input": "bảo dưỡng xe 1 củ rưỡi",
+      "tags": [
+        "slang_cu_ruoi",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1500000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bảo dưỡng xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_041",
+      "input": "mua máy sấy 2 củ rưỡi",
+      "tags": [
+        "slang_cu_ruoi",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 2500000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua máy sấy"
+        }
+      ]
+    },
+    {
+      "id": "tc_042",
+      "input": "đổ xăng 5 lít",
+      "tags": [
+        "slang_lit",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 500000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_043",
+      "input": "ăn lẩu 4 lít",
+      "tags": [
+        "slang_lit",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 400000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn lẩu"
+        }
+      ]
+    },
+    {
+      "id": "tc_044",
+      "input": "mua giày 3 lít",
+      "tags": [
+        "slang_lit",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 300000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua giày"
+        }
+      ]
+    },
+    {
+      "id": "tc_045",
+      "input": "liên hoan 2 lít",
+      "tags": [
+        "slang_lit",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 200000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "liên hoan"
+        }
+      ]
+    },
+    {
+      "id": "tc_046",
+      "input": "mua áo phông 1 lít",
+      "tags": [
+        "slang_lit",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua áo phông"
+        }
+      ]
+    },
+    {
+      "id": "tc_047",
+      "input": "cắt tóc 1 lít rưỡi",
+      "tags": [
+        "slang_lit_ruoi",
+        "personal"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 150000,
+          "categoryKey": "personal",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cắt tóc"
+        }
+      ]
+    },
+    {
+      "id": "tc_048",
+      "input": "mua balo 3 loét",
+      "tags": [
+        "slang_loet",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 300000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua balo"
+        }
+      ]
+    },
+    {
+      "id": "tc_049",
+      "input": "tiền sách 2 loét",
+      "tags": [
+        "slang_loet",
+        "education"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 200000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền sách"
+        }
+      ]
+    },
+    {
+      "id": "tc_050",
+      "input": "mua sạc cáp 1 loét",
+      "tags": [
+        "slang_loet",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sạc cáp"
+        }
+      ]
+    },
+    {
+      "id": "tc_051",
+      "input": "uống trà cúc năm chục",
+      "tags": [
+        "slang_chuc",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "uống trà cúc"
+        }
+      ]
+    },
+    {
+      "id": "tc_052",
+      "input": "rửa xe máy ba chục",
+      "tags": [
+        "slang_chuc",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "rửa xe máy"
+        }
+      ]
+    },
+    {
+      "id": "tc_053",
+      "input": "mua hoa quả sáu chục",
+      "tags": [
+        "slang_chuc",
+        "groceries"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua hoa quả"
+        }
+      ]
+    },
+    {
+      "id": "tc_054",
+      "input": "ăn sáng bốn chục",
+      "tags": [
+        "slang_chuc",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn sáng"
+        }
+      ]
+    },
+    {
+      "id": "tc_055",
+      "input": "vé xem phim một trăm",
+      "tags": [
+        "words_hundred",
+        "entertainment"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "entertainment",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "vé xem phim"
+        }
+      ]
+    },
+    {
+      "id": "tc_056",
+      "input": "mua sạc dự phòng hai trăm",
+      "tags": [
+        "words_hundred",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 200000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sạc dự phòng"
+        }
+      ]
+    },
+    {
+      "id": "tc_057",
+      "input": "đi khám răng ba trăm",
+      "tags": [
+        "words_hundred",
+        "health"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 300000,
+          "categoryKey": "health",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đi khám răng"
+        }
+      ]
+    },
+    {
+      "id": "tc_058",
+      "input": "đóng quỹ lớp năm trăm",
+      "tags": [
+        "words_hundred",
+        "education"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 500000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đóng quỹ lớp"
+        }
+      ]
+    },
+    {
+      "id": "tc_059",
+      "input": "mua thuốc một trăm rưỡi",
+      "tags": [
+        "words_hundred_ruoi",
+        "health"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 150000,
+          "categoryKey": "health",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua thuốc"
+        }
+      ]
+    },
+    {
+      "id": "tc_060",
+      "input": "mua chuột máy tính hai trăm rưỡi",
+      "tags": [
+        "words_hundred_ruoi",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 250000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua chuột máy tính"
+        }
+      ]
+    },
+    {
+      "id": "tc_061",
+      "input": "vé xe về quê ba trăm rưỡi",
+      "tags": [
+        "words_hundred_ruoi",
+        "transport"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 350000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "vé xe về quê"
+        }
+      ]
+    },
+    {
+      "id": "tc_062",
+      "input": "mua bàn phím 1 củ 2",
+      "tags": [
+        "slang_cu_le",
+        "shopping"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1200000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua bàn phím"
+        }
+      ]
+    },
+    {
+      "id": "tc_063",
+      "input": "sửa điện nước 2 loét rưỡi",
+      "tags": [
+        "slang_loet_ruoi",
+        "housing"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 250000,
+          "categoryKey": "housing",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "sửa điện nước"
+        }
+      ]
+    },
+    {
+      "id": "tc_064",
+      "input": "ăn hải sản 1 củ 8",
+      "tags": [
+        "slang_cu_le",
+        "food"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1800000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn hải sản"
+        }
+      ]
+    },
+    {
+      "id": "tc_065",
+      "input": "tiền mạng ba tháng 6 lít",
+      "tags": [
+        "slang_lit",
+        "bills"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 600000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền mạng ba tháng"
+        }
+      ]
+    },
+    {
+      "id": "tc_066",
+      "input": "hôm nay ăn phở 45k",
+      "tags": [
+        "date_relative",
+        "today"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn phở"
+        }
+      ]
+    },
+    {
+      "id": "tc_067",
+      "input": "sáng nay cafe 30k",
+      "tags": [
+        "date_relative",
+        "morning"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T08:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cafe"
+        }
+      ]
+    },
+    {
+      "id": "tc_068",
+      "input": "sáng nay ăn bún chả 40k",
+      "tags": [
+        "date_relative",
+        "morning"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T08:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn bún chả"
+        }
+      ]
+    },
+    {
+      "id": "tc_069",
+      "input": "trưa nay cơm văn phòng 40k",
+      "tags": [
+        "date_relative",
+        "noon"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T12:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cơm văn phòng"
+        }
+      ]
+    },
+    {
+      "id": "tc_070",
+      "input": "trưa nay trà sữa 35k",
+      "tags": [
+        "date_relative",
+        "noon"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T12:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "trà sữa"
+        }
+      ]
+    },
+    {
+      "id": "tc_071",
+      "input": "chiều nay mua bánh ngọt 25k",
+      "tags": [
+        "date_relative",
+        "afternoon"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T15:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua bánh ngọt"
+        }
+      ]
+    },
+    {
+      "id": "tc_072",
+      "input": "chiều nay đổ xăng 70k",
+      "tags": [
+        "date_relative",
+        "afternoon"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 70000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T15:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_073",
+      "input": "hôm qua ăn ốc 150k",
+      "tags": [
+        "date_relative",
+        "yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 150000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn ốc"
+        }
+      ]
+    },
+    {
+      "id": "tc_074",
+      "input": "hôm qua mua sách 85k",
+      "tags": [
+        "date_relative",
+        "yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 85000,
+          "categoryKey": "education",
+          "datetime": "2026-10-19T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sách"
+        }
+      ]
+    },
+    {
+      "id": "tc_075",
+      "input": "hôm qua đi siêu thị 420k",
+      "tags": [
+        "date_relative",
+        "yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 420000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-19T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đi siêu thị"
+        }
+      ]
+    },
+    {
+      "id": "tc_076",
+      "input": "tối qua nhậu 250k",
+      "tags": [
+        "date_relative",
+        "last_night"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 250000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T20:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "nhậu"
+        }
+      ]
+    },
+    {
+      "id": "tc_077",
+      "input": "tối qua xem phim 120k",
+      "tags": [
+        "date_relative",
+        "last_night"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 120000,
+          "categoryKey": "entertainment",
+          "datetime": "2026-10-19T20:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "xem phim"
+        }
+      ]
+    },
+    {
+      "id": "tc_078",
+      "input": "tối qua đi cafe 45k",
+      "tags": [
+        "date_relative",
+        "last_night"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T20:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đi cafe"
+        }
+      ]
+    },
+    {
+      "id": "tc_079",
+      "input": "đêm qua gọi đồ ăn 80k",
+      "tags": [
+        "date_relative",
+        "late_night"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 80000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T22:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "gọi đồ ăn"
+        }
+      ]
+    },
+    {
+      "id": "tc_080",
+      "input": "hôm kia mua thuốc 60k",
+      "tags": [
+        "date_relative",
+        "day_before_yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "health",
+          "datetime": "2026-10-18T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua thuốc"
+        }
+      ]
+    },
+    {
+      "id": "tc_081",
+      "input": "hôm kia đổ xăng 50k",
+      "tags": [
+        "date_relative",
+        "day_before_yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-18T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_082",
+      "input": "hôm kia cắt tóc 80k",
+      "tags": [
+        "date_relative",
+        "day_before_yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 80000,
+          "categoryKey": "personal",
+          "datetime": "2026-10-18T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cắt tóc"
+        }
+      ]
+    },
+    {
+      "id": "tc_083",
+      "input": "thứ 2 tuần trước đóng tiền học 500k",
+      "tags": [
+        "date_relative",
+        "last_week"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 500000,
+          "categoryKey": "education",
+          "datetime": "2026-10-12T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đóng tiền học"
+        }
+      ]
+    },
+    {
+      "id": "tc_084",
+      "input": "thứ hai tuần trước mua balo 250k",
+      "tags": [
+        "date_relative",
+        "last_week"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 250000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-12T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua balo"
+        }
+      ]
+    },
+    {
+      "id": "tc_085",
+      "input": "thứ 2 tuần trước sửa xe 120k",
+      "tags": [
+        "date_relative",
+        "last_week"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 120000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-12T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "sửa xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_086",
+      "input": "ngày 5 đóng tiền nhà 3tr",
+      "tags": [
+        "date_absolute",
+        "day_of_month"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 3000000,
+          "categoryKey": "housing",
+          "datetime": "2026-10-05T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đóng tiền nhà"
+        }
+      ]
+    },
+    {
+      "id": "tc_087",
+      "input": "mùng 5 mua máy xay 450k",
+      "tags": [
+        "date_absolute",
+        "day_of_month"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 450000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-05T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua máy xay"
+        }
+      ]
+    },
+    {
+      "id": "tc_088",
+      "input": "ngày 5 nạp thẻ điện thoại 100k",
+      "tags": [
+        "date_absolute",
+        "day_of_month",
+        "noise_wallet_alias"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-05T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "nạp thẻ điện thoại"
+        }
+      ]
+    },
+    {
+      "id": "tc_089",
+      "input": "15/10 mua vé xem kịch 300k",
+      "tags": [
+        "date_absolute",
+        "day_month"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 300000,
+          "categoryKey": "entertainment",
+          "datetime": "2026-10-15T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua vé xem kịch"
+        }
+      ]
+    },
+    {
+      "id": "tc_090",
+      "input": "15/10 đi ăn cưới 500k",
+      "tags": [
+        "date_absolute",
+        "day_month"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 500000,
+          "categoryKey": "family",
+          "datetime": "2026-10-15T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đi ăn cưới"
+        }
+      ]
+    },
+    {
+      "id": "tc_091",
+      "input": "ngày 15 tháng 10 mua sữa cho con 380k",
+      "tags": [
+        "date_absolute",
+        "day_month"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 380000,
+          "categoryKey": "family",
+          "datetime": "2026-10-15T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sữa cho con"
+        }
+      ]
+    },
+    {
+      "id": "tc_092",
+      "input": "ăn phở 45k hôm qua",
+      "tags": [
+        "date_order_tail",
+        "yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn phở"
+        }
+      ]
+    },
+    {
+      "id": "tc_093",
+      "input": "uống trà đào 35k tối qua",
+      "tags": [
+        "date_order_tail",
+        "last_night"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T20:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "uống trà đào"
+        }
+      ]
+    },
+    {
+      "id": "tc_094",
+      "input": "đổ xăng 60k sáng nay",
+      "tags": [
+        "date_order_tail",
+        "morning"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T08:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_095",
+      "input": "mua bánh 50k hôm kia",
+      "tags": [
+        "date_order_tail",
+        "day_before_yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-18T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua bánh"
+        }
+      ]
+    },
+    {
+      "id": "tc_096",
+      "input": "mua sạc 150k thứ hai tuần trước",
+      "tags": [
+        "date_order_tail",
+        "last_week"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 150000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-12T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sạc"
+        }
+      ]
+    },
+    {
+      "id": "tc_097",
+      "input": "đóng tiền mạng 220k ngày 5",
+      "tags": [
+        "date_order_tail",
+        "day_of_month"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 220000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-05T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đóng tiền mạng"
+        }
+      ]
+    },
+    {
+      "id": "tc_098",
+      "input": "tiền gym 400k hôm 15/10",
+      "tags": [
+        "date_order_tail",
+        "day_month"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 400000,
+          "categoryKey": "health",
+          "datetime": "2026-10-15T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền gym"
+        }
+      ]
+    },
+    {
+      "id": "tc_099",
+      "input": "hôm nay mua cơm tấm 45k",
+      "tags": [
+        "date_relative",
+        "today"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua cơm tấm"
+        }
+      ]
+    },
+    {
+      "id": "tc_100",
+      "input": "trưa nay ăn bún đậu 55k",
+      "tags": [
+        "date_relative",
+        "noon"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 55000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T12:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn bún đậu"
+        }
+      ]
+    },
+    {
+      "id": "tc_101",
+      "input": "lương về 15tr",
+      "tags": [
+        "income",
+        "salary"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 15000000,
+          "categoryKey": "income_salary",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "lương về"
+        }
+      ]
+    },
+    {
+      "id": "tc_102",
+      "input": "công ty trả lương 18.000.000",
+      "tags": [
+        "income",
+        "salary"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 18000000,
+          "categoryKey": "income_salary",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "công ty trả lương"
+        }
+      ]
+    },
+    {
+      "id": "tc_103",
+      "input": "nhận lương tháng 10 12tr",
+      "tags": [
+        "income",
+        "salary"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 12000000,
+          "categoryKey": "income_salary",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "nhận lương tháng 10"
+        }
+      ]
+    },
+    {
+      "id": "tc_104",
+      "input": "lương cứng 10 củ",
+      "tags": [
+        "income",
+        "salary"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 10000000,
+          "categoryKey": "income_salary",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "lương cứng"
+        }
+      ]
+    },
+    {
+      "id": "tc_105",
+      "input": "được thưởng dự án 2 củ",
+      "tags": [
+        "income",
+        "bonus"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 2000000,
+          "categoryKey": "income_bonus",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "được thưởng dự án"
+        }
+      ]
+    },
+    {
+      "id": "tc_106",
+      "input": "thưởng quý 5tr",
+      "tags": [
+        "income",
+        "bonus"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 5000000,
+          "categoryKey": "income_bonus",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "thưởng quý"
+        }
+      ]
+    },
+    {
+      "id": "tc_107",
+      "input": "thưởng nóng 1 củ",
+      "tags": [
+        "income",
+        "bonus"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 1000000,
+          "categoryKey": "income_bonus",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "thưởng nóng"
+        }
+      ]
+    },
+    {
+      "id": "tc_108",
+      "input": "nhận hoa hồng 800k",
+      "tags": [
+        "income",
+        "bonus"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 800000,
+          "categoryKey": "income_bonus",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "nhận hoa hồng"
+        }
+      ]
+    },
+    {
+      "id": "tc_109",
+      "input": "mẹ cho 500k",
+      "tags": [
+        "income",
+        "gift"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 500000,
+          "categoryKey": "income_gift",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mẹ cho"
+        }
+      ]
+    },
+    {
+      "id": "tc_110",
+      "input": "bố cho 1 triệu",
+      "tags": [
+        "income",
+        "gift"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 1000000,
+          "categoryKey": "income_gift",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bố cho"
+        }
+      ]
+    },
+    {
+      "id": "tc_111",
+      "input": "anh trai lì xì 200k",
+      "tags": [
+        "income",
+        "gift"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 200000,
+          "categoryKey": "income_gift",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "anh trai lì xì"
+        }
+      ]
+    },
+    {
+      "id": "tc_112",
+      "input": "được bạn tặng 300k",
+      "tags": [
+        "income",
+        "gift"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 300000,
+          "categoryKey": "income_gift",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "được bạn tặng"
+        }
+      ]
+    },
+    {
+      "id": "tc_113",
+      "input": "lãi tiết kiệm 650k",
+      "tags": [
+        "income",
+        "investment"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 650000,
+          "categoryKey": "income_investment",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "lãi tiết kiệm"
+        }
+      ]
+    },
+    {
+      "id": "tc_114",
+      "input": "nhận cổ tức 1tr2",
+      "tags": [
+        "income",
+        "investment"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 1200000,
+          "categoryKey": "income_investment",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "nhận cổ tức"
+        }
+      ]
+    },
+    {
+      "id": "tc_115",
+      "input": "bán đồ cũ được 350k",
+      "tags": [
+        "income",
+        "other_income"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 350000,
+          "categoryKey": "other_income",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bán đồ cũ"
+        }
+      ]
+    },
+    {
+      "id": "tc_116",
+      "input": "thu tiền phòng trọ 2tr5",
+      "tags": [
+        "income",
+        "other_income"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 2500000,
+          "categoryKey": "other_income",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "thu tiền phòng trọ"
+        }
+      ]
+    },
+    {
+      "id": "tc_117",
+      "input": "chuyển 2tr từ VCB sang ví tiền mặt",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 2000000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "vcb",
+          "targetWallet": "cash",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_118",
+      "input": "chuyển 500k từ techcombank sang momo",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 500000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "techcombank",
+          "targetWallet": "momo",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_119",
+      "input": "chuyển 1 củ từ momo sang vcb",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 1000000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "momo",
+          "targetWallet": "vcb",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_120",
+      "input": "rút tiền mặt 1tr từ atm vcb",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 1000000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "vcb",
+          "targetWallet": "cash",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_121",
+      "input": "nạp 200k vào momo từ vcb",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 200000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "vcb",
+          "targetWallet": "momo",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_122",
+      "input": "chuyển 300k từ ví tiền mặt sang momo",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 300000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "cash",
+          "targetWallet": "momo",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_123",
+      "input": "chuyển khoản 1tr5 từ bidv sang mb",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 1500000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "bidv",
+          "targetWallet": "mb",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_124",
+      "input": "chuyển 50k từ tech sang momo",
+      "tags": [
+        "transfer"
+      ],
+      "expected": [
+        {
+          "type": "TRANSFER",
+          "amount": 50000,
+          "categoryKey": null,
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": "techcombank",
+          "targetWallet": "momo",
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_125",
+      "input": "lương làm thêm 2tr",
+      "tags": [
+        "income",
+        "salary"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 2000000,
+          "categoryKey": "income_salary",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "lương làm thêm"
+        }
+      ]
+    },
+    {
+      "id": "tc_126",
+      "input": "sáng phở 45k, trưa cơm 35k, cafe 29k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T08:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "phở"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T12:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cơm"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 29000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cafe"
+        }
+      ]
+    },
+    {
+      "id": "tc_127",
+      "input": "ăn sáng 30k, đổ xăng 50k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn sáng"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_128",
+      "input": "cơm trưa 40k, trà đá 5k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cơm trưa"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 5000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "trà đá"
+        }
+      ]
+    },
+    {
+      "id": "tc_129",
+      "input": "mua rau 20k, mua thịt 80k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 20000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua rau"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 80000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua thịt"
+        }
+      ]
+    },
+    {
+      "id": "tc_130",
+      "input": "bún bò 45k, cà phê 25k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bún bò"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cà phê"
+        }
+      ]
+    },
+    {
+      "id": "tc_131",
+      "input": "mua bánh mì 20k và cà phê 25k",
+      "tags": [
+        "multi_and"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 20000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua bánh mì"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cà phê"
+        }
+      ]
+    },
+    {
+      "id": "tc_132",
+      "input": "ăn trưa 40k và mua trà sữa 35k",
+      "tags": [
+        "multi_and"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn trưa"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua trà sữa"
+        }
+      ]
+    },
+    {
+      "id": "tc_133",
+      "input": "đổ xăng 60k và rửa xe 30k",
+      "tags": [
+        "multi_and"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "rửa xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_134",
+      "input": "tiền điện 400k và tiền nước 100k",
+      "tags": [
+        "multi_and"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 400000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền điện"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền nước"
+        }
+      ]
+    },
+    {
+      "id": "tc_135",
+      "input": "mua áo 250k với mua quần 350k",
+      "tags": [
+        "multi_with"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 250000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua áo"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 350000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua quần"
+        }
+      ]
+    },
+    {
+      "id": "tc_136",
+      "input": "ăn sáng 35k với uống cafe 25k",
+      "tags": [
+        "multi_with"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn sáng"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "uống cafe"
+        }
+      ]
+    },
+    {
+      "id": "tc_137",
+      "input": "cơm tấm 40k, trà tắc 15k và gửi xe 5k",
+      "tags": [
+        "multi_combined"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cơm tấm"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 15000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "trà tắc"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 5000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "gửi xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_138",
+      "input": "mua cá 60k, tôm 100k, rau muống 15k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua cá"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tôm"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 15000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "rau muống"
+        }
+      ]
+    },
+    {
+      "id": "tc_139",
+      "input": "mua sách 120k và bút 15k",
+      "tags": [
+        "multi_and"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 120000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sách"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 15000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bút"
+        }
+      ]
+    },
+    {
+      "id": "tc_140",
+      "input": "vé xem phim 100k, bắp rang bơ 60k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "entertainment",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "vé xem phim"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bắp rang bơ"
+        }
+      ]
+    },
+    {
+      "id": "tc_141",
+      "input": "phở 40k\ncafe 25k",
+      "tags": [
+        "multi_newline"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "phở"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cafe"
+        }
+      ]
+    },
+    {
+      "id": "tc_142",
+      "input": "cơm trưa 35k\ntrà đào 30k",
+      "tags": [
+        "multi_newline"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cơm trưa"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "trà đào"
+        }
+      ]
+    },
+    {
+      "id": "tc_143",
+      "input": "đổ xăng 50k\ngửi xe 5k\nbánh ngọt 20k",
+      "tags": [
+        "multi_newline"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 5000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "gửi xe"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 20000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bánh ngọt"
+        }
+      ]
+    },
+    {
+      "id": "tc_144",
+      "input": "mua táo 40k, nho 90k và sữa chua 30k",
+      "tags": [
+        "multi_combined"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua táo"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 90000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "nho"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "sữa chua"
+        }
+      ]
+    },
+    {
+      "id": "tc_145",
+      "input": "cắt tóc 70k và gội đầu 50k",
+      "tags": [
+        "multi_and"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 70000,
+          "categoryKey": "personal",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cắt tóc"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "personal",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "gội đầu"
+        }
+      ]
+    },
+    {
+      "id": "tc_146",
+      "input": "thuốc cảm 30k, khẩu trang 20k",
+      "tags": [
+        "multi_comma"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "health",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "thuốc cảm"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 20000,
+          "categoryKey": "health",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "khẩu trang"
+        }
+      ]
+    },
+    {
+      "id": "tc_147",
+      "input": "hôm qua ăn sáng 35k, ăn trưa 45k",
+      "tags": [
+        "multi_yesterday"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn sáng"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn trưa"
+        }
+      ]
+    },
+    {
+      "id": "tc_148",
+      "input": "sáng nay cafe 25k, mua bánh 15k",
+      "tags": [
+        "multi_morning"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T08:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cafe"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 15000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T08:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua bánh"
+        }
+      ]
+    },
+    {
+      "id": "tc_149",
+      "input": "mua áo 180k, mũ 70k và tất 20k",
+      "tags": [
+        "multi_combined"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 180000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua áo"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 70000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mũ"
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 20000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tất"
+        }
+      ]
+    },
+    {
+      "id": "tc_150",
+      "input": "lương 15tr, thưởng 3tr",
+      "tags": [
+        "multi_income"
+      ],
+      "expected": [
+        {
+          "type": "INCOME",
+          "amount": 15000000,
+          "categoryKey": "income_salary",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "lương"
+        },
+        {
+          "type": "INCOME",
+          "amount": 3000000,
+          "categoryKey": "income_bonus",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "thưởng"
+        }
+      ]
+    },
+    {
+      "id": "tc_151",
+      "input": "cafe 35k bằng momo",
+      "tags": [
+        "wallet_momo"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "momo",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cafe"
+        }
+      ]
+    },
+    {
+      "id": "tc_152",
+      "input": "uống trà sữa 45k qua momo",
+      "tags": [
+        "wallet_momo"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "momo",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "uống trà sữa"
+        }
+      ]
+    },
+    {
+      "id": "tc_153",
+      "input": "trả tiền điện 350k qua vcb",
+      "tags": [
+        "wallet_bank"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 350000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "vcb",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "trả tiền điện"
+        }
+      ]
+    },
+    {
+      "id": "tc_154",
+      "input": "đóng tiền mạng 220k bằng vcb",
+      "tags": [
+        "wallet_bank"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 220000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "vcb",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đóng tiền mạng"
+        }
+      ]
+    },
+    {
+      "id": "tc_155",
+      "input": "ăn trưa 40k tiền mặt",
+      "tags": [
+        "wallet_cash"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "cash",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn trưa"
+        }
+      ]
+    },
+    {
+      "id": "tc_156",
+      "input": "đổ xăng 50k tiền mặt",
+      "tags": [
+        "wallet_cash"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "cash",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_157",
+      "input": "mua thuốc 85k bằng tiền mặt",
+      "tags": [
+        "wallet_cash"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 85000,
+          "categoryKey": "health",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "cash",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua thuốc"
+        }
+      ]
+    },
+    {
+      "id": "tc_158",
+      "input": "mua giày 800k quẹt thẻ",
+      "tags": [
+        "wallet_card"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 800000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "credit_card",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua giày"
+        }
+      ]
+    },
+    {
+      "id": "tc_159",
+      "input": "siêu thị 650k quẹt thẻ tín dụng",
+      "tags": [
+        "wallet_card"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 650000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "credit_card",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "siêu thị"
+        }
+      ]
+    },
+    {
+      "id": "tc_160",
+      "input": "mua sách 120k thanh toán qua techcombank",
+      "tags": [
+        "wallet_bank"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 120000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "techcombank",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sách"
+        }
+      ]
+    },
+    {
+      "id": "tc_161",
+      "input": "tiền phòng gym 350k bằng zalopay",
+      "tags": [
+        "wallet_ewallet"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 350000,
+          "categoryKey": "health",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "zalopay",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền phòng gym"
+        }
+      ]
+    },
+    {
+      "id": "tc_162",
+      "input": "mua đồ ăn vặt 55k bằng shopeepay",
+      "tags": [
+        "wallet_ewallet"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 55000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "shopeepay",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua đồ ăn vặt"
+        }
+      ]
+    },
+    {
+      "id": "tc_163",
+      "input": "đi taxi 90k qua viettelpay",
+      "tags": [
+        "wallet_ewallet"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 90000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "viettelpay",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đi taxi"
+        }
+      ]
+    },
+    {
+      "id": "tc_164",
+      "input": "mua quần jean 450k bằng mb",
+      "tags": [
+        "wallet_bank"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 450000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "mb",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua quần jean"
+        }
+      ]
+    },
+    {
+      "id": "tc_165",
+      "input": "ăn tối 300k chuyển khoản vcb",
+      "tags": [
+        "wallet_bank"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 300000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "vcb",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn tối"
+        }
+      ]
+    },
+    {
+      "id": "tc_166",
+      "input": "nạp 4g 50k trừ ví momo",
+      "tags": [
+        "wallet_momo"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "momo",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "nạp 4g"
+        }
+      ]
+    },
+    {
+      "id": "tc_167",
+      "input": "gửi xe 10k bằng tiền mặt",
+      "tags": [
+        "wallet_cash"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 10000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "cash",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "gửi xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_168",
+      "input": "đặt shopee 180k qua momo",
+      "tags": [
+        "wallet_momo"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 180000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "momo",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đặt shopee"
+        }
+      ]
+    },
+    {
+      "id": "tc_169",
+      "input": "cơm tấm 35k ví momo",
+      "tags": [
+        "wallet_momo"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "momo",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cơm tấm"
+        }
+      ]
+    },
+    {
+      "id": "tc_170",
+      "input": "vé xem phim 110k thẻ vcb",
+      "tags": [
+        "wallet_bank"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 110000,
+          "categoryKey": "entertainment",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": "vcb",
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "vé xem phim"
+        }
+      ]
+    },
+    {
+      "id": "tc_171",
+      "input": "50k tiền xăng",
+      "tags": [
+        "order_amount_first"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_172",
+      "input": "30k cafe",
+      "tags": [
+        "order_amount_first"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cafe"
+        }
+      ]
+    },
+    {
+      "id": "tc_173",
+      "input": "45k phở gà",
+      "tags": [
+        "order_amount_first"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "phở gà"
+        }
+      ]
+    },
+    {
+      "id": "tc_174",
+      "input": "100k mua sách",
+      "tags": [
+        "order_amount_first"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua sách"
+        }
+      ]
+    },
+    {
+      "id": "tc_175",
+      "input": "tiêu 200k đi chợ",
+      "tags": [
+        "order_amount_first"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 200000,
+          "categoryKey": "groceries",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đi chợ"
+        }
+      ]
+    },
+    {
+      "id": "tc_176",
+      "input": "hết 150k tiền thuốc",
+      "tags": [
+        "order_amount_first"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 150000,
+          "categoryKey": "health",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền thuốc"
+        }
+      ]
+    },
+    {
+      "id": "tc_177",
+      "input": "mất 300k sửa xe",
+      "tags": [
+        "order_amount_first"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 300000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "sửa xe"
+        }
+      ]
+    },
+    {
+      "id": "tc_178",
+      "input": "cf sáng 25k",
+      "tags": [
+        "abbreviation"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 25000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cf sáng"
+        }
+      ]
+    },
+    {
+      "id": "tc_179",
+      "input": "cf 30k",
+      "tags": [
+        "abbreviation"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "cf"
+        }
+      ]
+    },
+    {
+      "id": "tc_180",
+      "input": "uống cf sữa 22k",
+      "tags": [
+        "abbreviation"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 22000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "uống cf sữa"
+        }
+      ]
+    },
+    {
+      "id": "tc_181",
+      "input": "đóng net 220k",
+      "tags": [
+        "abbreviation"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 220000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đóng net"
+        }
+      ]
+    },
+    {
+      "id": "tc_182",
+      "input": "tiền net tháng này 250k",
+      "tags": [
+        "abbreviation"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 250000,
+          "categoryKey": "bills",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "tiền net tháng này"
+        }
+      ]
+    },
+    {
+      "id": "tc_183",
+      "input": "trà chanh 15k",
+      "tags": [
+        "category_drink"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 15000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "trà chanh"
+        }
+      ]
+    },
+    {
+      "id": "tc_184",
+      "input": "ăn vặt 40k",
+      "tags": [
+        "category_snack"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 40000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn vặt"
+        }
+      ]
+    },
+    {
+      "id": "tc_185",
+      "input": "trưa ăn cơm rang 35k",
+      "tags": [
+        "order_middle_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 35000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T12:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn cơm rang"
+        }
+      ]
+    },
+    {
+      "id": "tc_186",
+      "input": "chiều uống trà đào 30k",
+      "tags": [
+        "order_middle_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T15:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "uống trà đào"
+        }
+      ]
+    },
+    {
+      "id": "tc_187",
+      "input": "tối ăn lẩu 200k",
+      "tags": [
+        "order_middle_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 200000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T20:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn lẩu"
+        }
+      ]
+    },
+    {
+      "id": "tc_188",
+      "input": "hôm qua đổ 50k xăng",
+      "tags": [
+        "order_split_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-19T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng"
+        }
+      ]
+    },
+    {
+      "id": "tc_189",
+      "input": "sáng mua 30k xôi",
+      "tags": [
+        "order_split_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 30000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T08:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua xôi"
+        }
+      ]
+    },
+    {
+      "id": "tc_190",
+      "input": "tối qua tiêu 150k ăn ốc",
+      "tags": [
+        "order_split_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 150000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-19T20:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "ăn ốc"
+        }
+      ]
+    },
+    {
+      "id": "tc_191",
+      "input": "50k",
+      "tags": [
+        "only_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 50000,
+          "categoryKey": "other_expense",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_192",
+      "input": "100 nghìn",
+      "tags": [
+        "only_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 100000,
+          "categoryKey": "other_expense",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_193",
+      "input": "1tr5",
+      "tags": [
+        "only_amount"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 1500000,
+          "categoryKey": "other_expense",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": null
+        }
+      ]
+    },
+    {
+      "id": "tc_194",
+      "input": "mua 2 cốc trà sữa 60k ở 123 Lê Lợi",
+      "tags": [
+        "noise_quantity_address"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 60000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua 2 cốc trà sữa ở 123 Lê Lợi"
+        }
+      ]
+    },
+    {
+      "id": "tc_195",
+      "input": "đổ xăng xe wave 70k",
+      "tags": [
+        "noise_vehicle_number"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 70000,
+          "categoryKey": "transportation",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "đổ xăng xe wave"
+        }
+      ]
+    },
+    {
+      "id": "tc_196",
+      "input": "mua 3 quyển vở 45k",
+      "tags": [
+        "noise_quantity"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000,
+          "categoryKey": "education",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua 3 quyển vở"
+        }
+      ]
+    },
+    {
+      "id": "tc_197",
+      "input": "bàn số 4 gọi 2 tô phở 90k",
+      "tags": [
+        "noise_table_number"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 90000,
+          "categoryKey": "food_dining",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "bàn số 4 gọi 2 tô phở"
+        }
+      ]
+    },
+    {
+      "id": "tc_198",
+      "input": "mua 1 đôi giày 500k ở tầng 3",
+      "tags": [
+        "noise_floor_number"
+      ],
+      "expected": [
+        {
+          "type": "EXPENSE",
+          "amount": 500000,
+          "categoryKey": "shopping",
+          "datetime": "2026-10-20T10:00:00+07:00",
+          "wallet": null,
+          "sourceWallet": null,
+          "targetWallet": null,
+          "note": "mua 1 đôi giày ở tầng 3"
+        }
+      ]
+    },
+    {
+      "id": "tc_199",
+      "input": "uống cà phê với bạn",
+      "tags": [
+        "no_amount"
+      ],
+      "expected": []
+    },
+    {
+      "id": "tc_200",
+      "input": "đi siêu thị cuối tuần",
+      "tags": [
+        "no_amount"
+      ],
+      "expected": []
+    }
+  ]
+}
