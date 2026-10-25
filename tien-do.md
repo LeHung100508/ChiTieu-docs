@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-11
+- **Task hiện tại:** S0-12
 - **Lượt hiện tại:** Android S0 (lượt sau: iOS iL). Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-10-24
+- **Cập nhật lần cuối:** 2026-10-25
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -23,7 +23,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | S0-08 | Design system: component | 1,5 | Xong | 2026-10-23 | AmountText (định dạng theo locale, dấu −, có unit test), ChiTieuChip, SummaryCard (style summaryAmount khớp mockup), CategoryIcon; mỗi component có Preview sáng và tối |
 | S0-09 | Bộ câu mẫu | 2 | Xong | 2026-10-24 | 200 câu tại docs/shared/parser/ (version, referenceTime, seedKey, mockWallets kèm bí danh); README có quy tắc giờ trong ngày, ưu tiên bí danh, note; TestCaseDatasetTest kiểm cấu trúc và ràng buộc; CI checkout submodule |
 | S0-10 | Parser: chuẩn hóa và tách từ | 1,5 | Xong | 2026-10-24 | VietnameseNormalizer: NFC, regex quét trên câu gốc ra Token (WORD, NUMBER, PUNCTUATION, NEWLINE) kèm vị trí theo raw, chữ thường và bản bỏ dấu từng token; 8 test |
-| S0-11 | Parser: số tiền (FR-02) | 2 | Chưa làm | | |
+| S0-11 | Parser: số tiền (FR-02) | 2 | Xong | 2026-10-25 | AmountParser đạt 200/200 bộ mẫu (Cổng 1); số phụ sau k/tr chỉ gộp khi viết liền, luật dấu chấm/phẩy theo nhóm 3 chữ số, lọc số điện thoại và số sau từ ngữ cảnh, hiểu số đọc ghép; unit test cho các câu ngoài bộ mẫu |
 | S0-12 | Parser: thời gian (FR-03) | 1,5 | Chưa làm | | |
 | S0-13 | Parser: danh mục và tách khoản (FR-04, FR-07) | 1,5 | Chưa làm | | |
 | S0-14 | Đo parser trên JVM (NFR-02) | 1 | Chưa làm | | |
