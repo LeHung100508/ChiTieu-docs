@@ -146,14 +146,22 @@ Chỉ khi câu có từ chỉ quá khứ rõ ràng thì mới tính lùi ngày:
 - **"15/10" / "ngày 15 tháng 10":** `2026-10-15T10:00:00+07:00`.
 - **"hôm nay" / Không nhắc thời gian:** `2026-10-20T10:00:00+07:00`.
 
+*Lưu ý:* Mốc `10:00:00` trong các ví dụ trên là giờ của `referenceTime` trong bộ câu mẫu. Về mặt tổng quát, khi câu chỉ nhắc ngày (`hôm nay`, `hôm qua`, `ngày 5`, `15/10`...) hoặc không nhắc thời gian, giờ sẽ được lấy theo giờ hiện tại từ `Clock`.
+
 ### B. Từ chỉ buổi trong tên món ăn / hành vi
 Các cụm từ như `"ăn sáng"`, `"cơm trưa"`, `"ăn trưa"`, `"ăn tối"`, `"cf sáng"` là **nội dung chi tiêu (mô tả khoản chi)**, **không phải trạng từ chỉ thời gian**.
-- Do đó, chúng **không tự gán lại giờ**, mà giữ nguyên giờ của ngữ cảnh đó (mặc định `10:00:00+07:00`).
+- Do đó, chúng **không tự gán lại giờ**, mà giữ nguyên giờ của ngữ cảnh đó (mặc định theo giờ hiện tại của `Clock`, trong bộ mẫu là `10:00:00+07:00`).
 - Ví dụ:
   - `"ăn sáng 30k"` $\rightarrow$ `datetime: 2026-10-20T10:00:00+07:00`, `note: "ăn sáng"`.
   - `"cơm trưa 40k"` $\rightarrow$ `datetime: 2026-10-20T10:00:00+07:00`, `note: "cơm trưa"`.
   - `"ăn tối 300k"` $\rightarrow$ `datetime: 2026-10-20T10:00:00+07:00`, `note: "ăn tối"`.
   - Trừ khi có trạng từ thời gian đi kèm: `"sáng nay ăn bún chả 40k"` $\rightarrow$ `datetime: 2026-10-20T08:00:00+07:00`, `note: "ăn bún chả"`.
+
+### C. Quy tắc chống ngày tương lai
+Người dùng ghi chép các khoản chi tiêu đã xảy ra trong thực tế, do đó ngày được nhận diện không được rơi vào tương lai:
+- Khi người dùng nói ngày không kèm tháng mà số ngày lớn hơn ngày hiện tại (ví dụ: hôm nay ngày 10/11 mà nói `"ngày 25"`), hệ thống sẽ lùi về ngày đó của tháng trước (25/10).
+- Khi người dùng nói ngày và tháng mà mốc đó lớn hơn ngày hiện tại trong năm (ví dụ: hôm nay ngày 03/01/2027 mà nói `"15/12"`), hệ thống sẽ lùi về năm trước (15/12/2026).
+- Nếu ngày không hợp lệ trong tháng (ví dụ `"ngày 31"` vào tháng chỉ có 30 ngày, hoặc `"30/2"`): parser coi như không có thông tin thời gian hợp lệ (trả về rỗng), không được ném ngoại lệ.
 
 ---
 
