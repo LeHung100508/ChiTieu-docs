@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-13
+- **Task hiện tại:** S0-14
 - **Lượt hiện tại:** Android S0 (lượt sau: iOS iL). Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-10-31
+- **Cập nhật lần cuối:** 2026-11-01
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -25,7 +25,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | S0-10 | Parser: chuẩn hóa và tách từ | 1,5 | Xong | 2026-10-24 | VietnameseNormalizer: NFC, regex quét trên câu gốc ra Token (WORD, NUMBER, PUNCTUATION, NEWLINE) kèm vị trí theo raw, chữ thường và bản bỏ dấu từng token; 8 test |
 | S0-11 | Parser: số tiền (FR-02) | 2 | Xong | 2026-10-25 | AmountParser đạt 200/200 bộ mẫu (Cổng 1); số phụ sau k/tr chỉ gộp khi viết liền, luật dấu chấm/phẩy theo nhóm 3 chữ số, lọc số điện thoại và số sau từ ngữ cảnh, hiểu số đọc ghép; unit test cho các câu ngoài bộ mẫu |
 | S0-12 | Parser: thời gian (FR-03) | 1,5 | Xong | 2026-10-31 | DateTimeParser: giờ động theo Clock, YearMonth.isValidDay chống crash, chống ngày tương lai, hỗ trợ cụm buổi qua/hôm qua/hôm nay; 28 tests; Spotless & Detekt sạch |
-| S0-13 | Parser: danh mục và tách khoản (FR-04, FR-07) | 1,5 | Chưa làm | | |
+| S0-13 | Parser: danh mục và tách khoản (FR-04, FR-07) | 1,5 | Xong | 2026-11-01 | TransactionParser: tách khoản giữa các số tiền, từ điển có dấu (version 1) làm resource main, độ tin cậy cho số tiền/thời gian/danh mục, note cắt từ raw, lan thời gian theo loại mốc; 221/221 khoản đúng cả 4 trường (8 câu chuyển khoản hoãn sang S2-08) |
 | S0-14 | Đo parser trên JVM (NFR-02) | 1 | Chưa làm | | |
 | S0-15 | Tài khoản Google Play | 1 | Chưa làm | | |
 
@@ -166,6 +166,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | Ngày | Task | Mục hoãn | Xử lý trước task |
 | --- | --- | --- | --- |
 | 2026-10-20 | S0-06 | Cảnh báo ReportingExtension.file(String) của Detekt 1.23.8 | Khi Detekt 2.0 ổn định hoặc trước khi nâng lên Gradle 10 |
+| 2026-11-01 | S0-13 | Nhận diện loại chuyển khoản và note null cho 8 câu TRANSFER (tc_117-tc_124) | S2-08 (FR-05, FR-06) |
 
 ## Ngoại lệ (agent viết hộ)
 
@@ -173,6 +174,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | --- | --- | --- | --- |
 | 2026-10-21 | – (tách docs) | Agent chạy lệnh git: subtree split, push lên ChiTieu-docs, tạo nhánh chore/tach-docs, gắn submodule, commit và push nhánh | Người dùng yêu cầu ngoại lệ "chạy lệnh git tách docs" |
 | 2026-10-29 | S0-12 | Viết code ParsedDateTime, DateTimeParser và DateTimeParserTest | Người dùng yêu cầu ngoại lệ "ngoại lệ: S0-12" |
+| 2026-10-31 | S0-13 | Viết code từ điển category_keywords.json, ClauseSplitter, CategoryClassifier, trích xuất note và unit test | Người dùng yêu cầu ngoại lệ "task này là ngoại lệ, hãy làm cho tôi" |
 
 ## Nhật ký sprint
 

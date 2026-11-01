@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "categories": {
+    "food_dining": [
+      "phở bò", "phở gà", "tô phở", "phở",
+      "bún chả", "bún bò", "bún riêu", "bún",
+      "bánh cuốn", "bánh mì", "bánh ngọt", "bánh",
+      "cơm rang", "cơm tấm", "cơm văn phòng", "cơm trưa", "cơm",
+      "ăn sáng", "ăn trưa", "ăn tối", "ăn lẩu", "ăn ốc", "ăn hải sản", "ăn vặt",
+      "cà phê đen", "cà phê", "cafe", "cf sáng", "cf sữa", "cf",
+      "trà sữa", "trà cúc", "trà đào", "trà tắc", "trà chanh", "trà đá", "nước mía",
+      "lẩu", "hải sản", "ốc", "xôi", "bắp rang bơ", "liên hoan", "nhậu", "gọi đồ ăn", "đồ ăn vặt", "đồ ăn"
+    ],
+    "transportation": [
+      "đổ xăng", "tiền xăng", "xăng", "xe wave",
+      "gửi xe", "tiền gửi xe",
+      "vé xe buýt", "xe buýt", "bus",
+      "thay nhớt xe", "thay nhớt",
+      "sửa xe máy", "sửa xe",
+      "bảo dưỡng xe", "rửa xe máy", "rửa xe",
+      "vé máy bay", "vé xe về quê", "vé xe", "vé tàu",
+      "mua xe đạp", "xe đạp", "taxi", "grab", "be", "cầu đường"
+    ],
+    "groceries": [
+      "đi siêu thị", "siêu thị", "đi chợ", "chợ",
+      "mua rau", "rau muống", "rau",
+      "mua thịt", "thịt",
+      "mua cá", "cá",
+      "mua trứng", "trứng",
+      "mua táo", "táo", "nho", "hoa quả", "trái cây",
+      "tôm", "sữa chua", "sữa tươi", "bánh kẹo", "dầu ăn", "gia vị"
+    ],
+    "shopping": [
+      "áo sơ mi", "áo phông", "áo thun", "áo khoác", "áo",
+      "quần jean", "quần",
+      "đôi giày", "giày", "dép",
+      "tủ lạnh", "tai nghe", "máy ép", "máy sấy", "nồi chiên", "máy xay",
+      "kính", "đồng hồ", "laptop", "sữa tắm", "điện thoại",
+      "vest", "balo", "sạc cáp", "sạc dự phòng", "sạc", "chuột máy tính", "bàn phím",
+      "mũ", "tất", "túi xách", "đặt shopee", "shopee", "lazada", "mỹ phẩm"
+    ],
+    "bills": [
+      "tiền điện", "điện",
+      "tiền nước", "nước",
+      "tiền mạng ba tháng", "tiền mạng", "mạng", "tiền net tháng này", "tiền net", "đóng net", "net",
+      "internet", "wifi",
+      "tiền bảo hiểm", "bảo hiểm",
+      "nạp thẻ điện thoại", "thẻ điện thoại", "tiền điện thoại", "cước điện thoại",
+      "nạp 4g", "4g", "nạp 4 g", "4 g", "phí chung cư"
+    ],
+    "housing": [
+      "đóng tiền nhà", "tiền nhà",
+      "tiền phòng trọ", "phòng trọ", "thuê nhà",
+      "bàn làm việc", "mua đệm", "đệm", "sửa điện nước", "nội thất", "bảo trì nhà"
+    ],
+    "entertainment": [
+      "vé xem phim", "xem phim",
+      "vé xem kịch", "xem kịch",
+      "game", "nạp game", "netflix", "spotify", "du lịch", "vé hòa nhạc", "karaoke"
+    ],
+    "health": [
+      "đi khám răng", "khám răng", "nha khoa",
+      "mua thuốc", "tiền thuốc", "thuốc cảm", "thuốc",
+      "khẩu trang", "khám bệnh", "viện phí",
+      "tiền phòng gym", "phòng gym", "tiền gym", "gym", "yoga"
+    ],
+    "education": [
+      "đóng tiền học", "tiền học", "học phí",
+      "đóng quỹ lớp", "quỹ lớp",
+      "mua sách", "tiền sách", "sách",
+      "quyển vở", "vở", "bút", "giáo trình", "khóa học"
+    ],
+    "family": [
+      "đi ăn cưới", "ăn cưới", "tiền mừng", "phong bì",
+      "mua sữa cho con", "sữa cho con", "bỉm sữa", "bỉm", "tã", "biếu bố mẹ", "biếu ông bà",
+      "đồ chơi cho bé", "cho bé", "đồ chơi"
+    ],
+    "pets": [
+      "thức ăn chó", "thức ăn mèo", "hạt cho mèo", "cát vệ sinh", "thú y", "khám thú y"
+    ],
+    "personal": [
+      "cắt tóc", "gội đầu", "spa", "làm móng", "nail", "massage"
+    ],
+    "income_salary": [
+      "lương cứng", "lương làm thêm", "lương về", "công ty trả lương", "trả lương", "nhận lương", "tiền lương", "lương"
+    ],
+    "income_bonus": [
+      "thưởng dự án", "thưởng quý", "thưởng tết", "thưởng nóng", "nhận hoa hồng", "hoa hồng", "thưởng"
+    ],
+    "income_gift": [
+      "mẹ cho", "bố cho", "anh trai lì xì", "tiền lì xì", "lì xì", "được bạn tặng", "được tặng", "được mừng"
+    ],
+    "income_investment": [
+      "lãi tiết kiệm", "tiền lãi", "cổ tức", "nhận cổ tức", "lợi nhuận"
+    ],
+    "other_income": [
+      "bán đồ cũ", "thu tiền phòng trọ", "thu tiền phòng"
+    ]
+  }
+}

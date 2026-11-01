@@ -163,6 +163,17 @@ Người dùng ghi chép các khoản chi tiêu đã xảy ra trong thực tế,
 - Khi người dùng nói ngày và tháng mà mốc đó lớn hơn ngày hiện tại trong năm (ví dụ: hôm nay ngày 03/01/2027 mà nói `"15/12"`), hệ thống sẽ lùi về năm trước (15/12/2026).
 - Nếu ngày không hợp lệ trong tháng (ví dụ `"ngày 31"` vào tháng chỉ có 30 ngày, hoặc `"30/2"`): parser coi như không có thông tin thời gian hợp lệ (trả về rỗng), không được ném ngoại lệ.
 
+### D. Lan ngữ cảnh thời gian trong câu đa khoản (Multi-clause inheritance)
+Trong câu gồm nhiều mệnh đề chi tiêu:
+1. Mốc thời gian được **lan sang các khoản kế tiếp** khi và chỉ khi mệnh đề đầu tiên có mốc thời gian rõ ràng thuộc một trong các loại sau:
+   - Mốc ngày tương đối hoặc tuyệt đối: `"hôm qua"`, `"hôm kia"`, `"ngày 5"`, `"15/10"`, `"thứ 2 tuần trước"`.
+   - Cụm buổi đi kèm từ bổ trợ thời gian: `"sáng nay"`, `"tối qua"`, `"chiều nay"`, `"đêm qua"`.
+   - Ví dụ: `"hôm qua ăn sáng 35k, ăn trưa 45k"` $\rightarrow$ cả hai khoản đều mang ngày hôm qua (`2026-10-19`).
+   - Ví dụ: `"sáng nay cafe 25k, mua bánh 15k"` $\rightarrow$ cả hai khoản đều mang mốc 08:00 sáng nay (`2026-10-20T08:00:00`).
+2. Mốc thời gian **không lan sang các khoản sau** khi mệnh đề đầu chỉ là từ chỉ buổi đứng độc lập (`"sáng"`, `"trưa"`, `"chiều"`, `"tối"`):
+   - Ví dụ: `"sáng phở 45k, trưa cơm 35k, cafe 29k"` $\rightarrow$ khoản 1 nhận 08:00, khoản 2 nhận 12:00, khoản 3 nhận giờ mặc định (10:00).
+3. Mệnh đề sau có mốc thời gian riêng thì luôn ưu tiên mốc thời gian của chính nó, không bị ghi đè bởi mốc lan từ trước.
+
 ---
 
 ## 5. Quy tắc trích xuất `note` (Ghi chú mô tả)
@@ -173,6 +184,29 @@ Người dùng ghi chép các khoản chi tiêu đã xảy ra trong thực tế,
    - Ví dụ: `"sáng phở 45k"` $\rightarrow$ `note: "phở"` (bỏ chữ "sáng").
    - `"hôm qua ăn ốc 150k"` $\rightarrow$ `note: "ăn ốc"` (bỏ chữ "hôm qua").
    - `"tối ăn lẩu 200k"` $\rightarrow$ `note: "ăn lẩu"` (bỏ chữ "tối").
-4. Động từ hành động ("ăn", "mua", "uống", "đóng", "trả"): giữ lại nếu đi liền với danh từ mô tả (ví dụ `"mua áo"`, `"ăn phở"`, `"đổ xăng"`).
+4. Động từ hành động ("ăn", "mua", "uống", "đóng", "trả"): giữ lại nếu đi liền với danh từ mô tả (ví dụ `"mua áo"`, `"ăn phở"`, `"đổ xăng"`). Các hư từ tiêu hao đứng trước số tiền ("tiêu", "hết", "mất", "được") được loại bỏ nếu câu còn mô tả khác (ví dụ: `"tiêu 200k đi chợ"` $\rightarrow$ `note: "đi chợ"`, `"bán đồ cũ được 350k"` $\rightarrow$ `note: "bán đồ cũ"`).
 5. Chuyển khoản (`TRANSFER`): Nếu câu chỉ nêu hành vi chuyển tiền thuần túy giữa hai ví mà không nêu mục đích chi tiêu (ví dụ `"chuyển 2tr từ VCB sang ví tiền mặt"`, `"rút tiền mặt 1tr từ atm vcb"`), `note = null`. Chỉ khi câu có nêu mục đích hoặc người nhận (ví dụ `"chuyển 500k cho vợ"`), `note` mới nhận giá trị `"cho vợ"`.
-6. Khi kiểm thử parser, trường `note` được so khớp chuẩn hóa (bỏ khoảng trắng thừa, không phân biệt hoa thường).
+6. Giữ nguyên định dạng chữ hoa/chữ thường và vị trí cắt từ chuỗi gốc `raw` (ví dụ `"Grab về nhà 62k"` $\rightarrow$ `note: "Grab về nhà"`).
+7. Khi kiểm thử parser, trường `note` được so khớp chuẩn hóa (bỏ khoảng trắng thừa, không phân biệt hoa thường).
+
+---
+
+## 6. Quy tắc tách mệnh đề (Clause Splitting - FR-07)
+
+1. Một câu chỉ được tách thành $N$ mệnh đề giao dịch độc lập khi câu đó có đúng $N$ khoản tiền ($N \ge 2$).
+2. Ranh giới tách giữa khoản tiền thứ $k$ và khoản tiền thứ $k+1$ được xác định dựa trên các ký hiệu hoặc liên từ phân cách xuất hiện giữa chúng:
+   - Dấu phẩy (`,`), dấu chấm phẩy (`;`), ký tự xuống dòng (`\n`).
+   - Liên từ `"và"` hoặc `"với"` khi đóng vai trò nối giữa 2 khoản chi độc lập (ví dụ: `"mua bánh mì 20k và cà phê 25k"`, `"mua áo 250k với mua quần 350k"`).
+3. Nếu liên từ `"và"` hoặc `"với"` nằm trong cùng một khoản chi tiêu (chỉ có 1 số tiền duy nhất, ví dụ `"mua rau và thịt 80k"`, `"cà phê với bạn 30k"`), liên từ này **không** được coi là ranh giới tách và **không** bị xóa khỏi `note`.
+
+---
+
+## 7. Cấu trúc Từ điển Từ khóa Danh mục (`category_keywords.json`)
+
+File `docs/shared/parser/category_keywords.json` được dùng chung giữa Android và iOS:
+- **`version`** (`Int`): Số phiên bản từ điển (hiện tại là `1`).
+- **`categories`** (`Map<String, Array<String>>`): Ánh xạ từng `seedKey` chuẩn sang danh sách các cụm từ khóa có dấu (tiếng Việt chuẩn) và không dấu.
+- **Quy tắc so khớp:**
+  - Khớp bản có dấu trước (cho độ tin cậy cao nhất `confidence = 1.0`).
+  - Khớp bản không dấu sau (cho độ tin cậy `confidence = 0.8`).
+  - Các từ đơn quá ngắn, dễ trùng ngữ cảnh trong tiếng Việt không dấu (như `"cho"` vs `"chợ"`, `"be"` vs `"bé"`, `"quan"` vs `"quần"`/`"quán"`, `"tao"` vs `"táo"`, `"ca"` vs `"cá"`) bắt buộc phải có dấu hoặc đi kèm từ bổ trợ ngữ cảnh.
