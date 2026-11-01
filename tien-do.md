@@ -1,7 +1,7 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-14
+- **Task hiện tại:** S0-15
 - **Lượt hiện tại:** Android S0 (lượt sau: iOS iL). Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-01
 
@@ -26,7 +26,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | S0-11 | Parser: số tiền (FR-02) | 2 | Xong | 2026-10-25 | AmountParser đạt 200/200 bộ mẫu (Cổng 1); số phụ sau k/tr chỉ gộp khi viết liền, luật dấu chấm/phẩy theo nhóm 3 chữ số, lọc số điện thoại và số sau từ ngữ cảnh, hiểu số đọc ghép; unit test cho các câu ngoài bộ mẫu |
 | S0-12 | Parser: thời gian (FR-03) | 1,5 | Xong | 2026-10-31 | DateTimeParser: giờ động theo Clock, YearMonth.isValidDay chống crash, chống ngày tương lai, hỗ trợ cụm buổi qua/hôm qua/hôm nay; 28 tests; Spotless & Detekt sạch |
 | S0-13 | Parser: danh mục và tách khoản (FR-04, FR-07) | 1,5 | Xong | 2026-11-01 | TransactionParser: tách khoản giữa các số tiền, từ điển có dấu (version 1) làm resource main, độ tin cậy cho số tiền/thời gian/danh mục, note cắt từ raw, lan thời gian theo loại mốc; 221/221 khoản đúng cả 4 trường (8 câu chuyển khoản hoãn sang S2-08) |
-| S0-14 | Đo parser trên JVM (NFR-02) | 1 | Chưa làm | | |
+| S0-14 | Đo parser trên JVM (NFR-02) | 1 | Xong | 2026-11-01 | Rà soát lần 2: Dùng strict Json cho TestDatasetLoader; đo cold start bằng số thực tế kèm lệnh chạy JVM độc lập, ghi Nợ kỹ thuật preload ở S2-05; sau warm-up p95 đạt 0,16 ms (NFR-02 < 50 ms); 100% check pass |
 | S0-15 | Tài khoản Google Play | 1 | Chưa làm | | |
 
 ## S1 Tuần 3–4 · Dữ liệu, ví, danh mục, onboarding
@@ -167,6 +167,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | --- | --- | --- | --- |
 | 2026-10-20 | S0-06 | Cảnh báo ReportingExtension.file(String) của Detekt 1.23.8 | Khi Detekt 2.0 ổn định hoặc trước khi nâng lên Gradle 10 |
 | 2026-11-01 | S0-13 | Nhận diện loại chuyển khoản và note null cho 8 câu TRANSFER (tc_117-tc_124) | S2-08 (FR-05, FR-06) |
+| 2026-11-01 | S0-14 | Nạp sẵn từ điển ngoài luồng chính khi mở màn Nhập nhanh (do cold start vượt ngưỡng trên JVM mới) | S2-05 (đo lại ở S4-10) |
 
 ## Ngoại lệ (agent viết hộ)
 
@@ -175,6 +176,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | 2026-10-21 | – (tách docs) | Agent chạy lệnh git: subtree split, push lên ChiTieu-docs, tạo nhánh chore/tach-docs, gắn submodule, commit và push nhánh | Người dùng yêu cầu ngoại lệ "chạy lệnh git tách docs" |
 | 2026-10-29 | S0-12 | Viết code ParsedDateTime, DateTimeParser và DateTimeParserTest | Người dùng yêu cầu ngoại lệ "ngoại lệ: S0-12" |
 | 2026-10-31 | S0-13 | Viết code từ điển category_keywords.json, ClauseSplitter, CategoryClassifier, trích xuất note và unit test | Người dùng yêu cầu ngoại lệ "task này là ngoại lệ, hãy làm cho tôi" |
+| 2026-11-01 | S0-14 | Viết test benchmark đo hiệu năng parser trên JVM (NFR-02) và phân tích thống kê p50, p90, p95 | Người dùng yêu cầu ngoại lệ "Ngoại lệ: S0-14" |
 
 ## Nhật ký sprint
 
