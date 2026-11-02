@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S0-15
-- **Lượt hiện tại:** Android S0 (lượt sau: iOS iL). Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-01
+- **Task hiện tại:** iL-01 (repo iOS); Android tiếp theo: S1-01
+- **Lượt hiện tại:** iOS iL (lượt sau: Android S1). S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
+- **Cập nhật lần cuối:** 2026-11-02
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -27,7 +27,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | S0-12 | Parser: thời gian (FR-03) | 1,5 | Xong | 2026-10-31 | DateTimeParser: giờ động theo Clock, YearMonth.isValidDay chống crash, chống ngày tương lai, hỗ trợ cụm buổi qua/hôm qua/hôm nay; 28 tests; Spotless & Detekt sạch |
 | S0-13 | Parser: danh mục và tách khoản (FR-04, FR-07) | 1,5 | Xong | 2026-11-01 | TransactionParser: tách khoản giữa các số tiền, từ điển có dấu (version 1) làm resource main, độ tin cậy cho số tiền/thời gian/danh mục, note cắt từ raw, lan thời gian theo loại mốc; 221/221 khoản đúng cả 4 trường (8 câu chuyển khoản hoãn sang S2-08) |
 | S0-14 | Đo parser trên JVM (NFR-02) | 1 | Xong | 2026-11-01 | Rà soát lần 2: Dùng strict Json cho TestDatasetLoader; đo cold start bằng số thực tế kèm lệnh chạy JVM độc lập, ghi Nợ kỹ thuật preload ở S2-05; sau warm-up p95 đạt 0,16 ms (NFR-02 < 50 ms); 100% check pass |
-| S0-15 | Tài khoản Google Play | 1 | Chưa làm | | |
+| S0-15 | Tài khoản Google Play | 1 | Chưa làm | | Hoãn theo quyết định của người dùng ngày 2026-11-01: làm khi MVP hoàn thiện (sau Cổng 2, trước S5-01); xem Nợ kỹ thuật |
 
 ## S1 Tuần 3–4 · Dữ liệu, ví, danh mục, onboarding
 
@@ -168,6 +168,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | 2026-10-20 | S0-06 | Cảnh báo ReportingExtension.file(String) của Detekt 1.23.8 | Khi Detekt 2.0 ổn định hoặc trước khi nâng lên Gradle 10 |
 | 2026-11-01 | S0-13 | Nhận diện loại chuyển khoản và note null cho 8 câu TRANSFER (tc_117-tc_124) | S2-08 (FR-05, FR-06) |
 | 2026-11-01 | S0-14 | Nạp sẵn từ điển ngoài luồng chính khi mở màn Nhập nhanh (do cold start vượt ngưỡng trên JVM mới) | S2-05 (đo lại ở S4-10) |
+| 2026-11-01 | S0-15 | Tạo tài khoản Google Play và gửi xác minh danh tính (dời theo quyết định của người dùng). Rủi ro: xác minh lâu hoặc bị từ chối sẽ chặn S5-07 | Ngay sau Cổng 2, trước S5-01 |
 
 ## Ngoại lệ (agent viết hộ)
 
@@ -181,3 +182,9 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 ## Nhật ký sprint
 
 (Cuối mỗi sprint: kết quả so với "Xong khi", việc tốt, việc chậm, thay đổi cho sprint sau.)
+
+### S0 · 2026-10-10 → 2026-11-01 (khoảng 3,5 tuần, kế hoạch 2 tuần)
+- **Kết quả so với "Xong khi" (Cổng 1):** đạt. CI xanh, `main` được ruleset bảo vệ; parser đúng số tiền 200/200 câu mẫu; theme và component có Preview sáng/tối. 14/15 task xong; S0-15 dời tới sau Cổng 2 (trước S5-01) theo quyết định của người dùng.
+- **Việc tốt:** gần như mọi phần của S0 hoàn thiện tốt; người dùng hiểu rõ những gì mình đang làm.
+- **Việc chậm:** phần giải thuật của parser (S0-11 đến S0-14), người dùng chưa nắm vững nên làm chậm; S0-12, S0-13, S0-14 phải dùng ngoại lệ viết hộ.
+- **Thay đổi cho sprint sau:** mục tiêu của dự án là học kiến trúc và công nghệ mới trên Android và iOS, không đi sâu vào giải thuật. Từ nay, task thiên về giải thuật xử lý ngôn ngữ tự nhiên do agent viết phần giải thuật, giải thích và đặt câu hỏi mở để kiểm tra người dùng đã hiểu (đã ghi vào mục 2 của `luat-agent.md`, đoạn "Task giải thuật", ngày 2026-11-02).

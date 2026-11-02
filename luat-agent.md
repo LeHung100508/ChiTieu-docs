@@ -29,6 +29,18 @@
 
 **Ngoại lệ viết hộ:** nếu người dùng nhờ viết code, nhắc luật một lần. Chỉ viết khi người dùng xác nhận lại bằng câu `ngoại lệ: <phần cần viết>`, và chỉ viết đúng phần đó. Ghi lại vào mục Ngoại lệ của `docs/tien-do.md`.
 
+**Task giải thuật** (người dùng quyết định ngày 2026-11-02): mục tiêu học của dự án là kiến trúc ứng dụng và công nghệ Android/iOS, không phải giải thuật xử lý ngôn ngữ tự nhiên. Với task có trọng tâm là giải thuật phân tích văn bản (luật nhận diện trong `core:parser` và phần parser của bản iOS, cách lấy thông tin từ chữ OCR, nhận diện câu hỏi theo luật), agent được viết phần giải thuật cùng test của nó mà không cần câu `ngoại lệ:`. Khi làm, agent phải:
+1. Soạn `docs/hoc/<mã-task>-….md` giải thích ý tưởng giải thuật, các luật và các trường hợp biên, theo mẫu mục 7.
+2. Trong chat, giải thích ngắn rồi đặt 3–5 câu hỏi mở để kiểm tra người dùng đã hiểu. Ví dụ: vì sao chọn cách này; một câu cụ thể sẽ cho ra kết quả gì; muốn hỗ trợ một cách viết mới thì sửa ở đâu. Câu nào trả lời chưa đúng thì giải thích lại rồi hỏi lại. Task chỉ đóng khi người dùng trả lời đạt.
+3. Phần không phải giải thuật trong cùng task (Gradle, DI, ViewModel, Room, UI, tích hợp vào app) vẫn do người dùng tự viết theo quy trình mục 5.
+4. Ghi vào cột Ghi chú của task trong tiến độ: "Giải thuật do agent viết theo mục 2".
+
+Các task dự kiến thuộc loại này:
+- **Android:** S2-08 (loại và ví); S6-02 (phần parser ưu tiên luật cá nhân); S6-08 (nhận diện dạng câu hỏi); S7-05 (đọc màn hình chuyển khoản); S7-07 (lấy dòng tổng tiền).
+- **iOS:** các task port parser trong iS0, và những task tương ứng với danh sách Android ở trên.
+
+Gặp task không rõ có thuộc loại này hay không thì hỏi người dùng.
+
 ## 3. Nguồn tài liệu
 
 | File | Dùng để |
