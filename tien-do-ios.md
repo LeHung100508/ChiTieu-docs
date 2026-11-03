@@ -1,0 +1,77 @@
+# Tiến độ ChiTieu iOS
+
+- **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
+- **Task hiện tại:** iL-01
+- **Lượt hiện tại:** iOS iL (lượt sau: Android S1). S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
+- **Cập nhật lần cuối:** 2026-11-02
+
+Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
+
+> File này chỉ là bản ghi phụ. Căn cứ chính để xác định tiến độ là source code và lịch sử git (commit `[iL-xx]`, `[iSx-yy]`), xem mục 4, 9 và 13.6 của luật.
+
+## iL Tuần 3–4, sau Android S0 · Làm quen Swift, Xcode và SwiftUI
+
+| Task | Việc | Giờ | Trạng thái | Ngày xong | Ghi chú |
+| --- | --- | --- | --- | --- | --- |
+| iL-01 | Tạo repo iOS | 1 | Đang làm | | |
+| iL-02 | Cài Xcode, chạy app đầu tiên | 1,5 | Chưa làm | | |
+| iL-03 | Swift: optional và value type | 2 | Chưa làm | | |
+| iL-04 | Swift: enum, protocol, generics | 2,5 | Chưa làm | | |
+| iL-05 | Swift: closure, lỗi, Codable | 2 | Chưa làm | | |
+| iL-06 | ARC và retain cycle | 1,5 | Chưa làm | | |
+| iL-07 | Concurrency: async/await và Task | 1,5 | Chưa làm | | |
+| iL-08 | Concurrency: actor và Swift 6 | 2,5 | Chưa làm | | |
+| iL-09 | SwiftUI: view và state | 3 | Chưa làm | | |
+| iL-10 | SwiftUI: Observable và điều hướng | 3 | Chưa làm | | |
+| iL-11 | Debug | 1 | Chưa làm | | |
+| iL-12 | Cổng 0 và tổng kết | 0,5 | Chưa làm | | |
+
+## iS0 Tuần 7–8, sau Android S1 · Khung dự án và bộ phân tích câu
+
+*(Chưa chia task chi tiết; xem `docs/task-ios.html` và `docs/ke-hoach-ios.html`)*
+
+## iS1 Tuần 11–12, sau Android S2 · Dữ liệu, ví, danh mục, onboarding
+
+*(Chưa chia task chi tiết)*
+
+## iS2 Tuần 15–16, sau Android S3 · Nhập bằng câu từ đầu đến cuối
+
+*(Chưa chia task chi tiết)*
+
+## iS3 Tuần 19–20, sau Android S4 · Giao dịch, ngân sách, widget
+
+*(Chưa chia task chi tiết)*
+
+## iS4 Tuần 23–24, sau Android S5 · Thống kê và hoàn thiện MVP
+
+*(Chưa chia task chi tiết)*
+
+## iS5 Tuần 27–28 (+29) · TestFlight và phát hành App Store
+
+*(Chưa chia task chi tiết)*
+
+## iS6 Tuần 31–32 · AI trên máy và học từ người dùng
+
+*(Chưa chia task chi tiết)*
+
+## iS7 Tuần 35–36 · Nhập từ ảnh và lối tắt
+
+*(Chưa chia task chi tiết)*
+
+## iS8 Tuần 37–38 · Tự động hóa, iCloud, sao lưu, phát hành v1.1
+
+*(Chưa chia task chi tiết)*
+
+## Nợ kỹ thuật
+
+| Ngày | Task | Mục hoãn | Xử lý trước task |
+| --- | --- | --- | --- |
+
+## Ngoại lệ (agent viết hộ)
+
+| Ngày | Task | Phần được viết hộ | Lý do |
+| --- | --- | --- | --- |
+
+## Nhật ký sprint
+
+(Cuối mỗi sprint: kết quả so với "Xong khi", việc tốt, việc chậm, thay đổi cho sprint sau.)
