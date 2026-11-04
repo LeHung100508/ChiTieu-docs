@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iL-02
+- **Task hiện tại:** iL-03
 - **Lượt hiện tại:** iOS iL (lượt sau: Android S1). S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-03
+- **Cập nhật lần cuối:** 2026-11-04
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -14,7 +14,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | Task | Việc | Giờ | Trạng thái | Ngày xong | Ghi chú |
 | --- | --- | --- | --- | --- | --- |
 | iL-01 | Tạo repo iOS | 1 | Xong | 2026-11-03 | Khởi tạo repo iOS, .gitignore Xcode/SwiftPM, gắn submodule docs/, CLAUDE.md & AGENTS.md chuẩn |
-| iL-02 | Cài Xcode, chạy app đầu tiên | 1,5 | Chưa làm | | |
+| iL-02 | Cài Xcode, chạy app đầu tiên | 1,5 | Xong | 2026-11-04 | Xcode 27.2, chạy SachDoc thành công trên Simulator và iPhone thật |
 | iL-03 | Swift: optional và value type | 2 | Chưa làm | | |
 | iL-04 | Swift: enum, protocol, generics | 2,5 | Chưa làm | | |
 | iL-05 | Swift: closure, lỗi, Codable | 2 | Chưa làm | | |
