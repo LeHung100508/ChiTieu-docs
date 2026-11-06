@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iL-05
+- **Task hiện tại:** iL-06
 - **Lượt hiện tại:** iOS iL (lượt sau: Android S1). S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-05
+- **Cập nhật lần cuối:** 2026-11-06
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -17,7 +17,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iL-02 | Cài Xcode, chạy app đầu tiên | 1,5 | Xong | 2026-11-04 | Xcode 27.2, chạy SachDoc thành công trên Simulator và iPhone thật; Deployment Target 26.0 |
 | iL-03 | Swift: optional và value type | 2 | Xong | 2026-11-05 | Package SwiftCoBan, 5 test Swift Testing xanh; có test biên parseAge("0") và test struct sao chép, class dùng chung |
 | iL-04 | Swift: enum, protocol, generics | 2,5 | Xong | 2026-11-05 | 9 test xanh; trả lời đạt 3 câu về some/any, generic với mảng dị thể, so sánh với sealed class và interface của Kotlin |
-| iL-05 | Swift: closure, lỗi, Codable | 2 | Chưa làm | | |
+| iL-05 | Swift: closure, lỗi, Codable | 2 | Xong | 2026-11-06 | 15 test xanh; đọc books.json qua Bundle.module, CodingKeys, trường optional; test lỗi phân biệt dataCorrupted và keyNotFound |
 | iL-06 | ARC và retain cycle | 1,5 | Chưa làm | | |
 | iL-07 | Concurrency: async/await và Task | 1,5 | Chưa làm | | |
 | iL-08 | Concurrency: actor và Swift 6 | 2,5 | Chưa làm | | |
