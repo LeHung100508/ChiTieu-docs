@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iL-08
+- **Task hiện tại:** iL-09
 - **Lượt hiện tại:** iOS iL (lượt sau: Android S1). S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-07
+- **Cập nhật lần cuối:** 2026-11-08
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -20,7 +20,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iL-05 | Swift: closure, lỗi, Codable | 2 | Xong | 2026-11-06 | 15 test xanh; đọc books.json qua Bundle.module, CodingKeys, trường optional; test lỗi phân biệt dataCorrupted và keyNotFound |
 | iL-06 | ARC và retain cycle | 1,5 | Xong | 2026-11-07 | 18 test xanh; test giải phóng cho weak (2 object, closure) và unowned (Book–Bookmark); trả lời đạt 4 câu weak/unowned, Memory Graph, struct không cần weak self |
 | iL-07 | Concurrency: async/await và Task | 1,5 | Xong | 2026-11-07 | 24 test xanh; async let, test nhánh lỗi, test hủy chứng minh được checkCancellation và isCancelled có tác dụng |
-| iL-08 | Concurrency: actor và Swift 6 | 2,5 | Chưa làm | | |
+| iL-08 | Concurrency: actor và Swift 6 | 2,5 | Xong | 2026-11-08 | 31 test xanh, build sạch Swift 6 mode; ghi lại 3 lỗi thật (sending non-Sendable vào Task, biến toàn cục, @MainActor từ nonisolated) đã đối chiếu với compiler 6.4 |
 | iL-09 | SwiftUI: view và state | 3 | Chưa làm | | |
 | iL-10 | SwiftUI: Observable và điều hướng | 3 | Chưa làm | | |
 | iL-11 | Debug | 1 | Chưa làm | | |
