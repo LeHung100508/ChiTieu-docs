@@ -1,7 +1,7 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iL-10
+- **Task hiện tại:** iL-11
 - **Lượt hiện tại:** iOS iL (lượt sau: Android S1). S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-09
 
@@ -22,7 +22,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iL-07 | Concurrency: async/await và Task | 1,5 | Xong | 2026-11-07 | 24 test xanh; async let, test nhánh lỗi, test hủy chứng minh được checkCancellation và isCancelled có tác dụng |
 | iL-08 | Concurrency: actor và Swift 6 | 2,5 | Xong | 2026-11-08 | 31 test xanh, build sạch Swift 6 mode; ghi lại 3 lỗi thật (sending non-Sendable vào Task, biến toàn cục, @MainActor từ nonisolated) đã đối chiếu với compiler 6.4 |
 | iL-09 | SwiftUI: view và state | 3 | Xong | 2026-11-09 | Book, BookRowView (@Binding), BookListView, ContentView (@State, một NavigationStack); preview tương tác bằng @Previewable, có trạng thái rỗng và tên dài; giải thích đúng thứ tự padding/background; build sạch |
-| iL-10 | SwiftUI: Observable và điều hướng | 3 | Chưa làm | | |
+| iL-10 | SwiftUI: Observable và điều hướng | 3 | Xong | 2026-11-09 | BookStore @Observable có add/update/book(for:); điều hướng bằng id với navigationDestination(for: UUID.self); thêm và sửa qua sheet trên bản nháp; @Bindable cho $store.books; đã chạy đúng trên iPhone thật; build sạch |
 | iL-11 | Debug | 1 | Chưa làm | | |
 | iL-12 | Cổng 0 và tổng kết | 0,5 | Chưa làm | | |
 
