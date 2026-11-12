@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iL-12
-- **Lượt hiện tại:** iOS iL (lượt sau: Android S1). S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-11
+- **Task hiện tại:** chưa có. Sprint iL đã đóng; task iS0 sẽ được chia trước khi bắt đầu iS0, sau Android S1
+- **Lượt hiện tại:** Android S1 (lượt sau: iOS iS0). iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
+- **Cập nhật lần cuối:** 2026-11-12
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -24,7 +24,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iL-09 | SwiftUI: view và state | 3 | Xong | 2026-11-09 | Book, BookRowView (@Binding), BookListView, ContentView (@State, một NavigationStack); preview tương tác bằng @Previewable, có trạng thái rỗng và tên dài; giải thích đúng thứ tự padding/background; build sạch |
 | iL-10 | SwiftUI: Observable và điều hướng | 3 | Xong | 2026-11-09 | BookStore @Observable có add/update/book(for:); điều hướng bằng id với navigationDestination(for: UUID.self); thêm và sửa qua sheet trên bản nháp; @Bindable cho $store.books; đã chạy đúng trên iPhone thật; build sạch |
 | iL-11 | Debug | 1 | Xong | 2026-11-11 | Nhật ký debug lỗi cài vào (books[0] = book gây trùng ID trong ForEach): breakpoint có điều kiện, po/p/expr, View Hierarchy đo nút tròn 26×26 pt (chưa đạt 44 pt); build sạch |
-| iL-12 | Cổng 0 và tổng kết | 0,5 | Chưa làm | | |
+| iL-12 | Cổng 0 và tổng kết | 0,5 | Xong | 2026-11-12 | Cổng 0 đạt: SwiftCoBan 31 test xanh, app đã chạy trên iPhone thật, tự giải thích đạt 5 khái niệm (ARC, actor isolation, identity cần hỏi lại một lượt) |
 
 ## iS0 Tuần 7–8, sau Android S1 · Khung dự án và bộ phân tích câu
 
@@ -75,3 +75,15 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 ## Nhật ký sprint
 
 (Cuối mỗi sprint: kết quả so với "Xong khi", việc tốt, việc chậm, thay đổi cho sprint sau.)
+
+### iL · 2026-11-02 → 2026-11-12 (khoảng 1,5 tuần, kế hoạch 2 tuần)
+- **Kết quả so với "Xong khi" (Cổng 0):** đạt. `luyen-tap/SwiftCoBan` có 31 test, 10 suite, tất cả xanh. SachDoc đã chạy trên iPhone thật. Người dùng tự giải thích được 5 khái niệm. Với ARC, actor isolation và identity, mentor phải hỏi lại một lượt. 12/12 task xong, không có nợ kỹ thuật.
+- **Việc tốt:** theo người dùng, mọi thứ đều ổn.
+- **Việc chậm:** người dùng không thấy việc nào chậm.
+- **Thay đổi cho sprint sau:** người dùng chưa muốn đổi gì.
+- **Quan sát của mentor:** cần nhắc từ S1 và iS0.
+  - Để mentor đổi cột trạng thái trong tiến độ. Người dùng đã nhiều lần tự ghi Xong trước khi rà soát.
+  - Build và chạy test trước khi báo xong. Ở iL-11 có lần báo xong khi code còn BUILD FAILED.
+  - Khi tự viết tài liệu `hoc/`, đối chiếu với tài liệu chính thức. Tài liệu của iL-10 và iL-11 có vài chỗ sai về API.
+  - Ở Cổng 0, trả lời bằng lời của mình, không dán.
+  - Chủ đề cần ôn lại ở iS0: điều kiện để một `struct` là `Sendable`; optional chaining làm phẳng kiểu kết quả.
