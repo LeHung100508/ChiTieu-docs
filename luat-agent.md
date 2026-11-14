@@ -247,7 +247,9 @@ Người dùng tự chạy các lệnh git. Bạn chỉ đưa lệnh và nhắc 
 
 ### 13.3 Thứ tự luân phiên và lượt hiện tại
 Hai bản làm luân phiên theo sprint:
-`S0 → iL → S1 → iS0 → S2 → iS1 → S3 → iS2 → S4 → iS3 → S5 → iS4 → S6 → iS5 → S7 → iS6 → S8 → iS7 → iS8`
+`S0 → iL → iS0 → S1 → iS1 → S2 → iS2 → S3 → iS3 → S4 → iS4 → S5 → iS5 → S6 → iS6 → S7 → iS7 → S8 → iS8`
+- Mỗi sprint iOS `iSn` làm ngay sau sprint Android `Sn` cùng phạm vi, nên luôn có bản Android làm mẫu. Thứ tự này do người dùng quyết định ngày 2026-11-12, thay cho thứ tự cũ mà trong đó iOS đi sau một sprint.
+- Người dùng có thể làm song song sprint Android kế tiếp trong lúc đang ở lượt iOS (quyết định ngày 2026-11-12). Khi người dùng mở phiên ở repo Android trong lượt iOS, agent không cần hỏi lại có muốn chuyển repo hay không. Agent chỉ ghi chú "làm song song" vào tiến độ Android.
 - Lượt hiện tại là sprint đầu tiên chưa Xong trong chuỗi trên. Sprint Xong khi mọi task của nó Xong, hoặc phần còn lại đã được người dùng đồng ý dời sang sprint sau và ghi vào tiến độ.
 - Tiến độ của cả hai bản nằm trong repo tài liệu, nên đọc được từ repo nào cũng vậy. Dòng "Lượt hiện tại" ở đầu `tien-do.md` và `tien-do-ios.md` phải khớp nhau. Nếu cần bằng chứng git của nền tảng kia, xem lịch sử commit của repo đó trên GitHub (cả hai repo đều public).
 - Nếu người dùng mở phiên ở repo không đúng lượt: báo lượt hiện tại, hỏi người dùng muốn chuyển repo hay làm tiếp ở đây. Nếu làm khác lượt thì ghi lý do vào tiến độ của nền tảng đang làm.

@@ -41,7 +41,7 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(-
 <h1>Chia task theo sprint – ChiNhanh iOS</h1>
 <p class="meta">Lập ngày 20/10/2026 · Căn cứ: <a href="ke-hoach-ios.html">kế hoạch iOS</a> (duyệt ngày 20/10/2026), <a href="dac-ta-ios.html">đặc tả iOS</a></p>
 
-<p class="lead">Hiện mới chia <b>sprint iL: 12 task, 22 giờ</b>. iL bắt đầu ngay sau khi Android xong S0 (tuần 3–4 theo lịch chung). Các sprint iS0 đến iS8 sẽ được chia trước khi bắt đầu iS0, tương ứng 107 task Android, cộng thêm các task riêng của iOS.</p>
+<p class="lead">Đã chia <b>sprint iL (12 task, 22 giờ)</b> và <b>sprint iS0 (13 task, 21,5 giờ)</b>. iL bắt đầu ngay sau khi Android xong S0 (tuần 3–4 theo lịch chung). Từ ngày 12/11/2026, mỗi sprint iOS <code>iSn</code> làm ngay sau sprint Android <code>Sn</code> (mục 13.3 của luật), nên iS0 làm ngay sau iL. Các sprint iS1 đến iS8 chưa chia; chúng sẽ tương ứng với các task Android, cộng thêm các task riêng của iOS.</p>
 
 <h2>1. Về sprint iL</h2>
 <ul>
@@ -90,14 +90,43 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:var(-
 </table>
 </div>
 
-<p class="note">iS0 đến iS8 chưa được chia. Phạm vi và số giờ của từng sprint xem trong <a href="ke-hoach-ios.html">kế hoạch iOS</a>, mục 5.</p>
+<div class="sprint">
+<h3><span class="tag t-found">iS0</span> Tuần 5–6, sau iL (đối chiếu Android S0) · Khung dự án và bộ phân tích câu</h3>
+<ul>
+<li><b>Học trước:</b> Swift Package Manager với local package; <code>String</code>, <code>Character</code> và Unicode; Swift Regex; test có tham số trong Swift Testing; <code>Calendar</code> và <code>FormatStyle</code>. Ôn lại hai chỗ còn yếu sau Cổng 0: điều kiện để <code>struct</code> là <code>Sendable</code>, optional chaining làm phẳng kiểu.</li>
+<li><b>Task giải thuật:</b> iS0-09, iS0-10, iS0-11 là phần port luật nhận diện của parser, agent viết theo mục 2 của luật. iS0-07 và iS0-08 người dùng tự viết, vì đó là phần học Swift (Codable, String, Unicode, Regex).</li>
+<li><b>Song song:</b> đăng ký Apple Developer Program trước iS3, để kịp dùng App Group trên máy thật và CloudKit về sau.</li>
+</ul>
+<table>
+<thead><tr><th>Mã</th><th>Việc</th><th>Chi tiết và tiêu chí xong</th><th>Module</th><th>Phụ thuộc</th><th class="num">Giờ</th></tr></thead>
+<tbody>
+<tr><td class="id">iS0-01</td><td>Tạo project</td><td>Project Xcode 27 cho app sản phẩm trong repo iOS (tách khỏi <code>luyen-tap/</code>). Target iOS 26.0, Swift 6 language mode, Default Actor Isolation là <code>MainActor</code>, dùng nhóm thư mục đồng bộ để giảm xung đột <code>.pbxproj</code>. Chốt Bundle ID và App Group ID, ghi lại vào tiến độ (chưa bật capability App Group, việc này cần Apple Developer Program). Commit shared scheme. <b>Xong khi:</b> app trống chạy trên simulator và iPhone thật; build không có cảnh báo từ code</td><td class="mod">app</td><td>–</td><td class="num">2</td></tr>
+<tr><td class="id">iS0-02</td><td>Chia package</td><td>Local package với <code>Core/{Parser, Model, Data, DesignSystem, Testing}</code> và <code>Features/{QuickAdd, Transactions, Budget, Stats, Settings, Onboarding}</code>. Quy tắc phụ thuộc: Parser là Swift thuần (chỉ Foundation, không SwiftUI hay SwiftData); Feature không phụ thuộc Feature khác. Target App chỉ lắp ghép. Mỗi module có target test chạy được. <b>Xong khi:</b> build và test của mọi module chạy được bằng <code>xcodebuild</code>; quy tắc phụ thuộc được ghi trong <code>Package.swift</code> hoặc README và không bị vi phạm</td><td class="mod">Core/*, Features/*</td><td>iS0-01</td><td class="num">2,5</td></tr>
+<tr><td class="id">iS0-03</td><td>Chất lượng mã</td><td>swift-format (có sẵn trong toolchain) và SwiftLint, có file cấu hình trong repo, phiên bản SwiftLint cố định. Tương ứng Spotless và Detekt ở S0-05. <b>Xong khi:</b> <code>swift format lint --recursive</code> và <code>swiftlint lint</code> chạy sạch</td><td class="mod">repo</td><td>iS0-02</td><td class="num">1,5</td></tr>
+<tr><td class="id">iS0-04</td><td>CI</td><td>GitHub Actions trên runner macOS (miễn phí vì repo public). Chọn đúng phiên bản Xcode có trên runner. Checkout kèm submodule <code>docs/</code>. Chạy build, lint, test và báo coverage trên mỗi pull request và khi push <code>main</code>; bảo vệ <code>main</code> giống bên Android. Không đưa bí mật nào vào workflow. <b>Xong khi:</b> một pull request thử có CI xanh</td><td class="mod">.github</td><td>iS0-03</td><td class="num">1,5</td></tr>
+<tr><td class="id">iS0-05</td><td>Design system: màu và chữ</td><td>Màu thương hiệu <code>#1B6B4A</code> cùng bảng màu cho sáng và tối; kiểu chữ theo Dynamic Type; khoảng cách và bo góc dùng chung. Ưu tiên style hệ thống để có sẵn Liquid Glass. <b>Xong khi:</b> Preview hiện đúng ở sáng, tối và cỡ chữ lớn nhất của Dynamic Type</td><td class="mod">Core/DesignSystem</td><td>iS0-02</td><td class="num">1,5</td></tr>
+<tr><td class="id">iS0-06</td><td>Design system: component</td><td>Component số tiền (định dạng VND bằng <code>FormatStyle</code>), chip, thẻ tổng, icon danh mục. Vùng chạm ≥ 44 pt, có nhãn VoiceOver. <b>Xong khi:</b> mỗi component có <code>#Preview</code> sáng và tối</td><td class="mod">Core/DesignSystem</td><td>iS0-05</td><td class="num">1</td></tr>
+<tr><td class="id">iS0-07</td><td>Model parser và đọc bộ câu mẫu</td><td><code>Money(Int64)</code> và kiểu kết quả của parser (loại, số tiền, danh mục theo <code>seedKey</code>, thời gian, ví, ghi chú, độ tin cậy 0–1 cho từng trường), đều là value type <code>Sendable</code>. API parser không thuộc <code>MainActor</code>, để sau này chạy được ngoài luồng chính. Đọc <code>docs/shared/parser/test_cases.json</code> bằng <code>Codable</code> trong test; file nằm ngoài package nên cần tìm cách cho test đọc được, chạy được cả trên CI, ghi lại lý do chọn cách đó. Test có tham số trong Swift Testing (<code>arguments:</code>) chạy qua 200 câu. <b>Xong khi:</b> test đọc đủ 200 câu, <code>referenceTime</code> và múi giờ <code>Asia/Ho_Chi_Minh</code> được giải mã đúng; khung test có tham số đã chạy (câu chưa qua được đánh dấu là chưa hỗ trợ, không phải lỗi)</td><td class="mod">Core/Parser, Core/Model</td><td>iS0-02</td><td class="num">2,5</td></tr>
+<tr><td class="id">iS0-08</td><td>Parser: chuẩn hóa và tách từ</td><td>Chữ thường; bản bỏ dấu tiếng Việt để so khớp (giữ bản gốc làm ghi chú), lưu ý chữ <code>đ</code>; tách cụm số và đơn vị (k, tr, củ, lít, nghìn, ngàn). Tương ứng S0-10. Người dùng tự viết, vì <code>String</code>, <code>Character</code>, Unicode và Regex là trọng tâm học của iS0. <b>Xong khi:</b> có test cho chữ có dấu, chữ hoa, khoảng trắng thừa và cụm số dính đơn vị</td><td class="mod">Core/Parser</td><td>iS0-07</td><td class="num">1,5</td></tr>
+<tr><td class="id">iS0-09</td><td>Parser: số tiền (FR-02)</td><td><i>Giải thuật do agent viết theo mục 2 của luật</i>; người dùng trả lời đạt 3–5 câu hỏi kiểm tra. Hiểu 45k, 45.000, 1tr2, 1,5tr, 2 củ, 5 lít, năm chục. Tương ứng S0-11. <b>Xong khi:</b> đúng số tiền ở ≥ 95% câu mẫu (Cổng 1)</td><td class="mod">Core/Parser</td><td>iS0-08</td><td class="num">2</td></tr>
+<tr><td class="id">iS0-10</td><td>Parser: thời gian (FR-03)</td><td><i>Giải thuật do agent viết theo mục 2 của luật</i>; người dùng trả lời đạt 3–5 câu hỏi kiểm tra. hôm qua, hôm kia, sáng nay, tối qua, thứ 2 tuần trước, ngày 5, 5/10. Inject <code>Calendar</code> (múi giờ <code>Asia/Ho_Chi_Minh</code>) và thời điểm hiện tại để test được. Tương ứng S0-12. <b>Xong khi:</b> test thời gian trên bộ mẫu xanh, kể cả câu qua nửa đêm và đầu tháng</td><td class="mod">Core/Parser</td><td>iS0-08</td><td class="num">1,5</td></tr>
+<tr><td class="id">iS0-11</td><td>Parser: danh mục và tách khoản (FR-04, FR-07)</td><td><i>Giải thuật do agent viết theo mục 2 của luật</i>; người dùng trả lời đạt 3–5 câu hỏi kiểm tra. Đọc <code>docs/shared/parser/category_keywords.json</code> lúc chạy app (không chỉ trong test), khóa theo <code>seedKey</code>; tách khoản theo dấu phẩy, "và", xuống dòng; mỗi trường có độ tin cậy. Phần đưa file từ điển vào app (resource, build phase) do người dùng tự làm. Tương ứng S0-13. <b>Xong khi:</b> test danh mục và tách khoản trên bộ mẫu xanh; app đọc được từ điển khi chạy</td><td class="mod">Core/Parser, app</td><td>iS0-09, iS0-10</td><td class="num">2</td></tr>
+<tr><td class="id">iS0-12</td><td>Đo hiệu năng parser (NFR-02)</td><td>Đo bằng XCTest (<code>measure</code>), vì Swift Testing chưa có API đo hiệu năng. Chạy cả bộ mẫu, mục tiêu ≤ 50 ms mỗi câu. Đây là phép đo sớm, phép đo chính thức ở iS4. Tương ứng S0-14. <b>Xong khi:</b> số đo được ghi vào tiến độ; nếu vượt 50 ms thì có ghi chú nguyên nhân</td><td class="mod">Core/Parser</td><td>iS0-11</td><td class="num">1</td></tr>
+<tr><td class="id">iS0-13</td><td>Đối chiếu với Android <span class="new">MỚI</span></td><td>Chạy cùng bộ câu trên cả hai parser, so danh sách id câu sai của hai bản. Câu nào cho kết quả khác thì ghi lý do và sửa một bên (sửa bên Android thì làm ở repo Android). <b>Xong khi:</b> mọi chỗ khác nhau đều có lý do được ghi lại; đạt Cổng 1 (CI xanh, số tiền ≥ 95%, design system đúng ở sáng và tối)</td><td class="mod">Core/Parser, docs/shared/parser</td><td>iS0-11, iS0-04</td><td class="num">1</td></tr>
+<tr class="total"><td colspan="5">Tổng iS0 · 13 task</td><td class="num">21,5</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="note">iS1 đến iS8 chưa được chia. Phạm vi và số giờ của từng sprint xem trong <a href="ke-hoach-ios.html">kế hoạch iOS</a>, mục 5.</p>
 
 <h2>4. Tổng hợp</h2>
 <table>
 <thead><tr><th>Sprint</th><th class="num">Task</th><th class="num">Giờ ước tính</th><th class="num">Giờ theo kế hoạch</th><th>Đánh giá</th></tr></thead>
 <tbody>
 <tr><td>iL</td><td class="num">12</td><td class="num">22</td><td class="num">22</td><td>Vừa khít. Nếu cài Xcode hoặc signing trên máy thật gặp trục trặc thì dời iL-11 sang đầu iS0</td></tr>
-<tr><td>iS0–iS8</td><td class="num">–</td><td class="num">–</td><td class="num">191</td><td>Chưa chia</td></tr>
+<tr><td>iS0</td><td class="num">13</td><td class="num">21,5</td><td class="num">22</td><td>Còn dư 0,5 giờ. Nếu CI gặp trục trặc về phiên bản Xcode trên runner thì dùng phần dư này</td></tr>
+<tr><td>iS1–iS8</td><td class="num">–</td><td class="num">–</td><td class="num">169</td><td>Chưa chia</td></tr>
 </tbody>
 </table>
 </main>

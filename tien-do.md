@@ -1,8 +1,8 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S1-01
-- **Lượt hiện tại:** Android S1 (lượt sau: iOS iS0). iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
+- **Task hiện tại:** S1-01 (lượt iOS iS0 đang chạy, S1 được làm song song)
+- **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-12
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.

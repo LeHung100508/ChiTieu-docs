@@ -1,8 +1,8 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** chưa có. Sprint iL đã đóng; task iS0 sẽ được chia trước khi bắt đầu iS0, sau Android S1
-- **Lượt hiện tại:** Android S1 (lượt sau: iOS iS0). iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
+- **Task hiện tại:** iS0-01 (đang chia task iS0 trong `task-ios.html`)
+- **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-12
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
@@ -26,39 +26,53 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iL-11 | Debug | 1 | Xong | 2026-11-11 | Nhật ký debug lỗi cài vào (books[0] = book gây trùng ID trong ForEach): breakpoint có điều kiện, po/p/expr, View Hierarchy đo nút tròn 26×26 pt (chưa đạt 44 pt); build sạch |
 | iL-12 | Cổng 0 và tổng kết | 0,5 | Xong | 2026-11-12 | Cổng 0 đạt: SwiftCoBan 31 test xanh, app đã chạy trên iPhone thật, tự giải thích đạt 5 khái niệm (ARC, actor isolation, identity cần hỏi lại một lượt) |
 
-## iS0 Tuần 7–8, sau Android S1 · Khung dự án và bộ phân tích câu
+## iS0 Tuần 5–6, sau iL (đối chiếu Android S0) · Khung dự án và bộ phân tích câu
 
-*(Chưa chia task chi tiết; xem `docs/task-ios.html` và `docs/ke-hoach-ios.html`)*
+| Task | Việc | Giờ | Trạng thái | Ngày xong | Ghi chú |
+| --- | --- | --- | --- | --- | --- |
+| iS0-01 | Tạo project | 2 | Chưa làm | |  |
+| iS0-02 | Chia package | 2,5 | Chưa làm | |  |
+| iS0-03 | Chất lượng mã | 1,5 | Chưa làm | |  |
+| iS0-04 | CI | 1,5 | Chưa làm | |  |
+| iS0-05 | Design system: màu và chữ | 1,5 | Chưa làm | |  |
+| iS0-06 | Design system: component | 1 | Chưa làm | |  |
+| iS0-07 | Model parser và đọc bộ câu mẫu | 2,5 | Chưa làm | |  |
+| iS0-08 | Parser: chuẩn hóa và tách từ | 1,5 | Chưa làm | |  |
+| iS0-09 | Parser: số tiền (FR-02) | 2 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
+| iS0-10 | Parser: thời gian (FR-03) | 1,5 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
+| iS0-11 | Parser: danh mục và tách khoản (FR-04, FR-07) | 2 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
+| iS0-12 | Đo hiệu năng parser (NFR-02) | 1 | Chưa làm | |  |
+| iS0-13 | Đối chiếu với Android | 1 | Chưa làm | |  |
 
-## iS1 Tuần 11–12, sau Android S2 · Dữ liệu, ví, danh mục, onboarding
-
-*(Chưa chia task chi tiết)*
-
-## iS2 Tuần 15–16, sau Android S3 · Nhập bằng câu từ đầu đến cuối
-
-*(Chưa chia task chi tiết)*
-
-## iS3 Tuần 19–20, sau Android S4 · Giao dịch, ngân sách, widget
-
-*(Chưa chia task chi tiết)*
-
-## iS4 Tuần 23–24, sau Android S5 · Thống kê và hoàn thiện MVP
-
-*(Chưa chia task chi tiết)*
-
-## iS5 Tuần 27–28 (+29) · TestFlight và phát hành App Store
+## iS1 Tuần 9–10, sau Android S1 · Dữ liệu, ví, danh mục, onboarding
 
 *(Chưa chia task chi tiết)*
 
-## iS6 Tuần 31–32 · AI trên máy và học từ người dùng
+## iS2 Tuần 13–14, sau Android S2 · Nhập bằng câu từ đầu đến cuối
 
 *(Chưa chia task chi tiết)*
 
-## iS7 Tuần 35–36 · Nhập từ ảnh và lối tắt
+## iS3 Tuần 17–18, sau Android S3 · Giao dịch, ngân sách, widget
 
 *(Chưa chia task chi tiết)*
 
-## iS8 Tuần 37–38 · Tự động hóa, iCloud, sao lưu, phát hành v1.1
+## iS4 Tuần 21–22, sau Android S4 · Thống kê và hoàn thiện MVP
+
+*(Chưa chia task chi tiết)*
+
+## iS5 Tuần 25–26 (+27), sau Android S5 · TestFlight và phát hành App Store
+
+*(Chưa chia task chi tiết)*
+
+## iS6 Tuần 29–30, sau Android S6 · AI trên máy và học từ người dùng
+
+*(Chưa chia task chi tiết)*
+
+## iS7 Tuần 33–34, sau Android S7 · Nhập từ ảnh và lối tắt
+
+*(Chưa chia task chi tiết)*
+
+## iS8 Tuần 37–38, sau Android S8 · Tự động hóa, iCloud, sao lưu, phát hành v1.1
 
 *(Chưa chia task chi tiết)*
 

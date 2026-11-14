@@ -8,7 +8,7 @@ Thư mục này là bản chính của mọi tài liệu dự án ChiNhanh. Nó 
 - `ke-hoach-android.html`: kế hoạch phát triển Android, 9 sprint 2 tuần
 - `ke-hoach-ios.html`: kế hoạch iOS gồm sprint làm quen iL và 9 sprint iS0–iS8, luân phiên với Android theo sprint; có bản đồ kiến thức iOS
 - `task-android.html`: 107 task chia theo sprint, kèm phân tích đường găng và quyết định kỹ thuật
-- `task-ios.html`: task iOS theo sprint; hiện mới chia sprint iL (12 task), iS0–iS8 chia trước khi bắt đầu iS0
+- `task-ios.html`: task iOS theo sprint; đã chia iL (12 task) và iS0 (13 task), iS1–iS8 chưa chia
 - `luat-agent.md`: luật cho agent AI hướng dẫn người dùng tự code từng task (mentor, không viết code hộ); mục 13 dành cho bản iOS
 - `tien-do.md`: trạng thái từng task Android, nợ kỹ thuật, ngoại lệ, nhật ký sprint; agent cập nhật theo `luat-agent.md`
 - `tien-do-ios.md`: tiến độ bản iOS, cùng cấu trúc với `tien-do.md` (tạo ở task iL-01)
