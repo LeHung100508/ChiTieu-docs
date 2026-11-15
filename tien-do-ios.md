@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iS0-02 (Chia package)
+- **Task hiện tại:** iS0-03 (Chất lượng mã)
 - **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-14
+- **Cập nhật lần cuối:** 2026-11-15
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -31,7 +31,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | Task | Việc | Giờ | Trạng thái | Ngày xong | Ghi chú |
 | --- | --- | --- | --- | --- | --- |
 | iS0-01 | Tạo project | 2 | Xong | 2026-11-14 | Project `ChiTieu` ở gốc repo, iOS 26.0, Swift 6, mặc định MainActor, thư mục đồng bộ, shared scheme; chốt Bundle ID `hung.lct.chitieu`, App Group ID `group.hung.lct.chitieu` (chưa bật capability); đã chạy trên iPhone thật |
-| iS0-02 | Chia package | 2,5 | Chưa làm | |  |
+| iS0-02 | Chia package | 2,5 | Xong | 2026-11-15 | Làm lại từ đầu sau lần 1. Local package `Core` (Model, Parser, Data, DesignSystem, CoreTesting) và `Features` (6 feature), mỗi module có test target; luật phụ thuộc ghi đầu mỗi `Package.swift`; DesignSystem và Feature mặc định MainActor; app chỉ link 6 feature, 4 tab theo wireframe, ⚙ mở Cài đặt |
 | iS0-03 | Chất lượng mã | 1,5 | Chưa làm | |  |
 | iS0-04 | CI | 1,5 | Chưa làm | |  |
 | iS0-05 | Design system: màu và chữ | 1,5 | Chưa làm | |  |
