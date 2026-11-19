@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iS0-05 (Design system: màu và chữ)
+- **Task hiện tại:** iS0-06 (Design system: component)
 - **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-18
+- **Cập nhật lần cuối:** 2026-11-19
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -34,7 +34,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iS0-02 | Chia package | 2,5 | Xong | 2026-11-15 | Làm lại từ đầu sau lần 1. Local package `Core` (Model, Parser, Data, DesignSystem, CoreTesting) và `Features` (6 feature), mỗi module có test target; luật phụ thuộc ghi đầu mỗi `Package.swift`; DesignSystem và Feature mặc định MainActor; app chỉ link 6 feature, 4 tab theo wireframe, ⚙ mở Cài đặt |
 | iS0-03 | Chất lượng mã | 1,5 | Xong | 2026-11-16 | `.swift-format` (4 space, 120 ký tự) và `.swiftlint.yml` với `swiftlint_version: 0.65.1`; cài bằng release `portable_swiftlint.zip`; lệnh chuẩn có `--strict`, phạm vi ChiTieu, Core, Features (không gồm `luyen-tap/`) |
 | iS0-04 | CI | 1,5 | Xong | 2026-11-18 | GitHub Actions trên runner `xcode-27`, checkout kèm submodule, SwiftLint 0.65.1 tải bằng release có kiểm SHA-256, lint `--strict`, `swift test` Core và Features kèm coverage ra Step Summary, build app; `permissions: contents: read`; ruleset `protect-main` active (PR và check `Build, Lint & Test`); PR #3 xanh |
-| iS0-05 | Design system: màu và chữ | 1,5 | Chưa làm | |  |
+| iS0-05 | Design system: màu và chữ | 1,5 | Xong | 2026-11-19 | `Colors.xcassets` 5 màu sáng/tối đạt WCAG AA; màu thương hiệu iOS `#1E7A4E` theo mockup iOS (chốt 2026-11-19, Android giữ `#1B6B4A`); `AppTypography` dựa trên text style hệ thống (số tiền dùng `.rounded` và `monospacedDigit`); `AppSpacing`, `AppRadius` là `nonisolated`; 3 `#Preview` (Sáng, Tối, AX5); test asset và token chạy trên macOS lẫn iOS. Phần lớn code viết theo ngoại lệ |
 | iS0-06 | Design system: component | 1 | Chưa làm | |  |
 | iS0-07 | Model parser và đọc bộ câu mẫu | 2,5 | Chưa làm | |  |
 | iS0-08 | Parser: chuẩn hóa và tách từ | 1,5 | Chưa làm | |  |
@@ -86,6 +86,9 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | Ngày | Task | Phần được viết hộ | Lý do |
 | --- | --- | --- | --- |
 | 2026-11-18 | iS0-04 | Step `Report Coverage` trong `.github/workflows/ci.yml` | Người dùng xác nhận `ngoại lệ:` cho phần script bash/jq xuất bảng coverage |
+| 2026-11-18 | iS0-05 | Setup `Colors.xcassets`, `Colors.swift` và `resources` trong `Core/Package.swift` | Người dùng xác nhận `ngoại lệ:` cho bước setup bảng màu |
+| 2026-11-18 | iS0-05 | Viết `Typography.swift` và `LayoutTokens.swift` trong `Core/DesignSystem` | Người dùng xác nhận `ngoại lệ:` cho bước token kiểu chữ, khoảng cách và bo góc |
+| 2026-11-19 | iS0-05 | Sửa colorset `BrandPrimary` (sáng `#1E7A4E`) và `BrandTintBackground` (sáng `#E6F5EC`); sửa `DesignSystemPreview` (chữ trên nền nhấn theo color scheme, thẻ `separator`, bỏ `cardPrimary`) | Người dùng xác nhận `ngoại lệ:` trong phiên mentor |
 
 ## Nhật ký sprint
 
