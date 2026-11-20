@@ -1,7 +1,7 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iS0-10 (Parser: thời gian, FR-03)
+- **Task hiện tại:** iS0-11 (Parser: danh mục và tách khoản, FR-04, FR-07)
 - **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-20
 
@@ -39,7 +39,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iS0-07 | Model parser và đọc bộ câu mẫu | 2,5 | Xong | 2026-11-20 | `Money(Int64)` (Codable số trần, literal); `ParsedTransaction` với `ParsedField<Value>` (độ tin cậy 0–1 từng trường), ví nguồn/đích cho chuyển khoản; test đọc 200 câu qua `#filePath` (macOS, simulator, CI), giải mã `Date`/`TransactionType`; test có tham số `arguments: try`, `withKnownIssue(isIntermittent:)`. So sánh từng trường hoãn sang trước iS0-09 |
 | iS0-08 | Parser: chuẩn hóa và tách từ | 1,5 | Xong | 2026-11-20 | `Tokenizer.tokenize` là cửa vào duy nhất (`normalize` gọi qua): regex literal có capture đặt tên, token word/number/punctuation/newline (`\R` bắt cả `\r\n`), bản bỏ dấu (xử lý `đ`), vị trí theo `Character` trên `raw`; test tham số 8 ca biên (NFD, CRLF). Code viết theo ngoại lệ; người dùng trả lời đạt 5 câu kiểm tra hiểu |
 | iS0-09 | Parser: số tiền (FR-02) | 2 | Xong | 2026-11-20 | Giải thuật do agent viết theo mục 2. `AmountParser`: 8 mẫu theo thứ tự ưu tiên, `đ`/`vnd` là ký hiệu không nhân, phần lẻ theo số chữ số, chống tràn số, 5 mức độ tin cậy; 200/200 câu mẫu (Cổng 1) và 19 câu ngoài mẫu; người dùng nối vào `TransactionParser` (`datetime` để `nil` tới iS0-10) và trả lời đạt 5 câu kiểm tra |
-| iS0-10 | Parser: thời gian (FR-03) | 1,5 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
+| iS0-10 | Parser: thời gian (FR-03) | 1,5 | Xong | 2026-11-20 | Giải thuật do agent viết theo mục 2. `DateParser` inject `now` và `Calendar`; buổi so có dấu; chống ngày tương lai, ngày sai trả rỗng; lan ngữ cảnh và ghép buổi vào ngày được lan; 200/200 câu mẫu, 14 câu ngoài mẫu, nửa đêm, đầu tháng, năm mới; người dùng nối vào `TransactionParser`, kiểm chặt `datetime` và trả lời đạt 5 câu |
 | iS0-11 | Parser: danh mục và tách khoản (FR-04, FR-07) | 2 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
 | iS0-12 | Đo hiệu năng parser (NFR-02) | 1 | Chưa làm | |  |
 | iS0-13 | Đối chiếu với Android | 1 | Chưa làm | |  |
