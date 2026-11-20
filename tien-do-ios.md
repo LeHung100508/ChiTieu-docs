@@ -1,7 +1,7 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iS0-08 (Parser: chuẩn hóa và tách từ)
+- **Task hiện tại:** iS0-09 (Parser: số tiền, FR-02)
 - **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-20
 
@@ -37,7 +37,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iS0-05 | Design system: màu và chữ | 1,5 | Xong | 2026-11-19 | `Colors.xcassets` 5 màu sáng/tối đạt WCAG AA; màu thương hiệu iOS `#1E7A4E` theo mockup iOS (chốt 2026-11-19, Android giữ `#1B6B4A`); `AppTypography` dựa trên text style hệ thống (số tiền dùng `.rounded` và `monospacedDigit`); `AppSpacing`, `AppRadius` là `nonisolated`; 3 `#Preview` (Sáng, Tối, AX5); test asset và token chạy trên macOS lẫn iOS. Phần lớn code viết theo ngoại lệ |
 | iS0-06 | Design system: component | 1 | Xong | 2026-11-19 | `AmountText` (màu mặc định `textPrimary`), `CategoryChip` (vùng chạm 44 pt trong label, `.isSelected`), `CategoryIconView`, `SummaryCard` theo mockup Tổng quan, `BudgetProgressCard`; `Int64.formattedVND(locale:)` theo `@Environment(\.locale)` (NFR-12); ngưỡng 80%/100% đặt một chỗ, có test; Preview sáng và tối. Chuỗi hard-code hoãn sang iS1 |
 | iS0-07 | Model parser và đọc bộ câu mẫu | 2,5 | Xong | 2026-11-20 | `Money(Int64)` (Codable số trần, literal); `ParsedTransaction` với `ParsedField<Value>` (độ tin cậy 0–1 từng trường), ví nguồn/đích cho chuyển khoản; test đọc 200 câu qua `#filePath` (macOS, simulator, CI), giải mã `Date`/`TransactionType`; test có tham số `arguments: try`, `withKnownIssue(isIntermittent:)`. So sánh từng trường hoãn sang trước iS0-09 |
-| iS0-08 | Parser: chuẩn hóa và tách từ | 1,5 | Chưa làm | |  |
+| iS0-08 | Parser: chuẩn hóa và tách từ | 1,5 | Xong | 2026-11-20 | `Tokenizer.tokenize` là cửa vào duy nhất (`normalize` gọi qua): regex literal có capture đặt tên, token word/number/punctuation/newline (`\R` bắt cả `\r\n`), bản bỏ dấu (xử lý `đ`), vị trí theo `Character` trên `raw`; test tham số 8 ca biên (NFD, CRLF). Code viết theo ngoại lệ; người dùng trả lời đạt 5 câu kiểm tra hiểu |
 | iS0-09 | Parser: số tiền (FR-02) | 2 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
 | iS0-10 | Parser: thời gian (FR-03) | 1,5 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
 | iS0-11 | Parser: danh mục và tách khoản (FR-04, FR-07) | 2 | Chưa làm | | Giải thuật do agent viết theo mục 2 |
@@ -91,6 +91,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | 2026-11-18 | iS0-05 | Setup `Colors.xcassets`, `Colors.swift` và `resources` trong `Core/Package.swift` | Người dùng xác nhận `ngoại lệ:` cho bước setup bảng màu |
 | 2026-11-18 | iS0-05 | Viết `Typography.swift` và `LayoutTokens.swift` trong `Core/DesignSystem` | Người dùng xác nhận `ngoại lệ:` cho bước token kiểu chữ, khoảng cách và bo góc |
 | 2026-11-19 | iS0-05 | Sửa colorset `BrandPrimary` (sáng `#1E7A4E`) và `BrandTintBackground` (sáng `#E6F5EC`); sửa `DesignSystemPreview` (chữ trên nền nhấn theo color scheme, thẻ `separator`, bỏ `cardPrimary`) | Người dùng xác nhận `ngoại lệ:` trong phiên mentor |
+| 2026-11-20 | iS0-08 | Viết `Token.swift`, `TextNormalizer.swift`, `Tokenizer.swift` và test | Người dùng xác nhận `ngoại lệ:` sau khi xem khung mẫu |
 
 ## Nhật ký sprint
 
