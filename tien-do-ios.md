@@ -1,8 +1,8 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iS0-13 (Đối chiếu với Android)
-- **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
+- **Task hiện tại:** iS1 (chưa chia task; làm sau Android S1)
+- **Lượt hiện tại:** Android S1 (iOS iS0 đóng 2026-11-21, đạt Cổng 1; lượt sau: iOS iS1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-21
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
@@ -41,8 +41,8 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iS0-09 | Parser: số tiền (FR-02) | 2 | Xong | 2026-11-20 | Giải thuật do agent viết theo mục 2. `AmountParser`: 8 mẫu theo thứ tự ưu tiên, `đ`/`vnd` là ký hiệu không nhân, phần lẻ theo số chữ số, chống tràn số, 5 mức độ tin cậy; 200/200 câu mẫu (Cổng 1) và 19 câu ngoài mẫu; người dùng nối vào `TransactionParser` (`datetime` để `nil` tới iS0-10) và trả lời đạt 5 câu kiểm tra |
 | iS0-10 | Parser: thời gian (FR-03) | 1,5 | Xong | 2026-11-20 | Giải thuật do agent viết theo mục 2. `DateParser` inject `now` và `Calendar`; buổi so có dấu; chống ngày tương lai, ngày sai trả rỗng; lan ngữ cảnh và ghép buổi vào ngày được lan; 200/200 câu mẫu, 14 câu ngoài mẫu, nửa đêm, đầu tháng, năm mới; người dùng nối vào `TransactionParser`, kiểm chặt `datetime` và trả lời đạt 5 câu |
 | iS0-11 | Parser: danh mục và tách khoản (FR-04, FR-07) | 2 | Xong | 2026-11-21 | Giải thuật do agent viết theo mục 2: `ClauseSplitter`, `CategoryDictionary` (cụm dài thắng, từ đơn ngắn phải có dấu), `WalletMatcher` (bí danh dài thắng), `ClauseAnalyzer` (loại, danh mục, ví, ghi chú cắt từ `raw`), `ParserConfiguration`; 200/200 câu mẫu đủ 6 trường. Người dùng: từ điển vào bundle app dạng tham chiếu, `ChiTieuApp` nạp và ghi lỗi bằng `Logger`, `TransactionParser(configuration:)`, kiểm chặt các trường trong test; trả lời đạt 5 câu |
-| iS0-12 | Đo hiệu năng parser (NFR-02) | 1 | Xong | 2026-11-21 | Đo trên Mac, 200 câu mẫu. `ContinuousClock` từng câu: Debug mean ≈ 2,1 ms, p95 2,4 ms, max ≈ 3,0 ms; Release mean 1,9 ms, max 2,3 ms. XCTest `measure` (`XCTClockMetric`): 0,412 s/200 câu ≈ 2,06 ms/câu. Đạt ≤ 50 ms. Ghi chú cho iS4: Release chỉ nhanh hơn Debug khoảng 10%, chi phí cố định ở `WalletMatcher` (tách token bí danh mỗi lần gọi) và `DateParser.parse` chạy 2 lần; đo lại trên thiết bị thật |
-| iS0-13 | Đối chiếu với Android | 1 | Chưa làm | |  |
+| iS0-12 | Đo hiệu năng parser (NFR-02) | 1 | Xong | 2026-11-21 | Đo trên Mac, 200 câu mẫu. `ContinuousClock` từng câu: Debug mean ≈ 2,1 ms, p95 2,4 ms, max ≈ 3,0 ms; Release mean 1,9 ms, max 2,3 ms. XCTest `measure` (`XCTClockMetric`): 0,412 s/200 câu ≈ 2,06 ms/câu. Đạt ≤ 50 ms. CI chỉ chặn p95; max có thể vượt trên runner dùng chung. Ghi chú cho iS4: Release chỉ nhanh hơn Debug khoảng 10%, chi phí cố định ở `WalletMatcher` (tách token bí danh mỗi lần gọi) và `DateParser.parse` chạy 2 lần; đo lại trên thiết bị thật |
+| iS0-13 | Đối chiếu với Android | 1 | Xong | 2026-11-21 | Đối chiếu 200 câu mẫu và các ca biên tại `docs/shared/parser/doi-chieu-ios-android.md`: iOS 200/200 câu đạt cả 6 trường; Android 192/200 câu (hoãn 8 câu TRANSFER tc_117-tc_124 sang S2-08 theo nợ kỹ thuật). Mọi chênh lệch đều có lý do được ghi nhận. Đã sửa lỗi mất dấu gạch chéo trong ghi chú. Đạt Cổng 1 (CI xanh, số tiền 100%, Preview sáng/tối đạt) |
 
 ## iS1 Tuần 9–10, sau Android S1 · Dữ liệu, ví, danh mục, onboarding
 
@@ -103,8 +103,38 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 - **Việc chậm:** người dùng không thấy việc nào chậm.
 - **Thay đổi cho sprint sau:** người dùng chưa muốn đổi gì.
 - **Quan sát của mentor:** cần nhắc từ S1 và iS0.
+
+### iS0 · 2026-11-14 → 2026-11-21 (khoảng 1 tuần, kế hoạch 2 tuần)
+- **Kết quả so với "Xong khi" (Cổng 1):** đạt.
+  - CI trên `main` xanh.
+  - Parser đúng số tiền ở 200/200 câu mẫu, và đúng cả 6 trường ở 229/229 khoản.
+  - Mọi chênh lệch với Android có lý do trong `docs/shared/parser/doi-chieu-ios-android.md`.
+  - Design system đúng ở sáng và tối.
+  - 13/13 task xong.
+- **Nợ kỹ thuật:** chuỗi hard-code trong DesignSystem, dời sang iS1.
+- **Việc tốt:** theo người dùng, mọi việc đều ổn.
+- **Việc chậm:** người dùng không thấy việc nào chậm.
+- **Thay đổi cho sprint sau:** người dùng không muốn đổi gì.
+- **Ghi nhận của mentor (để người dùng tham khảo):**
+  - Nhiều lần báo xong khi lint hoặc test chưa xanh: iS0-07 (swift-format), iS0-11 (test không biên dịch, lint đỏ hai lần), iS0-12 (lint).
+  - Bản tự rà soát thường ghi "Đóng được" sớm.
+  - Bảng đối chiếu iS0-13 lúc đầu có dữ liệu không có thật.
+  - Đề xuất: trước khi báo xong, chạy hai lệnh lint chuẩn và `swift test`.
+- **6 câu cần chốt quy ước chung** (`50000đ`, `1tr05`, ngày tương lai trong ghi chú, `5 lít xăng`, `chuyển 500k cho vợ`, `45k 2 ly`): chờ người dùng quyết định trước khi sửa README và bộ mẫu.
   - Để mentor đổi cột trạng thái trong tiến độ. Người dùng đã nhiều lần tự ghi Xong trước khi rà soát.
   - Build và chạy test trước khi báo xong. Ở iL-11 có lần báo xong khi code còn BUILD FAILED.
   - Khi tự viết tài liệu `hoc/`, đối chiếu với tài liệu chính thức. Tài liệu của iL-10 và iL-11 có vài chỗ sai về API.
   - Ở Cổng 0, trả lời bằng lời của mình, không dán.
   - Chủ đề cần ôn lại ở iS0: điều kiện để một `struct` là `Sendable`; optional chaining làm phẳng kiểu kết quả.
+
+### iS0 · 2026-11-13 → 2026-11-21 (khoảng 1,2 tuần, kế hoạch 2 tuần)
+- **Kết quả so với "Xong khi" (Cổng 1):** đạt. CI xanh trên cả nhánh và `main`; parser nhận đúng số tiền 200/200 câu mẫu (100% ≥ 95% theo NFR-02/Cổng 1); mọi khác biệt với bản Android (8 câu chuyển khoản hoãn sang S2-08) đều được ghi nhận và giải trình rõ ràng; design system hiển thị đúng trong Preview ở cả sáng và tối. Hoàn thành 13/13 task.
+- **Việc tốt:** (chờ người dùng chia sẻ)
+- **Việc chậm:** (chờ người dùng chia sẻ)
+- **Thay đổi cho sprint sau:** (chờ người dùng chia sẻ)
+- **Quan sát của mentor:**
+  - Tốc độ port parser rất tốt, tận dụng hiệu quả thế mạnh Swift (pattern matching, Regex literal, Swift Testing).
+  - Đã xử lý trọn vẹn 200/200 câu với đủ 6 trường dữ liệu (sớm hơn Android ở khoản nhận diện ví và chuyển khoản).
+  - Cần duy trì thói quen chạy lint (`swift-format`, `swiftlint`) trước khi tạo PR để tránh đỏ CI do lỗi format.
+
+
