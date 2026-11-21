@@ -1,7 +1,7 @@
 # Tiến độ ChiTieu iOS
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu-ios.git
-- **Task hiện tại:** iS0-12 (Đo hiệu năng parser, NFR-02)
+- **Task hiện tại:** iS0-13 (Đối chiếu với Android)
 - **Lượt hiện tại:** iOS iS0 (lượt sau: Android S1; được làm song song S1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
 - **Cập nhật lần cuối:** 2026-11-21
 
@@ -41,7 +41,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | iS0-09 | Parser: số tiền (FR-02) | 2 | Xong | 2026-11-20 | Giải thuật do agent viết theo mục 2. `AmountParser`: 8 mẫu theo thứ tự ưu tiên, `đ`/`vnd` là ký hiệu không nhân, phần lẻ theo số chữ số, chống tràn số, 5 mức độ tin cậy; 200/200 câu mẫu (Cổng 1) và 19 câu ngoài mẫu; người dùng nối vào `TransactionParser` (`datetime` để `nil` tới iS0-10) và trả lời đạt 5 câu kiểm tra |
 | iS0-10 | Parser: thời gian (FR-03) | 1,5 | Xong | 2026-11-20 | Giải thuật do agent viết theo mục 2. `DateParser` inject `now` và `Calendar`; buổi so có dấu; chống ngày tương lai, ngày sai trả rỗng; lan ngữ cảnh và ghép buổi vào ngày được lan; 200/200 câu mẫu, 14 câu ngoài mẫu, nửa đêm, đầu tháng, năm mới; người dùng nối vào `TransactionParser`, kiểm chặt `datetime` và trả lời đạt 5 câu |
 | iS0-11 | Parser: danh mục và tách khoản (FR-04, FR-07) | 2 | Xong | 2026-11-21 | Giải thuật do agent viết theo mục 2: `ClauseSplitter`, `CategoryDictionary` (cụm dài thắng, từ đơn ngắn phải có dấu), `WalletMatcher` (bí danh dài thắng), `ClauseAnalyzer` (loại, danh mục, ví, ghi chú cắt từ `raw`), `ParserConfiguration`; 200/200 câu mẫu đủ 6 trường. Người dùng: từ điển vào bundle app dạng tham chiếu, `ChiTieuApp` nạp và ghi lỗi bằng `Logger`, `TransactionParser(configuration:)`, kiểm chặt các trường trong test; trả lời đạt 5 câu |
-| iS0-12 | Đo hiệu năng parser (NFR-02) | 1 | Chưa làm | |  |
+| iS0-12 | Đo hiệu năng parser (NFR-02) | 1 | Xong | 2026-11-21 | Đo trên Mac, 200 câu mẫu. `ContinuousClock` từng câu: Debug mean ≈ 2,1 ms, p95 2,4 ms, max ≈ 3,0 ms; Release mean 1,9 ms, max 2,3 ms. XCTest `measure` (`XCTClockMetric`): 0,412 s/200 câu ≈ 2,06 ms/câu. Đạt ≤ 50 ms. Ghi chú cho iS4: Release chỉ nhanh hơn Debug khoảng 10%, chi phí cố định ở `WalletMatcher` (tách token bí danh mỗi lần gọi) và `DateParser.parse` chạy 2 lần; đo lại trên thiết bị thật |
 | iS0-13 | Đối chiếu với Android | 1 | Chưa làm | |  |
 
 ## iS1 Tuần 9–10, sau Android S1 · Dữ liệu, ví, danh mục, onboarding
