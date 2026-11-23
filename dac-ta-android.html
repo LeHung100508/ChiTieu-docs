@@ -84,6 +84,7 @@ li p{margin:2px 0}
 <h2 id="7-mô-hình-dữ-liệu">7. Mô hình dữ liệu</h2>
 <p>Dữ liệu gồm 8 thực thể Room xoay quanh bảng Giao dịch. Số dư ví và các con số thống kê không lưu riêng mà luôn tính từ giao dịch, nên không bao giờ bị lệch nhau.</p>
 <figure><img src="images/c6228671-dd7f.png" alt="mô hình dữ liệu · 8 thực thể Room"><figcaption>mô hình dữ liệu · 8 thực thể Room</figcaption></figure>
+<p><strong>Điều chỉnh khi làm S1-01 (2026-11-23):</strong> Ví bỏ <code>type</code> và <code>isDefault</code> (ví mặc định là một cài đặt, FR-35), thêm <code>icon</code> và <code>color</code>. Giao dịch có <code>source</code> gồm <code>MANUAL</code> (nhập form), <code>TEXT</code> (gõ câu), <code>VOICE</code>, <code>IMAGE</code>, <code>RECURRING</code>; số tiền luôn dương, <code>type</code> quyết định chiều. Ngân sách là hạn mức lặp lại theo kỳ, MVP chỉ có kỳ tháng. <code>Tag</code>, <code>Attachment</code>, <code>RecurringRule</code> và <code>Transaction.recurringRuleId</code> làm sau MVP. Bản iOS theo cùng mô hình này ở iS1.</p>
 <p>Bảng ảo FTS4 trên <code>note</code> và <code>rawInput</code> phục vụ tìm kiếm (FR-20). Lưu lại <code>rawInput</code> giúp phân tích lại dữ liệu cũ mỗi khi bộ phân tích được cải tiến.</p>
 <h2 id="8-màn-hình-và-luồng-chính">8. Màn hình và luồng chính</h2>
 <p>App có 4 tab chính: Trang chủ, Giao dịch, Ngân sách, Thống kê. Thanh điều hướng tự đổi từ bottom bar trên điện thoại sang navigation rail trên tablet. Cài đặt mở từ thanh trên cùng.</p>

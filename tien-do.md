@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S1-01 (lượt Android S1)
+- **Task hiện tại:** S1-02 (lượt Android S1)
 - **Lượt hiện tại:** Android S1 (iOS iS0 đóng 2026-11-21, đạt Cổng 1; lượt sau: iOS iS1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-21
+- **Cập nhật lần cuối:** 2026-11-23
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -33,7 +33,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 
 | Task | Việc | Giờ | Trạng thái | Ngày xong | Ghi chú |
 | --- | --- | --- | --- | --- | --- |
-| S1-01 | Domain model | 1 | Chưa làm | | |
+| S1-01 | Domain model | 1 | Xong | 2026-11-23 | Bản mẫu cho iS1. core:model là JVM library; Money (value class, sum), CategoryType riêng; Wallet bỏ type/isDefault (ví mặc định ở DataStore), thêm icon/color; Transaction amount > 0, TransactionSource 5 giá trị (MANUAL tách TEXT); Budget lặp lại mỗi kỳ, chỉ MONTHLY; KeywordRule hitCount theo FR-09; 32 test, rà soát 2 lần |
 | S1-02 | Room: entity và schema | 2 | Chưa làm | | |
 | S1-03 | DAO trả về Flow | 2 | Chưa làm | | |
 | S1-04 | Test DAO và khung migration | 1,5 | Chưa làm | | |
