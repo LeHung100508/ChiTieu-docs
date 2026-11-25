@@ -35,7 +35,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | --- | --- | --- | --- | --- | --- |
 | S1-01 | Domain model | 1 | Xong | 2026-11-23 | Bản mẫu cho iS1. core:model là JVM library; Money (value class, sum), CategoryType riêng; Wallet bỏ type/isDefault (ví mặc định ở DataStore), thêm icon/color; Transaction amount > 0, TransactionSource 5 giá trị (MANUAL tách TEXT); Budget lặp lại mỗi kỳ, chỉ MONTHLY; KeywordRule hitCount theo FR-09; 32 test, rà soát 2 lần |
 | S1-02 | Room: entity và schema | 2 | Xong | 2026-11-25 | Bản mẫu cho iS1. 5 bảng MVP + FTS4 (contentEntity, unicode61, auto-sync triggers), 7 FK (RESTRICT/CASCADE/SET_NULL), index ghép & unique seed_key/keyword, cột xóa mềm deleted_at, ngân sách tổng giữ chung bảng budgets (chặn trùng bằng @Transaction ở S1-03/test S1-04), bí danh JSON, 12/12 test, 0 KSP warning, rà soát 4 lần |
-| S1-03 | DAO trả về Flow | 2 | Chưa làm | | |
+| S1-03 | DAO trả về Flow | 2 | Chưa làm | | Lưu ý: (1) Không dùng REPLACE cho ví/danh mục (tránh RESTRICT/CASCADE), dùng @Upsert hoặc @Update; (2) Xóa mềm, hoàn tác, dọn rác và sửa giao dịch (AND deleted_at IS NULL) dùng @Query riêng, không dùng Transaction.asEntity() để @Update; truy vấn đọc lọc deleted_at IS NULL; (3) @Transaction upsert ngân sách tổng |
 | S1-04 | Test DAO và khung migration | 1,5 | Chưa làm | | |
 | S1-05 | Danh mục mặc định | 1,5 | Chưa làm | | |
 | S1-06 | Repository và Hilt | 2 | Chưa làm | | |
