@@ -1,9 +1,9 @@
 # Tiến độ ChiTieu Android
 
 - **Repo GitHub:** https://github.com/LeHung100508/ChiTieu.git
-- **Task hiện tại:** S1-03 (lượt Android S1)
+- **Task hiện tại:** S1-04 (lượt Android S1)
 - **Lượt hiện tại:** Android S1 (iOS iS0 đóng 2026-11-21, đạt Cổng 1; lượt sau: iOS iS1). Ngày 2026-11-12 người dùng đổi thứ tự luân phiên thành iSn ngay sau Sn, để giữ nhịp iOS sau iL. iL đóng ngày 2026-11-12. S0 đóng ngày 2026-11-01, S0-15 dời sang trước S5. Thứ tự luân phiên xem mục 13.3 của `docs/luat-agent.md`
-- **Cập nhật lần cuối:** 2026-11-25
+- **Cập nhật lần cuối:** 2026-11-26
 
 Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xong. Quy trình xem `docs/luat-agent.md`.
 
@@ -35,10 +35,10 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | --- | --- | --- | --- | --- | --- |
 | S1-01 | Domain model | 1 | Xong | 2026-11-23 | Bản mẫu cho iS1. core:model là JVM library; Money (value class, sum), CategoryType riêng; Wallet bỏ type/isDefault (ví mặc định ở DataStore), thêm icon/color; Transaction amount > 0, TransactionSource 5 giá trị (MANUAL tách TEXT); Budget lặp lại mỗi kỳ, chỉ MONTHLY; KeywordRule hitCount theo FR-09; 32 test, rà soát 2 lần |
 | S1-02 | Room: entity và schema | 2 | Xong | 2026-11-25 | Bản mẫu cho iS1. 5 bảng MVP + FTS4 (contentEntity, unicode61, auto-sync triggers), 7 FK (RESTRICT/CASCADE/SET_NULL), index ghép & unique seed_key/keyword, cột xóa mềm deleted_at, ngân sách tổng giữ chung bảng budgets (chặn trùng bằng @Transaction ở S1-03/test S1-04), bí danh JSON, 12/12 test, 0 KSP warning, rà soát 4 lần |
-| S1-03 | DAO trả về Flow | 2 | Chưa làm | | Lưu ý: (1) Không dùng REPLACE cho ví/danh mục (tránh RESTRICT/CASCADE), dùng @Upsert hoặc @Update; (2) Xóa mềm, hoàn tác, dọn rác và sửa giao dịch (AND deleted_at IS NULL) dùng @Query riêng, không dùng Transaction.asEntity() để @Update; truy vấn đọc lọc deleted_at IS NULL; (3) @Transaction upsert ngân sách tổng |
+| S1-03 | DAO trả về Flow | 2 | Xong | 2026-11-26 | Bản mẫu cho iS1. Chốt: danh mục con cộng dồn vào cha, tính tại repository (S1-06); FR-09 đổi danh mục thì hit_count về 1; upsert theo khóa nghiệp vụ bằng @Transaction (budgets, keyword_rules), không dùng @Upsert trên bảng có unique index ngoài khóa chính. 6 DAO, 15 test, rà soát 3 lần |
 | S1-04 | Test DAO và khung migration | 1,5 | Chưa làm | | |
 | S1-05 | Danh mục mặc định | 1,5 | Chưa làm | | |
-| S1-06 | Repository và Hilt | 2 | Chưa làm | | |
+| S1-06 | Repository và Hilt | 2 | Chưa làm | | Lưu ý: cộng dồn tổng chi/thu danh mục con vào danh mục cha tại Repository (từ cây danh mục + TransactionStatsDao); truyền ngưỡng minHits = 2 cho KeywordRuleDao; xem ghi chú S1-10 về xóa danh mục khi còn giao dịch chờ xóa mềm |
 | S1-07 | DataStore | 1,5 | Chưa làm | | |
 | S1-08 | Onboarding (FR-34) | 3 | Chưa làm | | |
 | S1-09 | Màn Ví (FR-23) | 2 | Chưa làm | | |
@@ -179,6 +179,7 @@ Trạng thái: Chưa làm · Đang làm · Chờ rà soát · Cần sửa · Xon
 | 2026-10-31 | S0-13 | Viết code từ điển category_keywords.json, ClauseSplitter, CategoryClassifier, trích xuất note và unit test | Người dùng yêu cầu ngoại lệ "task này là ngoại lệ, hãy làm cho tôi" |
 | 2026-11-01 | S0-14 | Viết test benchmark đo hiệu năng parser trên JVM (NFR-02) và phân tích thống kê p50, p90, p95 | Người dùng yêu cầu ngoại lệ "Ngoại lệ: S0-14" |
 | 2026-11-25 | S1-02 | Viết bổ sung unit test cho ConvertersTest (danh sách rỗng, ký tự đặc biệt) và EntityMapperTest (TRANSFER, danh mục tự tạo, KeywordRule có ví) | Người dùng yêu cầu ngoại lệ "ngoại lệ: viết unit test bổ sung cho ConvertersTest và EntityMapperTest" |
+| 2026-11-26 | S1-03 | Viết 2 câu @Query tính số dư ví trong WalletDao (observeActiveWalletsWithBalance, observeAllWalletsWithBalance) | Người dùng yêu cầu ngoại lệ vì chưa quen cú pháp SQL subquery |
 
 ## Nhật ký sprint
 
